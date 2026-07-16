@@ -1,5 +1,10 @@
 import Image from 'next/image';
-import { Cta, Footer, ImportantNotice, Navigation } from './App.jsx';
+import { Cta, Footer, Navigation } from './App.jsx';
+
+const assessmentCta = {
+  label: 'Start your Assessment Package',
+  shortLabel: 'Start package',
+};
 
 const comparisonCards = [
   {
@@ -28,19 +33,26 @@ const comparisonCards = [
   },
 ];
 
+const guidedItems = [
+  'Parent questionnaires',
+  'Teacher input',
+  'School reports',
+  'Existing assessments',
+];
+
 const appointmentSteps = [
   {
-    text: 'Know exactly what information is needed',
+    text: 'Completed, clinically validated questionnaires',
     icon: '/step-information.png',
     shape: 'top-right',
   },
   {
-    text: 'Reduce delays caused by missing evidence',
+    text: 'Existing clinical reports and school information',
     icon: '/step-checklist.png',
     shape: 'bottom-left',
   },
   {
-    text: "Avoid repeating your child's story",
+    text: 'Everything organised in one place',
     icon: '/step-story.png',
     shape: 'top-right',
   },
@@ -66,18 +78,17 @@ function HowPageHero() {
     <section className="hero how-page-hero" id="top">
       <div className="hero-grid">
         <div className="hero-copy">
-          <h1>From wondering where to start, to <span className="hero-highlight">Assessment Ready</span>.</h1>
-          <p>Threadline helps you prepare a complete, guideline-based Assessment Package before your child&apos;s clinician visit.</p>
+          <h1>Know what to prepare for your child&apos;s <span className="hero-highlight">ADHD assessment.</span></h1>
+          <p>Answer a few guided questions, add existing reports and invite relevant contributors. Threadline organises everything into an Assessment Package for your clinician.</p>
         </div>
         <div className="hero-media">
           <Image
-            src="/hero-watercolour-figma.png"
+            src="/how-hero-watercolour.jpg"
             alt="Soft blue, green and cream watercolour brushstrokes"
             fill
             priority
             sizes="(max-width: 900px) calc(100vw - 32px), 725px"
           />
-          <span className="art-soft-light" aria-hidden="true" />
         </div>
       </div>
     </section>
@@ -90,7 +101,7 @@ function ComparisonSection() {
       <div className="how-page-inner">
         <div className="how-page-heading">
           <p className="eyebrow">HOW IT WORKS</p>
-          <h2 id="comparison-title">Share info with your child&apos;s clinician</h2>
+          <h2 id="comparison-title">Share information with your child&apos;s clinician.</h2>
         </div>
         <div className="comparison-grid">
           {comparisonCards.map(({ title, icon, tone, items }) => (
@@ -110,21 +121,23 @@ function ComparisonSection() {
   );
 }
 
-function JourneyBanner() {
+function GuidedSection() {
   return (
-    <section className="journey-section" aria-labelledby="journey-title">
-      <div className="journey-panel">
-        <Image
-          src="/solution-watercolour.png"
-          alt=""
-          fill
-          loading="eager"
-          sizes="(max-width: 900px) calc(100vw - 32px), 1450px"
-        />
-        <span className="art-soft-light art-soft-light--workspace" aria-hidden="true" />
-        <div className="journey-content">
-          <p className="eyebrow">START YOUR JOURNEY</p>
-          <h2 id="journey-title">A few questions to set up your secure Thread and Assessment Package.</h2>
+    <section className="guided-section" aria-labelledby="guided-title">
+      <Image
+        src="/how-hero-watercolour.jpg"
+        alt=""
+        fill
+        loading="eager"
+        sizes="(max-width: 900px) calc(100vw - 32px), 1450px"
+      />
+      <div className="guided-card">
+        <div className="guided-heading">
+          <p className="eyebrow">BUILD YOUR ASSESSMENT PACKAGE</p>
+          <h2 id="guided-title">Answer a few guided questions to personalise your Assessment Package.</h2>
+        </div>
+        <div className="guided-items">
+          {guidedItems.map((item) => <p key={item}>{item}</p>)}
         </div>
       </div>
     </section>
@@ -137,7 +150,7 @@ function AppointmentSection() {
       <div className="how-page-inner">
         <div className="how-page-heading">
           <p className="eyebrow">HOW IT WORKS</p>
-          <h2 id="appointment-title">Organise your child&apos;s appointment.</h2>
+          <h2 id="appointment-title">What your clinician gets in the Assessment Package</h2>
         </div>
         <div className="steps-grid">
           {appointmentSteps.map(({ text, icon, shape }) => (
@@ -147,6 +160,28 @@ function AppointmentSection() {
             </article>
           ))}
         </div>
+      </div>
+    </section>
+  );
+}
+
+function ThreadSection() {
+  return (
+    <section className="how-thread-section" aria-label="Your Thread">
+      <Image
+        src="/how-thread-watercolour.jpg"
+        alt=""
+        fill
+        loading="eager"
+        sizes="(max-width: 900px) calc(100vw - 32px), 1450px"
+      />
+      <div className="how-thread-grid">
+        <article className="how-thread-card how-thread-card--plain">
+          <h2>Your Thread securely unites your child’s information.</h2>
+        </article>
+        <article className="how-thread-card how-thread-card--green">
+          <h2>Use it throughout your child&apos;s care.</h2>
+        </article>
       </div>
     </section>
   );
@@ -177,27 +212,42 @@ function FinalCta() {
   return (
     <section className="how-final-cta" aria-labelledby="final-cta-title">
       <div className="how-final-panel">
-        <h2 id="final-cta-title">Start your assessment<br />with the complete picture.</h2>
-        <Cta />
+        <h2 id="final-cta-title">Prepare with the<br />complete picture.</h2>
+        <Cta {...assessmentCta} />
       </div>
     </section>
+  );
+}
+
+function WhatThreadlineDoesntDo() {
+  return (
+    <aside className="important how-important" id="resources">
+      <div className="important-inner">
+        <p className="important-label">What Threadline Doesn&apos;t Do</p>
+        <p className="important-copy">
+          Threadline does not diagnose ADHD, replace your child&apos;s clinician, recommend treatment, or prescribe medication.<br />
+          Your child&apos;s clinician remains responsible for the clinical assessment, diagnosis and any treatment decisions.
+        </p>
+      </div>
+    </aside>
   );
 }
 
 export default function HowItWorksPage() {
   return (
     <div className="page-shell how-page">
-      <Navigation />
+      <Navigation ctaLabel={assessmentCta.label} ctaShortLabel={assessmentCta.shortLabel} />
       <main>
         <HowPageHero />
         <ComparisonSection />
-        <JourneyBanner />
+        <GuidedSection />
         <AppointmentSection />
+        <ThreadSection />
         <FaqSection />
         <FinalCta />
-        <ImportantNotice />
+        <WhatThreadlineDoesntDo />
       </main>
-      <Footer />
+      <Footer ctaLabel={assessmentCta.label} ctaShortLabel={assessmentCta.shortLabel} useLogo />
     </div>
   );
 }

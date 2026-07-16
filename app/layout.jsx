@@ -26,6 +26,7 @@ const frankRuhlLibre = Frank_Ruhl_Libre({
 export const metadata = {
   title: 'Threadline — ADHD assessment preparation',
   description: "Threadline organises everything your child's clinician needs before an ADHD assessment.",
+  icons: { icon: '/threadline-logo.svg' },
 };
 
 export const viewport = {

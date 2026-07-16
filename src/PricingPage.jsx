@@ -1,104 +1,101 @@
 import Image from 'next/image';
-import { Cta, Footer, ImportantNotice, Navigation } from './App.jsx';
+import { Cta, Navigation } from './App.jsx';
 
 const guidelineItems = [
+  ['BASED ON', "Australia's national ADHD Clinical Practice Guidelines"],
+  ['APPROVED BY', "Australia's National Health and Medical Research Council (NHMRC)"],
+  ['ENDORSE BY', "Australia's leading medical, psychology and allied health organisations"],
+];
+
+const packageItems = [
+  'Personalised Assessment Package and secure Family Workspace',
+  'Clinically validated parent and teacher questionnaires',
+  'Guided evidence collection and document organisation',
+  "Secure submission to your child's clinician",
+];
+
+const pricingFaqs = [
   {
-    label: 'BASED ON',
-    text: "Australia's national ADHD Clinical Practice Guidelines",
+    question: 'Is this the cost of the ADHD assessment itself?',
+    answer: "No. $395 covers Threadline’s preparation service. Your child's clinician charges separately for the clinical assessment.",
   },
   {
-    label: 'APPROVED BY',
-    text: "Australia's National Health and Medical Research Council (NHMRC)",
-  },
-  {
-    label: 'ENDORSE BY',
-    text: "Australia's leading medical, psychology and allied health organisations",
+    question: 'Can I complete everything in one day?',
+    answer: 'Yes. Most families finish their part in one sitting. The only step that depends on someone else is the teacher questionnaire — we send it directly and track it for you.',
   },
 ];
 
-const benefits = [
-  {
-    text: 'Know exactly what information is needed',
-    icon: '/step-information.png',
-    shape: 'top-right',
-  },
-  {
-    text: 'Reduce delays caused by missing evidence',
-    icon: '/step-checklist.png',
-    shape: 'bottom-left',
-  },
-  {
-    text: "Avoid repeating your child's story",
-    icon: '/step-story.png',
-    shape: 'top-right',
-  },
+const footerExplore = [
+  ['Overview', '/'],
+  ['How It Works', '/how-it-works'],
+  ['Pricing', '/pricing'],
+  ['For Clinician', '/#clinicians'],
+  ['Resources', '/#resources'],
+  ['About us', '/'],
+  ['Contact us', '/#contact'],
 ];
 
-const faqs = [
-  {
-    question: 'Is Threadline an ADHD assessment?',
-    answer: "No. Threadline prepares the Assessment Package. Your child's clinician performs the assessment separately.",
-  },
-  {
-    question: 'How long does it take?',
-    answer: 'Most families start in minutes and complete their package at their own pace. Assessments and evidence collection can take several hours to complete.',
-  },
-  {
-    question: 'Who owns my information?',
-    answer: "You do, as part of your child's Thread.",
-  },
-];
+const footerSocial = ['Instagram', 'LinkedIn', 'X', 'YouTube'];
 
 function PricingHero() {
   return (
-    <section className="pricing-hero" id="pricing-details" aria-labelledby="pricing-title">
-      <div className="pricing-hero-grid">
-        <article className="pricing-hero-intro">
-          <h1 id="pricing-title">Become Assessment <span>Ready.</span></h1>
-          <p>To help your child&apos;s clinician, whether GP, paediatrician or psychiatrist, start with the complete picture.</p>
-        </article>
-        <article className="pricing-hero-card">
-          <div>
-            <p className="eyebrow">ASSESSMENT PREPARATION</p>
-            <div className="price-line"><strong>$395&nbsp;</strong><span>one-off</span></div>
-          </div>
-          <Cta href="#pricing-details" />
-        </article>
-      </div>
+    <section className="pricing-v2-hero" id="pricing-details" aria-labelledby="pricing-title">
+      <article className="pricing-v2-hero-copy">
+        <h1 id="pricing-title">Become ADHD <span>Assessment Ready.</span></h1>
+        <p>Everything your clinician needs, prepared and organised before your appointment. Start in under 5 minutes.</p>
+      </article>
+      <article className="pricing-v2-hero-price">
+        <div>
+          <p className="pricing-v2-kicker">ASSESSMENT PREPARATION</p>
+          <div className="pricing-v2-price"><strong>$395&nbsp;</strong><span>One-time payment</span></div>
+        </div>
+        <Cta href="#start" label="Start Your Assessment Package" shortLabel="Start package" />
+      </article>
     </section>
   );
 }
 
 function Guidelines() {
   return (
-    <section className="pricing-guidelines" aria-label="Clinical guideline foundations">
-      <div className="guideline-grid">
-        {guidelineItems.map(({ label, text }) => (
-          <div className="guideline-item" key={label}>
-            <p className="eyebrow">{label}</p>
-            <p>{text}</p>
-          </div>
+    <section className="pricing-v2-guidelines" aria-label="Clinical guideline foundations">
+      <div>
+        {guidelineItems.map(([label, text]) => (
+          <article key={label}>
+            <p>{label}</p>
+            <h2>{text}</h2>
+          </article>
         ))}
       </div>
     </section>
   );
 }
 
-function Benefits() {
+function ThreadPreview({ className = '' }) {
   return (
-    <section className="pricing-benefits" id="benefits" aria-labelledby="benefits-title">
-      <div className="pricing-content">
-        <div className="how-page-heading">
-          <p className="eyebrow">HOW IT WORKS</p>
-          <h2 id="benefits-title">Reduce delays from missing information.</h2>
+    <div className={`pricing-v2-thread-preview ${className}`}>
+      <Image className="pricing-v2-thread-art" src="/pricing-thread-watercolour-v2.jpg" fill alt="" sizes="(max-width: 900px) calc(100vw - 64px), 1042px" />
+      <Image className="pricing-v2-thread-report" src="/pricing-evidence-workspace-v2.png" width={1005} height={773} alt="Evidence Workspace preview" />
+    </div>
+  );
+}
+
+function PackageSection() {
+  return (
+    <section className="pricing-v2-package" id="package" aria-labelledby="package-title">
+      <div className="pricing-v2-package-inner">
+        <header className="pricing-v2-section-heading">
+          <p className="pricing-v2-kicker">YOUR CHILD&apos;S THREAD</p>
+          <h2 id="package-title">What&apos;s included in the Assessment Package.</h2>
+        </header>
+        <div className="pricing-v2-package-grid">
+          <article className="pricing-v2-package-list">
+            <ul>{packageItems.map((item) => <li key={item}>{item}</li>)}</ul>
+          </article>
+          <ThreadPreview className="pricing-v2-thread-preview--small" />
         </div>
-        <div className="steps-grid">
-          {benefits.map(({ text, icon, shape }) => (
-            <article className={`step-card step-card--${shape}`} key={text}>
-              <Image className="step-icon" src={icon} width={71} height={60} alt="" aria-hidden="true" />
-              <p>{text}</p>
-            </article>
-          ))}
+        <div className="pricing-v2-package-record">
+          <ThreadPreview className="pricing-v2-thread-preview--large" />
+          <h2>More than an Assessment Package, a secure record you control and can use throughout your child&apos;s journey.</h2>
         </div>
       </div>
     </section>
@@ -107,38 +104,26 @@ function Benefits() {
 
 function Affordability() {
   return (
-    <section className="affordability" id="affordability" aria-label="Affordability support">
-      <Image
-        src="/solution-watercolour.png"
-        alt=""
-        fill
-        loading="eager"
-        sizes="(max-width: 900px) calc(100vw - 32px), 1450px"
-      />
-      <span className="art-soft-light art-soft-light--workspace" aria-hidden="true" />
-      <div className="affordability-grid">
-        <article className="affordability-card affordability-card--plain">
-          <h2>Every child deserves the opportunity to be understood.</h2>
-          <p>If the cost of Threadline would genuinely prevent your family from accessing it, please get in touch.</p>
-        </article>
-        <article className="affordability-card affordability-card--green">
-          <h2>We&apos;ll make sure money isn&apos;t the barrier.</h2>
-        </article>
+    <section className="pricing-v2-affordability" id="affordability" aria-label="Affordability support">
+      <Image src="/pricing-affordability-watercolour-v2.jpg" fill loading="eager" alt="" sizes="(max-width: 900px) calc(100vw - 32px), 1450px" />
+      <div className="pricing-v2-affordability-grid">
+        <article><h2>Every child deserves to be understood.</h2></article>
+        <article><h2>If cost is a barrier, let’s talk. We’ll find a way.</h2></article>
       </div>
     </section>
   );
 }
 
-function FaqSection() {
+function PricingFaq() {
   return (
-    <section className="pricing-faq" id="faq" aria-labelledby="pricing-faq-title">
-      <div className="pricing-content">
-        <div className="how-page-heading">
-          <p className="eyebrow">FAQ</p>
+    <section className="pricing-v2-faq" id="faq" aria-labelledby="pricing-faq-title">
+      <div className="pricing-v2-faq-inner">
+        <header className="pricing-v2-section-heading">
+          <p className="pricing-v2-kicker">FAQ</p>
           <h2 id="pricing-faq-title">Common questions<br />from parents.</h2>
-        </div>
-        <div className="faq-list">
-          {faqs.map(({ question, answer }) => (
+        </header>
+        <div className="pricing-v2-faq-list">
+          {pricingFaqs.map(({ question, answer }) => (
             <details open key={question}>
               <summary>{question}</summary>
               <p>{answer}</p>
@@ -152,29 +137,73 @@ function FaqSection() {
 
 function FinalCta() {
   return (
-    <section className="how-final-cta" id="start" aria-labelledby="pricing-final-title">
-      <div className="how-final-panel">
-        <h2 id="pricing-final-title">Start your assessment<br />with the complete picture.</h2>
-        <Cta href="#pricing-details" />
+    <section className="pricing-v2-final" id="start" aria-labelledby="pricing-final-title">
+      <div>
+        <h2 id="pricing-final-title">Prepare early so your<br />clinician has what they need.</h2>
+        <Cta href="#pricing-details" label="Start your Assessment Package" shortLabel="Start package" />
       </div>
     </section>
   );
 }
 
+function PricingNotice() {
+  return (
+    <aside className="pricing-v2-notice" id="resources">
+      <div>
+        <p className="pricing-v2-kicker">What Threadline Doesn&apos;t Do</p>
+        <p>Threadline does not diagnose ADHD, replace your child&apos;s clinician, recommend treatment, or prescribe medication.<br />Your child&apos;s clinician remains responsible for the clinical assessment, diagnosis and any treatment decisions.</p>
+      </div>
+    </aside>
+  );
+}
+
+function FooterColumn({ title, links }) {
+  return (
+    <div className="footer-column">
+      <h3>{title}</h3>
+      {links.map((link) => {
+        const [label, href = '#top'] = Array.isArray(link) ? link : [link];
+        return <a key={label} href={href}>{label}</a>;
+      })}
+    </div>
+  );
+}
+
+function PricingFooter() {
+  return (
+    <footer className="pricing-v2-footer" id="contact">
+      <div className="pricing-v2-footer-top">
+        <div className="pricing-v2-footer-brand">
+          <div><Image src="/pricing-footer-wordmark-v2.svg" width={249} height={38} alt="Threadline" /><p>–</p></div>
+          <Cta href="#start" label="Start your Assessment Package" shortLabel="Start package" />
+        </div>
+        <div className="pricing-v2-footer-links">
+          <FooterColumn title="Explore" links={footerExplore} />
+          <FooterColumn title="Social" links={footerSocial} />
+        </div>
+      </div>
+      <div className="pricing-v2-footer-bottom">
+        <p>© 2026 Threadline All rights reserved.</p>
+        <div><a href="#top">Privacy Policy</a><a href="#top">Terms of Service</a></div>
+      </div>
+    </footer>
+  );
+}
+
 export default function PricingPage() {
   return (
-    <div className="page-shell pricing-page" id="top">
-      <Navigation />
+    <div className="page-shell pricing-v2" id="top">
+      <Navigation ctaLabel="Start Your Assessment Package" ctaShortLabel="Start package" />
       <main>
         <PricingHero />
         <Guidelines />
-        <Benefits />
+        <PackageSection />
         <Affordability />
-        <FaqSection />
+        <PricingFaq />
         <FinalCta />
-        <ImportantNotice />
+        <PricingNotice />
       </main>
-      <Footer />
+      <PricingFooter />
     </div>
   );
 }
