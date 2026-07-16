@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import SampleReportButton from './SampleReportModal.jsx';
 
 const navLinks = [
   ['How it works', '/how-it-works'],
@@ -104,7 +105,7 @@ function HomeHero() {
             <p>Preparing for an ADHD assessment can feel overwhelming. Threadline brings the evidence together in a structured Assessment Evidence Report, so your child’s clinician can start with a clearer picture.</p>
             <div className="home-v2-hero-actions">
               <Cta label="Get started" />
-              <a className="home-v2-outline-button" href="#report-preview">View a sample report</a>
+              <SampleReportButton className="home-v2-outline-button" />
             </div>
           </div>
         </div>
@@ -193,7 +194,7 @@ function ReportOverview() {
           </ul>
           <div>
             <p className="home-v2-report-note">Every source remains visible, giving your child’s clinician an organised view of the evidence collected before the appointment.</p>
-            <a className="home-v2-outline-button" href="/index-3419-report-page.png" target="_blank" rel="noreferrer">View a sample report</a>
+            <SampleReportButton className="home-v2-outline-button" />
           </div>
         </div>
       </div>
@@ -389,7 +390,7 @@ function HomeFooter() {
           </div>
           <div className="home-v2-footer-actions">
             <Cta label="Get started" />
-            <a className="home-v2-outline-button" href="#report-preview">View a sample report</a>
+            <SampleReportButton className="home-v2-outline-button" />
           </div>
         </div>
         <div className="home-v2-footer-links">

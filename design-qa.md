@@ -41,6 +41,53 @@ final result: passed
 
 ---
 
+# Design QA — Tablet navigation CTA placement
+
+## Source visual truth
+
+- User reference screenshot: `/var/folders/ct/7pv083t966b53bs7gkyw568r0000gn/T/codex-clipboard-844eb5f3-140e-434a-b376-ec4ed870e96a.png`.
+- The source records the incorrect tablet state; the requested correction is to place the `Get started` CTA immediately beside the Menu control.
+
+## Rendered implementation
+
+- Local URL: `http://127.0.0.1:4174/`.
+- Viewport: 1117 × 987.
+- State: homepage, top of page, Menu closed.
+- Implementation capture: `/private/tmp/threadline-tablet-nav-after.png`.
+- Full-view comparison: `/private/tmp/threadline-tablet-nav-comparison.png` (source on the left, corrected implementation on the right).
+- Focused header comparison: `/private/tmp/threadline-tablet-nav-focused-comparison.png`.
+
+## Comparison history
+
+1. P2: at the tablet breakpoint, `space-between` distributed the logo, CTA and Menu across the full header; the CTA sat 302px away from Menu.
+2. Changed the 901–1250px navigation row to use start alignment and an automatic left margin on the CTA.
+3. Post-fix evidence measures a 16px CTA-to-Menu gap, matching the existing navigation gap token, with no horizontal overflow.
+
+## Fidelity surfaces
+
+- Fonts and typography: the existing Funnel Sans navigation type, sizes, weights and labels are unchanged.
+- Spacing and layout rhythm: only tablet horizontal distribution changed; logo position and control dimensions remain unchanged.
+- Colors and visual tokens: existing green CTA, white Menu control, borders and background remain unchanged.
+- Image quality and assets: the Threadline logo and hero artwork remain the original supplied assets with unchanged crop and rendering.
+- Copy and content: `Get started` and `Menu` remain unchanged.
+
+## Runtime and interaction checks
+
+- Production build completed successfully and `git diff --check` passed.
+- Menu opens at 1117px and exposes the expected navigation links.
+- Browser console has no relevant warnings or errors.
+- At 1440px the full navigation links remain visible and Menu remains hidden.
+- At 768px the compact Menu remains visible, the header CTA remains hidden, and there is no horizontal overflow.
+
+## Final comparison
+
+- The requested CTA now sits directly beside Menu at tablet widths.
+- No actionable P0, P1 or P2 issues remain in the requested header state.
+
+final result: passed
+
+---
+
 # Design QA — Assessment Preparation price card
 
 ## Source visual truth
@@ -83,5 +130,54 @@ final result: passed
 
 - The price group now follows the reference axis, alignment, compact CTA label and bottom spacing.
 - No actionable P0, P1 or P2 issues remain in the requested section.
+
+final result: passed
+
+---
+
+# Design QA — Sample report secondary navigation arrows
+
+## Source visual truth
+
+- User reference screenshot: `/var/folders/ct/7pv083t966b53bs7gkyw568r0000gn/T/codex-clipboard-5e4ff1da-db37-4f9b-acea-e79a21ad1803.png`.
+- The source records the current solid-primary arrows; the requested target is the secondary outline treatment already used by Share and Download.
+
+## Rendered implementation
+
+- Local URL: `http://127.0.0.1:4174/`.
+- Desktop viewport: 1117 × 987.
+- Mobile viewport: 390 × 844.
+- State: sample report open on page 8 of 16, explanation panel collapsed.
+- Desktop capture: `/private/tmp/threadline-report-secondary-arrows-desktop.png`.
+- Mobile capture: `/private/tmp/threadline-report-secondary-arrows-mobile.png`.
+- Full-view comparison: `/private/tmp/threadline-report-secondary-arrows-comparison.png` (source on the left, updated implementation on the right).
+- Focused arrow comparison: `/private/tmp/threadline-report-secondary-arrows-focused-comparison.png`.
+
+## Comparison history
+
+1. P2: previous and next arrows used the solid primary button treatment, giving them more visual emphasis than the report actions.
+2. Moved the arrows to the existing secondary treatment: white surface, 1px heading-green border, heading-green icon and 16px radius.
+3. Kept solid heading green as the hover treatment and retained the existing disabled opacity.
+4. Post-fix evidence confirms both arrows share the secondary styling on desktop and mobile without changing size or position.
+
+## Fidelity surfaces
+
+- Fonts and typography: no text or typography changed.
+- Spacing and layout rhythm: arrow dimensions, positions, radii and viewer spacing remain unchanged.
+- Colors and visual tokens: arrows now use the existing surface and heading tokens from Share and Download.
+- Image quality and assets: report pages, icons and all image assets remain unchanged.
+- Copy and content: report title, page count, action labels and report content remain unchanged.
+
+## Runtime and interaction checks
+
+- Production build completed successfully and `git diff --check` passed.
+- The next arrow was exercised from page 1 through page 8; the visible counter reached `Page 8 of 16`.
+- Both arrows remain visible and contained at 390 × 844 with no horizontal overflow.
+- Browser console has no relevant warnings or errors.
+
+## Final comparison
+
+- The slide arrows now read as secondary navigation controls alongside the Share and Download actions.
+- No actionable P0, P1 or P2 issues remain in the requested modal state.
 
 final result: passed
