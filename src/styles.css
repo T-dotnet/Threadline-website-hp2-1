@@ -2265,7 +2265,7 @@ h1,
   align-items: center;
   justify-content: center;
   border: 1px solid var(--heading);
-  border-radius: 16px;
+  border-radius: 999px;
   cursor: pointer;
   transition: color .2s ease, background-color .2s ease, opacity .2s ease, transform .2s ease;
 }
@@ -2475,7 +2475,7 @@ h1,
     height: 40px;
     min-height: 40px;
     padding: 0;
-    border-radius: 12px;
+    border-radius: 999px;
   }
 
   .sample-report-action-label { display: none; }
@@ -2494,7 +2494,7 @@ h1,
     top: 50%;
     width: 44px;
     height: 44px;
-    border-radius: 12px;
+    border-radius: 999px;
     box-shadow: 0 5px 18px rgba(11, 70, 54, .14);
     transform: translateY(-50%);
   }
