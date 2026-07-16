@@ -181,3 +181,34 @@ final result: passed
 - No actionable P0, P1 or P2 issues remain in the requested modal state.
 
 final result: passed
+
+---
+
+# Design QA — Assessment Preparation CTA size
+
+## Source visual truth
+
+- User reference screenshot: `/var/folders/ct/7pv083t966b53bs7gkyw568r0000gn/T/TemporaryItems/NSIRD_screencaptureui_Qwjdi7/Screenshot 2026-07-16 at 8.45.42 pm.png`.
+- The source records the oversized price-card CTA; the requested target is the established homepage CTA sizing used by the hero actions.
+
+## Intended implementation
+
+- Local URL: `http://127.0.0.1:4174/`.
+- Target dimensions: 54px minimum height, 16px × 32px padding, 15px type and 20px line height.
+- Scope: `.home-v2-price-card .cta` only; shared CTA and report-modal behavior remain unchanged.
+
+## Fidelity surfaces
+
+- Fonts and typography: price-card CTA now uses the same 15px Funnel Sans treatment as the homepage hero CTAs.
+- Spacing and layout rhythm: button height and padding now match the established 54px CTA sizing; the existing 32px price-to-button gap remains unchanged.
+- Colors and visual tokens: existing heading-green background, white label, hover treatment and focus ring remain unchanged.
+- Image quality and assets: this control contains no raster or decorative assets.
+- Copy and content: `Get started` remains unchanged.
+
+## Validation blocker
+
+- The local server returned `200 OK`, but the in-app Browser rejected the post-fix reload under its URL security policy.
+- A browser-rendered implementation screenshot and interaction check could not be captured in this run.
+- Production build and source-level checks may pass, but they do not replace the required visual comparison.
+
+final result: blocked

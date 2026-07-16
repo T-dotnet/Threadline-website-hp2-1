@@ -1814,8 +1814,16 @@ h1,
   border-top: 1px solid var(--text-secondary);
 }
 
+.home-v2-faq-list details:last-child {
+  border-bottom: 1px solid var(--text-secondary);
+}
+
 .home-v2-faq-list summary {
   color: var(--heading);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
   font-size: 24px;
   line-height: normal;
   cursor: pointer;
@@ -1824,8 +1832,33 @@ h1,
 
 .home-v2-faq-list summary::-webkit-details-marker { display: none; }
 
+.home-v2-faq-list summary::after {
+  content: "+";
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--heading);
+  border-radius: 999px;
+  font-size: 22px;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.home-v2-faq-list details[open] summary::after {
+  content: "−";
+}
+
+.home-v2-faq-list summary:focus-visible {
+  outline: 3px solid #8acdb7;
+  outline-offset: 8px;
+  border-radius: 4px;
+}
+
 .home-v2-faq-list details > p {
   margin: 20px 0 0;
+  padding-right: 56px;
   color: var(--text-secondary);
   font-size: 20px;
   line-height: normal;
@@ -2328,8 +2361,7 @@ h1,
   height: 100%;
   min-height: 0;
   overflow: hidden;
-  border-radius: 0 64px 0 0;
-  background: var(--surface);
+  background: transparent;
 }
 
 .sample-report-stage iframe {
@@ -2485,8 +2517,6 @@ h1,
     padding: 12px;
     display: block;
   }
-
-  .sample-report-stage { border-radius: 0 32px 0 0; }
 
   .sample-report-arrow {
     position: absolute;
@@ -3184,8 +3214,11 @@ h1,
 }
 
 .home-v2-price-card .cta {
-  min-height: 67px;
+  min-height: 54px;
   margin-top: 32px;
+  padding: 16px 32px;
+  font-size: 15px;
+  line-height: 20px;
 }
 
 .home-v2-price-card .cta-label-long { display: none; }

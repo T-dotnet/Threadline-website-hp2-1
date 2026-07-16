@@ -270,7 +270,7 @@ function BenefitSection() {
 function PricingIntro() {
   return (
     <section className="home-v2-intro home-v2-pricing-intro">
-      <HomeSectionHeading label="A R R I V E  P R E P A R E D">One clear price for your child’s Assessment Evidence Report.</HomeSectionHeading>
+      <HomeSectionHeading label="PRICING">One clear price for your child’s Assessment Evidence Report.</HomeSectionHeading>
     </section>
   );
 }
@@ -309,7 +309,10 @@ function HomeFaq() {
         <HomeSectionHeading label="FAQ"><span id="home-faq-title">Questions families often ask.</span></HomeSectionHeading>
         <div className="home-v2-faq-list">
           {homeFaqs.map(([question, answer]) => (
-            <details key={question}><summary>{question}</summary><p>{answer}</p></details>
+            <details key={question} name="home-faq">
+              <summary><span>{question}</span></summary>
+              <p>{answer}</p>
+            </details>
           ))}
         </div>
       </div>
