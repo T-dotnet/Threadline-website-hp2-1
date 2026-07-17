@@ -1,93 +1,75 @@
 import Image from 'next/image';
-import { Cta, Footer, Navigation } from './App.jsx';
+import SampleReportButton from './SampleReportModal.jsx';
+import { SiteCta, SiteFooter, SiteNavigation } from './components/site-chrome.jsx';
+import { FaqSection, HeroSection, IntroSection } from './components/website-sections.jsx';
 
-const assessmentCta = {
-  label: 'Start your Assessment Package',
-  shortLabel: 'Start package',
-};
+const EXPLORE_LINKS = [
+  ['Overview', '/'],
+  ['How It Works', '/how-it-works'],
+  ['Pricing', '/#pricing'],
+  ['For Clinician', '/#clinicians'],
+  ['Resources', '/#resources'],
+  ['About us', '/'],
+  ['Contact us', '/#contact'],
+];
 
-const comparisonCards = [
+const PREPARATION_STEPS = [
   {
-    title: 'Without Threadline',
-    icon: '/step-information.png',
-    tone: 'plain',
-    items: [
-      "Unsure what's needed",
-      'Reports scattered across emails and folders',
-      'Chasing teachers and paperwork',
-      'Hoping nothing important is missed',
-      "Repeating your child's story",
-    ],
+    title: 'Tell us about your child',
+    text: 'Answer guided questions about their history, strengths, concerns and daily life.',
   },
   {
-    title: 'With Threadline',
-    icon: '/step-checklist.png',
-    tone: 'green',
-    items: [
-      'Guided, step-by-step evidence collection',
-      'Everything organised in one secure place',
-      'Built-in questionnaires and evidence tracking',
-      'Progress tracked against a complete package',
-      'One portable Thread you control',
-    ],
+    title: 'Collect the evidence',
+    text: 'Complete questionnaires, invite a teacher and add existing reports.',
+  },
+  {
+    title: 'Receive your report',
+    text: "Threadline organises the information for your child's clinician.",
   },
 ];
 
-const guidedItems = [
-  'Parent questionnaires',
-  'Teacher input',
-  'School reports',
-  'Existing assessments',
+const EVIDENCE_ITEMS = [
+  'Family information and history',
+  "Your child's perspective",
+  'Child and teacher perspectives',
+  'Standardised questionnaires',
+  'Daily functioning',
+  'Existing reports',
 ];
 
-const appointmentSteps = [
-  {
-    text: 'Completed, clinically validated questionnaires',
-    icon: '/step-information.png',
-    shape: 'top-right',
-  },
-  {
-    text: 'Existing clinical reports and school information',
-    icon: '/step-checklist.png',
-    shape: 'bottom-left',
-  },
-  {
-    text: 'Everything organised in one place',
-    icon: '/step-story.png',
-    shape: 'top-right',
-  },
+const FAQ_ITEMS = [
+  ['Is Threadline an ADHD assessment?', 'No. Threadline prepares assessment evidence for your child’s clinician.'],
+  ['What will my clinician receive?', 'A structured Assessment Evidence Report that keeps every source visible and organised.'],
+  ['How long does preparation take?', 'You can begin in minutes and complete each part at your own pace.'],
+  ['Will Threadline prevent additional appointments?', 'Threadline supports preparation, while your clinician determines the appointments needed for assessment.'],
+  ['Who controls my child’s information?', 'You do, as part of your child’s Thread.'],
 ];
 
-const faqs = [
-  {
-    question: 'Is Threadline an ADHD assessment?',
-    answer: "No. Threadline prepares the Assessment Package. Your child's clinician performs the assessment separately.",
-  },
-  {
-    question: 'How long does it take?',
-    answer: 'Most families start in minutes and complete their package at their own pace. Assessments and evidence collection can take several hours to complete.',
-  },
-  {
-    question: 'Who owns my information?',
-    answer: "You do, as part of your child's Thread.",
-  },
-];
-
-function HowPageHero() {
+function AssessmentOverview() {
   return (
-    <section className="hero how-page-hero" id="top">
-      <div className="hero-grid">
-        <div className="hero-copy">
-          <h1>Know what to prepare for your child&apos;s <span className="hero-highlight">ADHD assessment.</span></h1>
-          <p>Answer a few guided questions, add existing reports and invite relevant contributors. Threadline organises everything into an Assessment Package for your clinician.</p>
-        </div>
-        <div className="hero-media">
+    <section className="home-v2-process how-v2-process" aria-label="Three assessment preparation steps">
+      <article className="home-v2-process-steps">
+        {PREPARATION_STEPS.map((step, index) => (
+          <div className="home-v2-process-step" key={step.title}>
+            <span>{index + 1}</span>
+            <div><h3>{step.title}</h3><p>{step.text}</p></div>
+          </div>
+        ))}
+      </article>
+      <div className="home-v2-process-preview">
+        <Image
+          className="home-v2-process-art"
+          src="/index-evidence-workspace-v2.png"
+          fill
+          alt=""
+          sizes="(max-width: 900px) calc(100vw - 32px), 920px"
+        />
+        <div className="how-v2-process-report">
           <Image
-            src="/how-hero-watercolour.jpg"
-            alt="Soft blue, green and cream watercolour brushstrokes"
-            fill
-            priority
-            sizes="(max-width: 900px) calc(100vw - 32px), 725px"
+            src="/index-3419-process-page-6.png"
+            width={1400}
+            height={1138}
+            alt="Cross-source view from a sample Assessment Evidence Report"
           />
         </div>
       </div>
@@ -95,159 +77,109 @@ function HowPageHero() {
   );
 }
 
-function ComparisonSection() {
+function EvidenceStory() {
   return (
-    <section className="how-comparison" aria-labelledby="comparison-title">
-      <div className="how-page-inner">
-        <div className="how-page-heading">
-          <p className="eyebrow">HOW IT WORKS</p>
-          <h2 id="comparison-title">Share information with your child&apos;s clinician.</h2>
+    <section className="how-v2-evidence" aria-labelledby="evidence-title">
+      <div className="how-v2-evidence-art">
+        <Image
+          className="how-v2-evidence-watercolour"
+          src="/index-evidence-workspace-v2.png"
+          fill
+          alt=""
+          sizes="(max-width: 900px) calc(100vw - 32px), 715px"
+        />
+        <div className="how-v2-perspective-report">
+          <Image
+            src="/index-3419-hero-report.png"
+            width={1414}
+            height={1402}
+            alt="The child’s own perspective page from a sample Assessment Evidence Report"
+          />
         </div>
-        <div className="comparison-grid">
-          {comparisonCards.map(({ title, icon, tone, items }) => (
-            <article className={`comparison-card comparison-card--${tone}`} key={title}>
-              <Image className="step-icon" src={icon} width={71} height={60} alt="" aria-hidden="true" />
-              <div>
-                <h3>{title}</h3>
-                <ul>
-                  {items.map((item) => <li key={item}>{item}</li>)}
-                </ul>
-              </div>
-            </article>
-          ))}
+      </div>
+      <article className="how-v2-evidence-copy">
+        <h2 id="evidence-title">Evidence across your child&apos;s life.</h2>
+        <div className="how-v2-evidence-details">
+          <ul>
+            {EVIDENCE_ITEMS.map((item) => <li key={item}>{item}</li>)}
+          </ul>
+          <p>Every source remains visible, giving your child’s clinician an organised view of the evidence collected before the appointment.</p>
         </div>
+      </article>
+    </section>
+  );
+}
+
+function ReportOverview() {
+  return (
+    <section className="how-v2-report" aria-labelledby="report-overview-title">
+      <div className="how-v2-report-copy">
+        <div>
+          <p className="home-v2-kicker">YOUR CHILD&apos;S THREAD</p>
+          <h2 id="report-overview-title">One report.<br />Every source clear.</h2>
+          <p>See evidence across settings, what is complete and what may still need follow-up.</p>
+        </div>
+        <SampleReportButton className="home-v2-outline-button" />
+      </div>
+      <div className="how-v2-report-preview">
+        <Image
+          src="/index-3419-report-page.png"
+          width={1414}
+          height={1426}
+          alt="Follow-up priorities and evidence gaps from a sample Assessment Evidence Report"
+        />
       </div>
     </section>
   );
 }
 
-function GuidedSection() {
+function PreparationDisclaimer() {
   return (
-    <section className="guided-section" aria-labelledby="guided-title">
-      <Image
-        src="/how-hero-watercolour.jpg"
-        alt=""
-        fill
-        loading="eager"
-        sizes="(max-width: 900px) calc(100vw - 32px), 1450px"
-      />
-      <div className="guided-card">
-        <div className="guided-heading">
-          <p className="eyebrow">BUILD YOUR ASSESSMENT PACKAGE</p>
-          <h2 id="guided-title">Answer a few guided questions to personalise your Assessment Package.</h2>
-        </div>
-        <div className="guided-items">
-          {guidedItems.map((item) => <p key={item}>{item}</p>)}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function AppointmentSection() {
-  return (
-    <section className="appointment-section" aria-labelledby="appointment-title">
-      <div className="how-page-inner">
-        <div className="how-page-heading">
-          <p className="eyebrow">HOW IT WORKS</p>
-          <h2 id="appointment-title">What your clinician gets in the Assessment Package</h2>
-        </div>
-        <div className="steps-grid">
-          {appointmentSteps.map(({ text, icon, shape }) => (
-            <article className={`step-card step-card--${shape}`} key={text}>
-              <Image className="step-icon" src={icon} width={71} height={60} alt="" aria-hidden="true" />
-              <p>{text}</p>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function ThreadSection() {
-  return (
-    <section className="how-thread-section" aria-label="Your Thread">
-      <Image
-        src="/how-thread-watercolour.jpg"
-        alt=""
-        fill
-        loading="eager"
-        sizes="(max-width: 900px) calc(100vw - 32px), 1450px"
-      />
-      <div className="how-thread-grid">
-        <article className="how-thread-card how-thread-card--plain">
-          <h2>Your Thread securely unites your child’s information.</h2>
-        </article>
-        <article className="how-thread-card how-thread-card--green">
-          <h2>Use it throughout your child&apos;s care.</h2>
-        </article>
-      </div>
-    </section>
-  );
-}
-
-function FaqSection() {
-  return (
-    <section className="faq-section" aria-labelledby="faq-title">
-      <div className="how-page-inner">
-        <div className="how-page-heading">
-          <p className="eyebrow">FAQ</p>
-          <h2 id="faq-title">Common questions<br />from parents.</h2>
-        </div>
-        <div className="faq-list">
-          {faqs.map(({ question, answer }) => (
-            <details open key={question}>
-              <summary>{question}</summary>
-              <p>{answer}</p>
-            </details>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function FinalCta() {
-  return (
-    <section className="how-final-cta" aria-labelledby="final-cta-title">
-      <div className="how-final-panel">
-        <h2 id="final-cta-title">Prepare with the<br />complete picture.</h2>
-        <Cta {...assessmentCta} />
-      </div>
-    </section>
-  );
-}
-
-function WhatThreadlineDoesntDo() {
-  return (
-    <aside className="important how-important" id="resources">
-      <div className="important-inner">
-        <p className="important-label">What Threadline Doesn&apos;t Do</p>
-        <p className="important-copy">
-          Threadline does not diagnose ADHD, replace your child&apos;s clinician, recommend treatment, or prescribe medication.<br />
-          Your child&apos;s clinician remains responsible for the clinical assessment, diagnosis and any treatment decisions.
-        </p>
-      </div>
+    <aside className="how-v2-disclaimer" id="resources">
+      <p>Preparation, not diagnosis.</p>
+      <p>Threadline prepares the evidence. Your clinician assesses, diagnoses and decides what happens next.</p>
     </aside>
+  );
+}
+
+function ClosingSection() {
+  return (
+    <div className="how-v2-closing">
+      <section className="how-v2-final" aria-labelledby="how-final-title">
+        <h2 id="how-final-title">Prepare with the<br />complete picture.</h2>
+        <SiteCta label="Get started" />
+      </section>
+      <SiteFooter exploreLinks={EXPLORE_LINKS} />
+    </div>
   );
 }
 
 export default function HowItWorksPage() {
   return (
-    <div className="page-shell how-page">
-      <Navigation ctaLabel={assessmentCta.label} ctaShortLabel={assessmentCta.shortLabel} />
+    <div className="page-shell home-v2 how-v2">
+      <SiteNavigation />
       <main>
-        <HowPageHero />
-        <ComparisonSection />
-        <GuidedSection />
-        <AppointmentSection />
-        <ThreadSection />
-        <FaqSection />
-        <FinalCta />
-        <WhatThreadlineDoesntDo />
+        <HeroSection
+          title={<>From unsure where<br />to start to<br /></>}
+          highlight="Assessment Ready."
+          description="Threadline brings together evidence from home, school and existing care, then prepares a structured Assessment Evidence Report for your child's clinician."
+        />
+        <IntroSection
+          id="how-it-works"
+          variant="how"
+          label="H O W  I T  W O R K S"
+          title="Three steps to Assessment Ready."
+        />
+        <div className="how-v2-flow">
+          <AssessmentOverview />
+          <EvidenceStory />
+          <ReportOverview />
+          <PreparationDisclaimer />
+        </div>
+        <div className="how-v2-faq-spacer" aria-hidden="true" />
+        <FaqSection items={FAQ_ITEMS} />
+        <ClosingSection />
       </main>
-      <Footer ctaLabel={assessmentCta.label} ctaShortLabel={assessmentCta.shortLabel} useLogo />
     </div>
   );
 }
