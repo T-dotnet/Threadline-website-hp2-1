@@ -5088,11 +5088,13 @@ h1,
 }
 
 .pricing-page-affordability-grid article:first-child {
+  align-items: flex-start;
   border-radius: 0 var(--pricing-page-radius) 0 0;
   background: var(--surface);
 }
 
 .pricing-page-affordability-grid article:last-child {
+  align-items: flex-end;
   border-radius: 0 0 0 var(--pricing-page-radius);
   background: var(--primary-light);
 }
