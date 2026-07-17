@@ -81,8 +81,8 @@ export default function App() {
           description="Preparing for an ADHD assessment can feel overwhelming. Threadline brings the evidence together in a structured Assessment Evidence Report, so your child’s clinician can start with a clearer picture."
         />
         <GuidelineSection
-          label="I N F O R M E D  P R E P A R A T I O N"
-          title="Designed with reference to Australia’s evidence-based ADHD guideline."
+          label="INFORMED PREPARATION"
+          title="Based on Australia’s evidence-based ADHD guideline."
           linkLabel="View the Australian ADHD guideline"
           linkHref="https://adhdguideline.aadpa.com.au/"
           paragraphs={GUIDELINE_PARAGRAPHS}
@@ -96,7 +96,7 @@ export default function App() {
         <IntroSection
           id="clinicians"
           variant="output"
-          label="T H E  O U T P U T"
+          label="THE OUTPUT"
           title="More than completed forms. A clearer starting point for your clinician."
         />
         <ReportSection
@@ -109,13 +109,13 @@ export default function App() {
         <IntroSection
           id="how-it-works"
           variant="how"
-          label="H O W  I T  W O R K S"
+          label="HOW IT WORKS"
           title="Three steps to Assessment Ready."
         />
         <ProcessSection steps={PROCESS_STEPS} />
         <IntroSection
           variant="arrive"
-          label="A R R I V E  P R E P A R E D"
+          label="ARRIVE PREPARED"
           title="Know what’s ready before the appointment."
         />
         <BenefitsSection benefits={BENEFITS} backgroundImage="/index-3419-benefits.jpg" />

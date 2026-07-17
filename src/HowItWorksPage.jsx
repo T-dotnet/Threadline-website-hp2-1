@@ -167,7 +167,7 @@ export default function HowItWorksPage() {
         <IntroSection
           id="how-it-works"
           variant="how"
-          label="H O W  I T  W O R K S"
+          label="HOW IT WORKS"
           title="Three steps to Assessment Ready."
         />
         <div className="how-v2-flow">

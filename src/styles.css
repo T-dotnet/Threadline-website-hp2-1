@@ -152,9 +152,9 @@ h1,
 
 .hero h1 {
   max-width: 635px;
-  font-size: 70px;
-  line-height: 77.62px;
-  letter-spacing: -2.218px;
+  font-size: 65px;
+  line-height: 1.109;
+  letter-spacing: -2.06px;
 }
 
 .hero-highlight { color: var(--primary); }
@@ -2218,8 +2218,9 @@ h1,
   padding: 24px;
   display: grid;
   place-items: center;
-  background: rgba(11, 70, 54, .72);
-  backdrop-filter: blur(4px);
+  background: color-mix(in srgb, var(--surface) 24%, transparent);
+  -webkit-backdrop-filter: blur(20px) saturate(.9);
+  backdrop-filter: blur(20px) saturate(.9);
 }
 
 .sample-report-modal {
@@ -2903,7 +2904,7 @@ h1,
   margin: 0;
   color: var(--heading);
   font-family: var(--serif);
-  font-size: 40px;
+  font-size: 50px;
   font-weight: 300;
   font-variation-settings: 'SOFT' 0, 'WONK' 1;
   line-height: normal;
@@ -3320,7 +3321,7 @@ h1,
 .home-v2-section-heading h2,
 .home-v2-guideline-heading h2,
 .home-v2-problem-story h2 {
-  font-size: 40px;
+  font-size: 50px;
   line-height: normal;
   letter-spacing: -.5px;
 }
@@ -3859,7 +3860,7 @@ h1,
 .home-v2-section-heading h2,
 .home-v2-guideline-heading h2,
 .home-v2-problem-story h2 {
-  font-size: 40px;
+  font-size: 50px;
   line-height: normal;
   letter-spacing: -.5px;
 }
@@ -4924,7 +4925,7 @@ h1,
 
 .pricing-page-price-card h1 {
   max-width: 760px;
-  font-size: 70px;
+  font-size: 65px;
   line-height: 1.109;
   letter-spacing: -2.218px;
 }
@@ -5019,7 +5020,7 @@ h1,
 }
 
 .pricing-page-faq h2 {
-  font-size: 40px;
+  font-size: 50px;
   line-height: 1;
   letter-spacing: -0.5px;
 }
@@ -5096,7 +5097,7 @@ h1,
 
 .pricing-page-affordability h2 {
   max-width: 360px;
-  font-size: 40px;
+  font-size: 50px;
   line-height: 1;
   letter-spacing: -0.5px;
 }
@@ -5191,4 +5192,128 @@ h1,
   .pricing-page-affordability-grid article { min-height: 360px; padding: 48px 28px; }
   .pricing-page-affordability h2 { font-size: 36px; }
   .pricing-page-closing { gap: var(--ds-space-16); }
+}
+
+/* Card spacing: keep each responsive inset equal on all four sides. */
+.hero-copy,
+.home-v2 .home-v2-hero .hero-copy {
+  padding: var(--ds-space-12);
+}
+
+.home-v2-guideline,
+.home-v2-intro {
+  height: auto;
+  padding: var(--ds-space-24);
+}
+
+.home-v2-guideline,
+.home-v2-intro,
+.home-v2-faq {
+  height: auto;
+  padding-top: calc(var(--ds-space-20) * 2 + var(--ds-space-10));
+  padding-bottom: var(--ds-space-20);
+}
+
+.home-v2-guideline {
+  padding-bottom: calc(var(--ds-space-20) * 2 + var(--ds-space-10));
+}
+
+.home-v2-section-heading,
+.home-v2-guideline-inner,
+.home-v2-faq-inner {
+  width: min(100%, 800px);
+}
+
+.how-v2-evidence {
+  height: auto;
+  min-height: 469px;
+  align-items: stretch;
+}
+
+@media (max-width: 900px) {
+  .hero-copy,
+  .home-v2 .home-v2-hero .hero-copy {
+    padding: var(--ds-space-10);
+  }
+
+  .home-v2-guideline,
+  .home-v2-intro {
+    padding: var(--ds-space-16);
+  }
+
+  .home-v2-guideline,
+  .home-v2-intro,
+  .home-v2-faq {
+    padding-top: calc(var(--ds-space-24) + var(--ds-space-6));
+    padding-bottom: var(--ds-space-12);
+  }
+
+  .home-v2-guideline {
+    padding-bottom: calc(var(--ds-space-24) + var(--ds-space-6));
+  }
+
+  .how-v2-evidence-copy {
+    padding: var(--ds-space-16);
+  }
+}
+
+@media (max-width: 620px) {
+  .hero-copy,
+  .home-v2 .home-v2-hero .hero-copy {
+    padding: var(--ds-space-7);
+  }
+
+  .home-v2-guideline,
+  .home-v2-intro {
+    padding: var(--ds-space-7);
+  }
+
+  .home-v2-guideline,
+  .home-v2-intro,
+  .home-v2-faq {
+    padding-top: var(--ds-space-24);
+    padding-bottom: var(--ds-space-10);
+  }
+
+  .home-v2-guideline {
+    padding-bottom: var(--ds-space-24);
+  }
+
+  .how-v2-evidence-copy {
+    padding: var(--ds-space-7);
+  }
+}
+
+.home-v2-process {
+  height: auto;
+  align-items: stretch;
+}
+
+.home-v2-benefit-card {
+  padding: var(--ds-space-12);
+}
+
+/* Readability: increase body copy only. Headings, labels, controls, prices,
+   navigation and legal text intentionally retain their existing scale. */
+.home-v2 .home-v2-hero .home-v2-hero-bottom > p,
+.home-v2-guideline-copy p,
+.home-v2-problem-story p,
+.home-v2-report-columns li,
+.home-v2-process-step h3,
+.home-v2-process-step p,
+.home-v2-benefit-card p,
+.home-v2-included p,
+.home-v2-included-list,
+.home-v2-faq-list details > p,
+.home-v2-important > div > p:last-child,
+.home-v2-footer-message p,
+.how-v2-evidence-details ul,
+.how-v2-report-copy p:not(.home-v2-kicker),
+.how-v2-disclaimer p:last-child,
+.pricing-page-included ul,
+.pricing-page-included > p,
+.pricing-page-notice p:last-child,
+.pricing-page-faq-list details > p {
+  font-size: var(--ds-text-lg);
+  line-height: var(--ds-leading-body);
 }
