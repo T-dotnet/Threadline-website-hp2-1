@@ -2,14 +2,6 @@ import Image from 'next/image';
 import SampleReportButton from './SampleReportModal.jsx';
 import { SiteCta, SiteFooter, SiteNavigation } from './components/site-chrome.jsx';
 
-const NAV_LINKS = [
-  ['How it works', '/how-it-works'],
-  ['Pricing', '/pricing'],
-  ['For clinicians', '/#clinicians'],
-  ['Resources', '/#resources'],
-  ['Contact us', '#contact'],
-];
-
 const EXPLORE_LINKS = [
   ['Overview', '/'],
   ['How It Works', '/how-it-works'],
@@ -151,7 +143,7 @@ function AffordabilitySection() {
 export default function PricingPage() {
   return (
     <div className="page-shell pricing-page" id="top">
-      <SiteNavigation links={NAV_LINKS} />
+      <SiteNavigation />
       <main>
         <div className="pricing-page-main">
           <PricingHeroArt />

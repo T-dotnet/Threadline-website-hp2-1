@@ -5403,6 +5403,21 @@ h1,
 
 /* Pricing alignment: use the same container, card and FAQ rhythm as the
    homepage and How It Works page. */
+.pricing-page .site-header {
+  height: 136.33px;
+  min-height: 136.33px;
+  padding: 48px 35.2px 0;
+  align-items: flex-start;
+}
+
+.pricing-page .nav-cta {
+  min-width: 0;
+  min-height: 54px;
+  padding: 16px 32px;
+  font-size: 15px;
+  line-height: 20px;
+}
+
 .pricing-page-main {
   width: min(calc(100% - 32px), var(--content-wide));
 }
@@ -5493,6 +5508,20 @@ h1,
     --pricing-page-panel-padding: var(--ds-space-16);
   }
 
+  .pricing-page .site-header {
+    height: 78px;
+    min-height: 78px;
+    padding: 15px 24px;
+    align-items: center;
+  }
+
+  .pricing-page .nav-cta {
+    min-width: 0;
+    min-height: 48px;
+    padding: 10px 18px;
+    font-size: 16px;
+  }
+
   .pricing-page-price-card,
   .pricing-page-included {
     min-height: 520px;
@@ -5515,6 +5544,12 @@ h1,
 @media (max-width: 620px) {
   .pricing-page {
     --pricing-page-panel-padding: calc(var(--ds-space-6) + var(--ds-space-1));
+  }
+
+  .pricing-page .site-header {
+    height: 76px;
+    min-height: 76px;
+    padding: 14px 16px;
   }
 
   .pricing-page-price-card,
