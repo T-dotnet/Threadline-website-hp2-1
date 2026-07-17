@@ -6,7 +6,7 @@ import { FaqSection, HeroSection, IntroSection } from './components/website-sect
 const EXPLORE_LINKS = [
   ['Overview', '/'],
   ['How It Works', '/how-it-works'],
-  ['Pricing', '/#pricing'],
+  ['Pricing', '/pricing'],
   ['For Clinician', '/#clinicians'],
   ['Resources', '/#resources'],
   ['About us', '/'],

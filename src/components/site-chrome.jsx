@@ -3,7 +3,7 @@ import SampleReportButton from '../SampleReportModal.jsx';
 
 const DEFAULT_NAV_LINKS = [
   ['How it works', '/how-it-works'],
-  ['Pricing', '/#pricing'],
+  ['Pricing', '/pricing'],
   ['For clinicians', '/#clinicians'],
   ['Resources', '/#resources'],
   ['Contact us', '/#contact'],
@@ -12,7 +12,7 @@ const DEFAULT_NAV_LINKS = [
 const DEFAULT_EXPLORE_LINKS = [
   ['Overview', '/'],
   ['How It Works', '/how-it-works'],
-  ['Pricing', '/#pricing'],
+  ['Pricing', '/pricing'],
   ['For Clinician', '/#clinicians'],
   ['Resources', '/#resources'],
   ['About us', '/'],
