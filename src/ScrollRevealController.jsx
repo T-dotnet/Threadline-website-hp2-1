@@ -2,7 +2,24 @@
 
 import { useEffect } from 'react';
 
-const REVEAL_SELECTOR = '[data-scroll-reveal]';
+const REVEAL_SELECTOR = [
+  '.home-v2-guideline',
+  '.home-v2-intro',
+  '.home-v2-problem',
+  '.home-v2-report',
+  '.home-v2-process',
+  '.home-v2-benefits',
+  '.home-v2-pricing',
+  '.home-v2-faq',
+  '.home-v2-important',
+  '.how-v2-evidence',
+  '.how-v2-disclaimer',
+  '.how-v2-final',
+  '.pricing-page-offer',
+  '.pricing-page-notice',
+  '.pricing-page-faq',
+  '.pricing-page-affordability',
+].join(', ');
 
 export default function ScrollRevealController() {
   useEffect(() => {
@@ -15,6 +32,7 @@ export default function ScrollRevealController() {
     const initialViewportLimit = window.innerHeight * 0.92;
 
     targets.forEach((target) => {
+      target.classList.add('scroll-reveal-target');
       const bounds = target.getBoundingClientRect();
       if (bounds.top < initialViewportLimit && bounds.bottom > 0) {
         target.classList.add('is-visible');
@@ -40,6 +58,7 @@ export default function ScrollRevealController() {
 
     return () => {
       observer.disconnect();
+      targets.forEach((target) => target.classList.remove('scroll-reveal-target', 'is-visible'));
       root.classList.remove('scroll-reveal-ready');
     };
   }, []);

@@ -21,7 +21,7 @@ const DEFAULT_EXPLORE_LINKS = [
 
 const DEFAULT_SOCIAL_LINKS = ['Instagram', 'LinkedIn', 'X', 'YouTube'];
 
-export function SiteCta({ className = '', href = '/#pricing', label = 'Start your journey', shortLabel }) {
+export function SiteCta({ className = '', href = '/#pricing', label = 'Get started', shortLabel }) {
   return (
     <a className={`cta ${className}`} href={href} aria-label={label}>
       {shortLabel ? (

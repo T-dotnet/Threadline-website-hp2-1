@@ -167,8 +167,8 @@ export function PricingSection({
   label = 'ASSESSMENT PREPARATION',
   note,
   subnote,
-  ctaLabel = 'Start assessment preparation',
-  ctaShortLabel = 'Get started',
+  ctaLabel = 'Get started',
+  ctaShortLabel,
   id = 'pricing',
 }) {
   return (
