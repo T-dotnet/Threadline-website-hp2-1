@@ -5392,3 +5392,139 @@ h1,
     transform: none;
   }
 }
+
+/* Pricing alignment: use the same container, card and FAQ rhythm as the
+   homepage and How It Works page. */
+.pricing-page-main {
+  width: min(calc(100% - 32px), var(--content-wide));
+}
+
+.pricing-page-offer,
+.pricing-page-affordability-grid {
+  align-items: stretch;
+}
+
+.pricing-page-price-card,
+.pricing-page-included {
+  height: auto;
+  min-height: 632px;
+}
+
+.pricing-page-notice {
+  width: min(100%, 800px);
+  margin: 0 auto;
+  padding: var(--ds-space-20) 0 var(--ds-space-10);
+}
+
+.pricing-page-faq {
+  padding: calc(var(--ds-space-20) * 2 + var(--ds-space-10)) 0 var(--ds-space-20);
+}
+
+.pricing-page-faq-inner {
+  width: min(100%, 800px);
+}
+
+.pricing-page-faq-list {
+  margin-top: var(--ds-space-16);
+}
+
+.pricing-page-faq-list details {
+  min-height: 87px;
+  padding: 28px 0;
+  border-top-color: var(--text-secondary);
+  transition: background-color .2s ease;
+}
+
+.pricing-page-faq-list details:last-child {
+  border-bottom: 1px solid var(--text-secondary);
+}
+
+.pricing-page-faq-list details:hover {
+  background: color-mix(in srgb, var(--primary-light) 34%, transparent);
+}
+
+.pricing-page-faq-list summary {
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ds-space-6);
+  font-size: 20px;
+  line-height: normal;
+}
+
+.pricing-page-faq-list summary::after {
+  content: "+";
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--heading);
+  border-radius: 999px;
+  font-size: 22px;
+  font-weight: 300;
+  line-height: 1;
+  transition: color .2s ease, background-color .2s ease, border-color .2s ease, transform .25s ease;
+}
+
+.pricing-page-faq-list details[open] summary::after {
+  border-color: var(--primary);
+  color: var(--surface);
+  background: var(--primary);
+  transform: rotate(45deg);
+}
+
+.pricing-page-faq-list details > p {
+  margin-top: var(--ds-space-5);
+  padding: 0 var(--ds-space-16) 0 0;
+}
+
+@media (max-width: 900px) {
+  .pricing-page {
+    --pricing-page-panel-padding: var(--ds-space-16);
+  }
+
+  .pricing-page-price-card,
+  .pricing-page-included {
+    min-height: 520px;
+  }
+
+  .pricing-page-notice {
+    padding: var(--ds-space-16) 0 var(--ds-space-10);
+  }
+
+  .pricing-page-faq {
+    padding: calc(var(--ds-space-24) + var(--ds-space-6)) 0 var(--ds-space-12);
+    padding-inline: var(--ds-space-6);
+  }
+
+  .pricing-page-affordability-grid article {
+    padding: var(--ds-space-16);
+  }
+}
+
+@media (max-width: 620px) {
+  .pricing-page {
+    --pricing-page-panel-padding: calc(var(--ds-space-6) + var(--ds-space-1));
+  }
+
+  .pricing-page-price-card,
+  .pricing-page-included {
+    min-height: 520px;
+  }
+
+  .pricing-page-notice {
+    padding: var(--ds-space-12) 0 var(--ds-space-8);
+  }
+
+  .pricing-page-faq {
+    padding: var(--ds-space-24) 0 var(--ds-space-10);
+    padding-inline: var(--ds-space-6);
+  }
+
+  .pricing-page-affordability-grid article {
+    min-height: 360px;
+    padding: calc(var(--ds-space-6) + var(--ds-space-1));
+  }
+}
