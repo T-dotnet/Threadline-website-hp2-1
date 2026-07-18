@@ -5301,8 +5301,8 @@ h1,
   padding: var(--ds-space-12);
 }
 
-/* Readability: increase body copy only. Headings, labels, controls, prices,
-   navigation and legal text intentionally retain their existing scale. */
+/* Body-copy scale. Headings, labels, controls, prices, navigation and legal
+   text intentionally retain their existing scale. */
 .home-v2 .home-v2-hero .home-v2-hero-bottom > p,
 .home-v2-guideline-copy p,
 .home-v2-problem-story p,
@@ -5322,7 +5322,7 @@ h1,
 .pricing-page-included > p,
 .pricing-page-notice p:last-child,
 .pricing-page-faq-list details > p {
-  font-size: var(--ds-text-lg);
+  font-size: 15px;
   line-height: var(--ds-leading-body);
 }
 
