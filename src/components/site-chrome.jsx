@@ -12,6 +12,7 @@ const DEFAULT_NAV_LINKS = [
 ];
 
 const DEFAULT_SOCIAL_LINKS = ['Instagram', 'LinkedIn', 'X', 'YouTube'];
+const DEFAULT_LEGAL_LINKS = ['Privacy Policy', 'Terms of Service'];
 
 export function SiteCta({ className = '', href = '/#pricing', label = 'Get started', shortLabel }) {
   return (
@@ -54,13 +55,21 @@ export function SiteNavigation({ links = DEFAULT_NAV_LINKS, ctaLabel = 'Get star
   );
 }
 
+function FooterLink({ link }) {
+  const [label, href] = Array.isArray(link) ? link : [link];
+
+  return href
+    ? <a href={href}>{label}</a>
+    : <span className="footer-link-placeholder">{label}</span>;
+}
+
 function FooterColumn({ title, links }) {
   return (
     <div className="footer-column">
       <h3>{title}</h3>
       {links.map((link) => {
-        const [label, href = '#top'] = Array.isArray(link) ? link : [link];
-        return <a key={label} href={href}>{label}</a>;
+        const label = Array.isArray(link) ? link[0] : link;
+        return <FooterLink key={label} link={link} />;
       })}
     </div>
   );
@@ -69,6 +78,7 @@ function FooterColumn({ title, links }) {
 export function SiteFooter({
   exploreLinks = DEFAULT_EXPLORE_LINKS,
   socialLinks = DEFAULT_SOCIAL_LINKS,
+  legalLinks = DEFAULT_LEGAL_LINKS,
   title = 'Start the assessment with a clearer picture.',
   description = 'Begin preparing your child’s evidence and see what is needed next.',
   ctaLabel = 'Get started',
@@ -97,7 +107,12 @@ export function SiteFooter({
       </div>
       <div className="home-v2-footer-bottom">
         <p>{legalNotice}<br />{safetyNotice}<br />{safetyNoticeEnd}</p>
-        <div><a href="#top">Privacy Policy</a><a href="#top">Terms of Service</a></div>
+        <div>
+          {legalLinks.map((link) => {
+            const label = Array.isArray(link) ? link[0] : link;
+            return <FooterLink key={label} link={link} />;
+          })}
+        </div>
         <p>{copyright}</p>
       </div>
     </footer>

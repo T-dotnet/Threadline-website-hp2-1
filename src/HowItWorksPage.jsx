@@ -205,7 +205,6 @@ function ClosingSection() {
         <h2 id="how-final-title">Prepare with the<br />complete picture.</h2>
         <SiteCta label="Get started" />
       </section>
-      <SiteFooter />
     </div>
   );
 }
@@ -237,6 +236,7 @@ export default function HowItWorksPage() {
         <FaqSection items={DEFAULT_FAQ_ITEMS} />
         <ClosingSection />
       </main>
+      <SiteFooter />
     </div>
   );
 }

@@ -33,7 +33,7 @@
   --ds-color-action: var(--ds-color-forest-900);
   --ds-color-action-hover: var(--ds-color-forest-950);
   --ds-color-accent: var(--ds-color-forest-700);
-  --ds-color-focus: var(--ds-color-forest-200);
+  --ds-color-focus: var(--ds-color-forest-950);
   --ds-color-border: var(--ds-color-line);
 
   /* Typography */
@@ -80,7 +80,7 @@
   --ds-shadow-overlay: 0 24px 60px rgba(11, 70, 54, 0.16);
   --ds-shadow-card-soft: 0 5px 18px rgba(11, 70, 54, 0.14);
   --ds-shadow-dark-xs: 0 2px 4px rgba(0, 0, 0, 0.1);
-  --ds-shadow-focus: 0 0 0 3px var(--ds-color-focus);
+  --ds-shadow-focus: 0 0 0 2px var(--ds-color-surface), 0 0 0 5px var(--ds-color-focus);
   --ds-duration-fast: 140ms;
   --ds-duration-base: 220ms;
   --ds-ease-standard: cubic-bezier(0.2, 0, 0, 1);

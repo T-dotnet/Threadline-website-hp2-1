@@ -5,6 +5,24 @@ import { createPortal } from 'react-dom';
 
 const REPORT_PAGE_COUNT = 16;
 const REPORT_DOWNLOAD_NAME = 'Threadline-Sample-Assessment-Evidence-Report.html';
+const FOCUSABLE_SELECTOR = [
+  'a[href]',
+  'button:not([disabled])',
+  'iframe',
+  'input:not([disabled])',
+  'select:not([disabled])',
+  'textarea:not([disabled])',
+  '[tabindex]:not([tabindex="-1"])',
+].join(',');
+
+function getFocusableElements(container) {
+  if (!container) return [];
+
+  return Array.from(container.querySelectorAll(FOCUSABLE_SELECTOR)).filter((element) => (
+    !element.closest('[hidden]') && element.getClientRects().length > 0
+  ));
+}
+
 const REPORT_PAGE_EXPLANATIONS = [
   {
     title: 'Clinical Assessment Profile',
@@ -131,6 +149,7 @@ export default function SampleReportButton({ className = '', children = 'View a 
   const [shareStatus, setShareStatus] = useState('');
   const [isExplanationOpen, setIsExplanationOpen] = useState(false);
   const triggerRef = useRef(null);
+  const modalRef = useRef(null);
   const closeButtonRef = useRef(null);
   const stageRef = useRef(null);
   const iframeRef = useRef(null);
@@ -255,21 +274,77 @@ export default function SampleReportButton({ className = '', children = 'View a 
   useEffect(() => {
     if (!isOpen) return undefined;
 
+    const modal = modalRef.current;
+    const portalRoot = modal?.closest('.sample-report-backdrop');
+    const backgroundElements = portalRoot
+      ? Array.from(document.body.children).filter((element) => element !== portalRoot)
+      : [];
+    const previousInertStates = backgroundElements.map((element) => [element, element.inert]);
     const previousOverflow = document.body.style.overflow;
+
+    backgroundElements.forEach((element) => {
+      element.inert = true;
+    });
     document.body.style.overflow = 'hidden';
 
     const handleKeyDown = (event) => {
-      if (event.key === 'Escape') closeModal();
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        closeModal();
+        return;
+      }
+
+      if (event.key === 'Tab') {
+        const focusableElements = getFocusableElements(modal);
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements.at(-1);
+
+        if (!firstElement || !lastElement) {
+          event.preventDefault();
+          modal?.focus();
+          return;
+        }
+
+        if (!modal?.contains(document.activeElement)) {
+          event.preventDefault();
+          firstElement.focus();
+          return;
+        }
+
+        if (event.shiftKey && document.activeElement === firstElement) {
+          event.preventDefault();
+          lastElement.focus();
+          return;
+        }
+
+        if (!event.shiftKey && document.activeElement === lastElement) {
+          event.preventDefault();
+          firstElement.focus();
+          return;
+        }
+      }
+
       if (event.key === 'ArrowLeft') showPreviousPage();
       if (event.key === 'ArrowRight') showNextPage();
     };
 
+    const handleFocusIn = (event) => {
+      if (modal && !modal.contains(event.target)) {
+        getFocusableElements(modal)[0]?.focus();
+      }
+    };
+
     window.addEventListener('keydown', handleKeyDown);
+    document.addEventListener('focusin', handleFocusIn);
     window.requestAnimationFrame(() => closeButtonRef.current?.focus());
 
     return () => {
       document.body.style.overflow = previousOverflow;
       window.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener('focusin', handleFocusIn);
+      previousInertStates.forEach(([element, wasInert]) => {
+        element.inert = wasInert;
+      });
       triggerRef.current?.focus();
     };
   }, [closeModal, isOpen, showNextPage, showPreviousPage]);
@@ -319,10 +394,12 @@ export default function SampleReportButton({ className = '', children = 'View a 
           if (event.target === event.currentTarget) closeModal();
         }}>
           <section
+            ref={modalRef}
             className="sample-report-modal"
             role="dialog"
             aria-modal="true"
             aria-labelledby="sample-report-title"
+            tabIndex={-1}
           >
             <header className="sample-report-modal-header">
               <div>

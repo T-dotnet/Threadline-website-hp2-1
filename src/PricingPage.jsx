@@ -176,12 +176,10 @@ export default function PricingPage() {
           <AssessmentOverview />
           <PreparationNotice />
           <PricingFaq />
-          <div className="pricing-page-closing">
-            <AffordabilitySection />
-            <SiteFooter exploreLinks={EXPLORE_LINKS} />
-          </div>
+          <AffordabilitySection />
         </div>
       </main>
+      <SiteFooter exploreLinks={EXPLORE_LINKS} />
     </div>
   );
 }

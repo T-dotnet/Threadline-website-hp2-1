@@ -523,7 +523,8 @@ h1,
   font: inherit;
 }
 
-.footer-column a { color: var(--text-secondary); }
+.footer-column a,
+.footer-column .footer-link-placeholder { color: var(--text-secondary); }
 
 .footer-bottom {
   padding-top: 32px;
@@ -3147,9 +3148,6 @@ h1,
 .how-v2-closing {
   width: min(calc(100% - 32px), var(--home-v2-content));
   margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: var(--ds-space-24);
 }
 
 .how-v2-final {
@@ -3183,9 +3181,9 @@ h1,
   line-height: 20px;
 }
 
-.how-v2-closing .home-v2-footer {
-  width: 100%;
-  margin: 0;
+.how-v2 > .home-v2-footer {
+  width: min(calc(100% - 32px), var(--home-v2-content));
+  margin: var(--ds-space-24) auto 0;
 }
 
 @media (min-width: 901px) and (max-width: 1500px) {
@@ -3348,7 +3346,7 @@ h1,
   .how-v2-faq-spacer { height: 32px; }
   .how-v2 .home-v2-faq { height: auto; padding: 88px 24px; }
 
-  .how-v2-closing { gap: 64px; }
+  .how-v2 > .home-v2-footer { margin-top: var(--ds-space-16); }
 
   .how-v2-final {
     height: auto;
@@ -5358,12 +5356,6 @@ h1,
   padding: var(--ds-space-5) var(--ds-space-8) 0 0;
 }
 
-.pricing-page-closing {
-  display: flex;
-  flex-direction: column;
-  gap: var(--ds-space-24);
-}
-
 .pricing-page-affordability {
   position: relative;
   width: 100%;
@@ -5417,8 +5409,8 @@ h1,
 }
 
 .pricing-page .home-v2-footer {
-  width: 100%;
-  margin: 0;
+  width: min(calc(100% - 32px), var(--content-wide));
+  margin: var(--ds-space-24) auto 0;
 }
 
 @media (max-width: 1100px) {
@@ -5552,7 +5544,7 @@ h1,
   .pricing-page-faq-list summary { font-size: 18px; }
   .pricing-page-affordability-grid article { min-height: 360px; padding: 48px 28px; }
   .pricing-page-affordability h2 { font-size: 36px; }
-  .pricing-page-closing { gap: var(--ds-space-16); }
+  .pricing-page > .home-v2-footer { margin-top: var(--ds-space-16); }
 }
 
 /* Card spacing: keep each responsive inset equal on all four sides. */
