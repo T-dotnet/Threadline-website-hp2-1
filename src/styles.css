@@ -5586,16 +5586,91 @@ h1,
 
 .how-v2-evidence {
   height: auto;
-  min-height: 469px;
+  min-height: 0;
   align-items: stretch;
 }
 
 .how-v2-evidence-copy {
   --how-v2-evidence-card-padding: var(--ds-space-16);
+  align-self: stretch;
   height: auto;
   min-height: 0;
   padding: var(--how-v2-evidence-card-padding);
   overflow: visible;
+}
+
+@media (min-width: 901px) {
+  .how-v2-evidence-copy {
+    min-height: 550px;
+  }
+}
+
+.how-v2-report {
+  --how-v2-report-padding: var(--ds-space-24);
+  height: auto;
+  min-height: 0;
+  padding: var(--how-v2-report-padding);
+  display: grid;
+  grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+  gap: var(--ds-space-16);
+}
+
+.how-v2-report-copy,
+.how-v2-report-preview {
+  position: relative;
+  inset: auto;
+  width: auto;
+  height: auto;
+}
+
+.how-v2-report-copy {
+  gap: var(--ds-space-8);
+}
+
+.how-v2-report-preview {
+  width: 100%;
+  aspect-ratio: auto;
+}
+
+.how-v2-report-preview img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top left;
+}
+
+@media (min-width: 1101px) {
+  .how-v2-report-preview {
+    position: absolute;
+    inset: auto;
+    top: 103.67px;
+    left: 728.5px;
+    width: 803px;
+    height: 818px;
+    aspect-ratio: auto;
+    backdrop-filter: blur(50px);
+  }
+
+  .how-v2-report-preview img {
+    left: -1%;
+    width: 101.05%;
+    height: 100%;
+    object-fit: fill;
+  }
+}
+
+@media (max-width: 1100px) {
+  .how-v2-report {
+    --how-v2-report-padding: var(--ds-space-16);
+    grid-template-columns: 1fr;
+    gap: var(--ds-space-16);
+  }
+
+  .how-v2-report-preview {
+    aspect-ratio: 1051 / 628;
+  }
 }
 
 @media (max-width: 900px) {
@@ -5626,6 +5701,17 @@ h1,
   }
 
   .how-v2-evidence-copy { padding: var(--how-v2-evidence-card-padding); }
+
+  .how-v2-report {
+    --how-v2-report-padding: var(--ds-space-10);
+    grid-template-columns: 1fr;
+    gap: var(--ds-space-10);
+  }
+
+  .how-v2-report-preview {
+    aspect-ratio: 1051 / 628;
+  }
+
 }
 
 @media (max-width: 620px) {
@@ -5658,6 +5744,11 @@ h1,
   .how-v2-evidence-copy {
     --how-v2-evidence-card-padding: calc(var(--ds-space-6) + var(--ds-space-1));
     padding: var(--how-v2-evidence-card-padding);
+  }
+
+  .how-v2-report {
+    --how-v2-report-padding: calc(var(--ds-space-6) + var(--ds-space-1));
+    gap: calc(var(--ds-space-6) + var(--ds-space-1));
   }
 }
 
