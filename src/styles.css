@@ -2742,6 +2742,145 @@ h1,
 /* How it works — Figma frame 3431:9206. This page composes the shared
    navigation, actions, FAQ and footer with the existing Threadline tokens. */
 
+.how-v2-thread {
+  --thread-stage-size: 150px;
+  width: min(calc(100% - 32px), var(--home-v2-content));
+  margin: 0 auto;
+}
+
+.how-v2-thread-intro {
+  width: 100%;
+  height: 438px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 0 160px 0 0;
+}
+
+.how-v2-thread-intro .home-v2-section-heading {
+  width: min(100%, 513px);
+}
+
+.how-v2-thread-intro .home-v2-section-heading h2 {
+  margin: 0;
+  color: var(--heading);
+  font-family: var(--serif);
+  font-size: 40px;
+  font-weight: 300;
+  font-variation-settings: 'SOFT' 0, 'WONK' 1;
+  line-height: normal;
+  letter-spacing: -.5px;
+}
+
+.how-v2-thread-overview {
+  width: 100%;
+  height: 600px;
+  display: grid;
+  grid-template-columns: minmax(0, 920px) 510px;
+  gap: var(--ds-space-5);
+}
+
+.how-v2-thread-journey {
+  position: relative;
+  min-width: 0;
+  height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 0 160px 0 0;
+  background: var(--primary-light);
+}
+
+.how-v2-thread-line {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 12.12%;
+  width: 75.43%;
+  height: auto;
+  max-width: none;
+  transform: translateY(-50%);
+}
+
+.how-v2-thread-stages {
+  position: relative;
+  z-index: 2;
+  width: calc(100% - 192px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.how-v2-thread-stage {
+  position: relative;
+  width: var(--thread-stage-size);
+  height: var(--thread-stage-size);
+  flex: 0 0 var(--thread-stage-size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 50%;
+  background: var(--workspace);
+}
+
+.how-v2-thread-stage-background {
+  object-fit: cover;
+}
+
+.how-v2-thread-stage:nth-child(3) .how-v2-thread-stage-background {
+  left: -64.29% !important;
+  width: 164.57% !important;
+  height: 100% !important;
+  object-fit: fill;
+}
+
+.how-v2-thread-stage:nth-child(4) .how-v2-thread-stage-background {
+  left: -50.95% !important;
+  width: 164.57% !important;
+  height: 100% !important;
+  object-fit: fill;
+}
+
+.how-v2-thread-stage-shade {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  border-radius: inherit;
+  background: rgba(0, 0, 0, .1);
+}
+
+.how-v2-thread-stage-icon {
+  position: relative;
+  z-index: 2;
+  width: 80%;
+  height: 80%;
+}
+
+.how-v2-thread-stage:nth-child(4) .how-v2-thread-stage-icon {
+  width: 66.67%;
+  height: 66.67%;
+}
+
+.how-v2-thread-copy {
+  height: 600px;
+  padding: var(--ds-space-24);
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-space-5);
+  border-radius: 0 0 0 160px;
+  background: var(--surface);
+}
+
+.how-v2-thread-copy p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 15px;
+  line-height: 20px;
+}
+
 .how-v2-flow {
   width: min(calc(100% - 32px), var(--home-v2-content));
   margin: 0 auto;
@@ -3029,13 +3168,77 @@ h1,
 }
 
 @media (min-width: 901px) and (max-width: 1500px) {
+  .how-v2-thread-overview {
+    grid-template-columns: minmax(0, 920fr) minmax(390px, 510fr);
+  }
+
+  .how-v2-thread-journey {
+    --thread-stage-size: clamp(110px, 10vw, 150px);
+  }
+
+  .how-v2-thread-stages {
+    width: calc(100% - clamp(96px, 12vw, 192px));
+  }
+
+  .how-v2-thread-copy { padding: clamp(56px, 6vw, 96px); }
   .how-v2 .how-v2-process { grid-template-columns: minmax(390px, 510fr) minmax(0, 920fr); }
   .how-v2 .how-v2-process .home-v2-process-steps { padding: clamp(48px, 5vw, 72px); }
   .how-v2-process-report { left: 50%; transform: translateX(-50%); }
   .how-v2-evidence-copy { padding: clamp(48px, 5vw, 72px); }
 }
 
+@media (min-width: 901px) and (max-width: 1100px) {
+  .how-v2-thread-overview {
+    height: auto;
+    grid-template-columns: 1fr;
+    gap: var(--ds-space-4);
+  }
+
+  .how-v2-thread-journey { height: 520px; }
+  .how-v2-thread-copy {
+    width: 100%;
+    height: auto;
+    min-height: 420px;
+    border-radius: 0 0 0 64px;
+  }
+}
+
 @media (max-width: 900px) {
+  .how-v2-thread-intro {
+    height: auto;
+    min-height: 360px;
+    padding: 88px 24px;
+    border-radius: 0 64px 0 0;
+  }
+
+  .how-v2-thread-overview {
+    height: auto;
+    grid-template-columns: 1fr;
+    gap: var(--ds-space-4);
+  }
+
+  .how-v2-thread-journey {
+    --thread-stage-size: clamp(68px, 18vw, 104px);
+    height: min(52vw, 420px);
+    min-height: 320px;
+    border-radius: 0 64px 0 0;
+  }
+
+  .how-v2-thread-stages { width: calc(100% - 40px); }
+  .how-v2-thread-line {
+    top: 50%;
+    left: 7%;
+    width: 86%;
+  }
+
+  .how-v2-thread-copy {
+    width: 100%;
+    height: auto;
+    min-height: 380px;
+    padding: 64px 40px;
+    border-radius: 0 0 0 64px;
+  }
+
   .how-v2-flow { gap: var(--ds-space-4); }
 
   .how-v2 .how-v2-process {
@@ -3138,6 +3341,23 @@ h1,
 }
 
 @media (max-width: 620px) {
+  .how-v2-thread-intro {
+    min-height: 320px;
+    padding: 72px 24px;
+  }
+
+  .how-v2-thread-intro .home-v2-section-heading h2 { font-size: 36px; }
+
+  .how-v2-thread-journey {
+    --thread-stage-size: clamp(56px, 17vw, 76px);
+    min-height: 280px;
+  }
+
+  .how-v2-thread-copy {
+    min-height: 0;
+    padding: 48px 28px 64px;
+  }
+
   .how-v2-evidence-copy,
   .how-v2 .how-v2-process .home-v2-process-steps { padding: 48px 28px; }
 
@@ -5222,6 +5442,13 @@ h1,
   padding-bottom: var(--ds-space-20);
 }
 
+.how-v2-thread-intro {
+  height: auto;
+  min-height: 0;
+  padding-top: calc(var(--ds-space-20) * 2 + var(--ds-space-10));
+  padding-bottom: var(--ds-space-20);
+}
+
 .home-v2-guideline {
   padding-bottom: calc(var(--ds-space-20) * 2 + var(--ds-space-10));
 }
@@ -5236,6 +5463,13 @@ h1,
   height: auto;
   min-height: 469px;
   align-items: stretch;
+}
+
+.how-v2-evidence-copy {
+  height: auto;
+  min-height: 0;
+  padding: var(--ds-space-16);
+  overflow: visible;
 }
 
 @media (max-width: 900px) {
@@ -5254,6 +5488,11 @@ h1,
   .home-v2-faq {
     padding-top: calc(var(--ds-space-24) + var(--ds-space-6));
     padding-bottom: var(--ds-space-12);
+  }
+
+  .how-v2-thread-intro {
+    min-height: 0;
+    padding: calc(var(--ds-space-24) + var(--ds-space-6)) var(--ds-space-16) var(--ds-space-12);
   }
 
   .home-v2-guideline {
@@ -5281,6 +5520,11 @@ h1,
   .home-v2-faq {
     padding-top: var(--ds-space-24);
     padding-bottom: var(--ds-space-10);
+  }
+
+  .how-v2-thread-intro {
+    min-height: 0;
+    padding: var(--ds-space-24) calc(var(--ds-space-6) + var(--ds-space-1)) var(--ds-space-10);
   }
 
   .home-v2-guideline {
@@ -5315,15 +5559,31 @@ h1,
 .home-v2-faq-list details > p,
 .home-v2-important > div > p:last-child,
 .home-v2-footer-message p,
+.how-v2-thread-copy p,
 .how-v2-evidence-details ul,
+.how-v2-evidence-details p,
 .how-v2-report-copy p:not(.home-v2-kicker),
 .how-v2-disclaimer p:last-child,
 .pricing-page-included ul,
 .pricing-page-included > p,
 .pricing-page-notice p:last-child,
 .pricing-page-faq-list details > p {
-  font-size: 15px;
-  line-height: var(--ds-leading-body);
+  font-size: 16.5px;
+  line-height: 24px;
+}
+
+.home-v2 .home-v2-hero .home-v2-hero-bottom > p,
+.home-v2-process-step h3 {
+  font-size: 20px;
+  line-height: 30px;
+}
+
+@media (max-width: 620px) {
+  .home-v2 .home-v2-hero .home-v2-hero-bottom > p,
+  .home-v2-process-step h3 {
+    font-size: 18px;
+    line-height: 27px;
+  }
 }
 
 /* UI polish: shared controls, readable measures and resilient card sizing. */

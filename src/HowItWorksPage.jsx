@@ -45,6 +45,79 @@ const FAQ_ITEMS = [
   ['Who controls my child’s information?', 'You do, as part of your child’s Thread.'],
 ];
 
+const THREAD_STAGES = [
+  {
+    name: 'Assessment questionnaires',
+    background: '/thread-circle-primary.jpg',
+    icon: '/thread-clipboard.svg',
+  },
+  {
+    name: 'Clinician context',
+    background: '/thread-circle-primary.jpg',
+    icon: '/thread-clinician.svg',
+  },
+  {
+    name: 'School perspective',
+    background: '/thread-circle-school.jpg',
+    icon: '/thread-school.svg',
+  },
+  {
+    name: 'Future care',
+    background: '/thread-circle-care.jpg',
+    icon: '/thread-future-care.svg',
+  },
+];
+
+function YourThreadSection() {
+  return (
+    <section className="how-v2-thread" id="your-thread" aria-labelledby="your-thread-title">
+      <header className="how-v2-thread-intro">
+        <div className="home-v2-section-heading">
+          <p className="home-v2-kicker">YOUR THREAD</p>
+          <h2 id="your-thread-title">Build it once. Let every step build on it.</h2>
+        </div>
+      </header>
+      <div className="how-v2-thread-overview">
+        <div className="how-v2-thread-journey" aria-hidden="true">
+          <Image
+            className="how-v2-thread-line"
+            src="/thread-journey-line.svg"
+            width={694}
+            height={92}
+            alt=""
+          />
+          <div className="how-v2-thread-stages">
+            {THREAD_STAGES.map((stage) => (
+              <div className="how-v2-thread-stage" key={stage.name}>
+                <Image
+                  className="how-v2-thread-stage-background"
+                  src={stage.background}
+                  fill
+                  alt=""
+                  sizes="150px"
+                />
+                <span className="how-v2-thread-stage-shade" />
+                <Image
+                  className="how-v2-thread-stage-icon"
+                  src={stage.icon}
+                  width={120}
+                  height={120}
+                  alt=""
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+        <article className="how-v2-thread-copy">
+          <p>Questionnaires, reports and perspectives collected for this assessment become part of your child’s Thread, an organised record designed to grow with them.</p>
+          <p>When a new clinician, school or specialist needs context, you are not starting from scratch.</p>
+          <p>One record. Owned by your family. Shared when you choose.</p>
+        </article>
+      </div>
+    </section>
+  );
+}
+
 function AssessmentOverview() {
   return (
     <section className="home-v2-process how-v2-process" aria-label="Three assessment preparation steps">
@@ -164,6 +237,7 @@ export default function HowItWorksPage() {
           highlight="Assessment Ready."
           description="Threadline brings together evidence from home, school and existing care, then prepares a structured Assessment Evidence Report for your child's clinician."
         />
+        <YourThreadSection />
         <IntroSection
           id="how-it-works"
           variant="how"
