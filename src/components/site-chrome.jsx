@@ -1,5 +1,7 @@
 import Image from 'next/image';
 import SampleReportButton from '../SampleReportModal.jsx';
+import { Button } from '../design-system/components.jsx';
+import { DEFAULT_EXPLORE_LINKS } from '../content/site-content.js';
 
 const DEFAULT_NAV_LINKS = [
   ['How it works', '/how-it-works'],
@@ -9,28 +11,18 @@ const DEFAULT_NAV_LINKS = [
   ['Contact us', '/#contact'],
 ];
 
-const DEFAULT_EXPLORE_LINKS = [
-  ['Overview', '/'],
-  ['How It Works', '/how-it-works'],
-  ['Pricing', '/pricing'],
-  ['For Clinician', '/#clinicians'],
-  ['Resources', '/#resources'],
-  ['About us', '/'],
-  ['Contact us', '/#contact'],
-];
-
 const DEFAULT_SOCIAL_LINKS = ['Instagram', 'LinkedIn', 'X', 'YouTube'];
 
 export function SiteCta({ className = '', href = '/#pricing', label = 'Get started', shortLabel }) {
   return (
-    <a className={`cta ${className}`} href={href} aria-label={label}>
+    <Button unstyled className={`cta ${className}`} href={href} aria-label={label}>
       {shortLabel ? (
         <>
           <span className="cta-label-long">{label}</span>
           <span className="cta-label-short" aria-hidden="true">{shortLabel}</span>
         </>
       ) : label}
-    </a>
+    </Button>
   );
 }
 

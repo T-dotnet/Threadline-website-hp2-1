@@ -11,6 +11,7 @@ import {
   ProcessSection,
   ReportSection,
 } from './components/website-sections.jsx';
+import { DEFAULT_FAQ_ITEMS } from './content/site-content.js';
 
 const GUIDELINE_PARAGRAPHS = [
   'Threadline is designed with reference to the Australian Evidence-Based Clinical Practice Guideline for ADHD, developed by the Australasian ADHD Professionals Association.',
@@ -51,7 +52,7 @@ const PROCESS_STEPS = [
 const BENEFITS = [
   { text: 'Know exactly what information is needed', icon: '/step-information.png', shape: 'top-right' },
   { text: 'Reduce delays caused by missing evidence', icon: '/step-checklist.png', shape: 'bottom-left' },
-  { text: "Avoid repeating your child's story", icon: '/step-story.png', shape: 'top-right' },
+  { text: "Avoid repeating your child's story", icon: '/step-story.svg', shape: 'top-right' },
 ];
 
 const PRICING_ITEMS = [
@@ -62,14 +63,6 @@ const PRICING_ITEMS = [
   'Structured Assessment Evidence Report',
   'Sharing with your child’s clinician',
   'Support during preparation',
-];
-
-const FAQ_ITEMS = [
-  ['Is Threadline an ADHD assessment?', 'No. Threadline prepares assessment evidence for your child’s clinician.'],
-  ['What will my clinician receive?', 'A structured Assessment Evidence Report that keeps every source visible and organised.'],
-  ['How long does preparation take?', 'You can begin in minutes and complete each part at your own pace.'],
-  ['Will Threadline prevent additional appointments?', 'Threadline supports preparation, while your clinician determines the appointments needed for assessment.'],
-  ['Who controls my child’s information?', 'You do, as part of your child’s Thread.'],
 ];
 
 export default function App() {
@@ -130,7 +123,7 @@ export default function App() {
           note="No subscription. No hidden fees or taxes."
           subnote="Clinician appointment fees are separate."
         />
-        <FaqSection items={FAQ_ITEMS} />
+        <FaqSection items={DEFAULT_FAQ_ITEMS} />
         <ImportantSection>
           Threadline prepares assessment evidence. It does not diagnose ADHD, replace your child’s clinician or determine whether diagnostic criteria are met. Your child’s clinician remains responsible for clinical assessment, diagnosis and treatment decisions. Clinician fees are charged separately.
         </ImportantSection>

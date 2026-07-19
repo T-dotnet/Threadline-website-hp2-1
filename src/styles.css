@@ -94,7 +94,7 @@ a { color: inherit; text-decoration: none; }
 
 .cta:hover {
   color: var(--surface);
-  background: #073c2e;
+  background: var(--ds-color-action-hover);
   transform: translateY(-1px);
 }
 
@@ -102,7 +102,7 @@ a { color: inherit; text-decoration: none; }
 
 .cta:focus-visible,
 a:focus-visible {
-  outline: 3px solid #8acdb7;
+  outline: 3px solid var(--ds-color-focus);
   outline-offset: 4px;
 }
 
@@ -190,7 +190,7 @@ h1,
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  background: #fff;
+  background: var(--ds-color-surface);
   mix-blend-mode: soft-light;
 }
 
@@ -1395,8 +1395,9 @@ h1,
 .home-v2-kicker {
   margin: 0;
   color: var(--primary);
-  font-size: 17.6px;
-  line-height: 17.6px;
+  font-size: var(--ds-text-label);
+  line-height: var(--ds-text-label);
+  letter-spacing: .04em;
 }
 
 .home-v2-section-heading {
@@ -1451,6 +1452,15 @@ h1,
   color: var(--primary);
   font-size: 17.6px;
   line-height: 17.6px;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: .22em;
+  transition: text-decoration-color .2s ease;
+}
+
+.home-v2-guideline-heading a:hover,
+.home-v2-guideline-heading a:focus-visible {
+  text-decoration-color: currentColor;
 }
 
 .home-v2-guideline-copy {
@@ -1599,18 +1609,26 @@ h1,
 }
 
 .home-v2-outline-button {
-  min-height: 57px;
+  min-height: var(--ds-control-height-md);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   margin-top: 32px;
-  padding: 16px 32px;
+  padding: var(--ds-control-padding-md);
   border: 1px solid var(--heading);
-  border-radius: 16px;
+  border-radius: var(--ds-radius-md);
   color: var(--heading);
   background: transparent;
-  font-size: 20px;
-  line-height: normal;
+  font: 400 var(--ds-control-font-size)/var(--ds-control-line-height) var(--sans);
+  cursor: pointer;
+  transition: color .2s ease, background-color .2s ease, border-color .2s ease, transform .2s ease;
+}
+
+.home-v2-outline-button:hover {
+  border-color: var(--primary);
+  color: var(--heading);
+  background: color-mix(in srgb, var(--primary-light) 60%, transparent);
+  transform: translateY(-1px);
 }
 
 .home-v2-report-preview {
@@ -1851,7 +1869,7 @@ h1,
 }
 
 .home-v2-faq-list summary:focus-visible {
-  outline: 3px solid #8acdb7;
+  outline: 3px solid var(--ds-color-focus);
   outline-offset: 8px;
   border-radius: 4px;
 }
@@ -1992,7 +2010,7 @@ h1,
     padding: 64px 40px;
     border-top-right-radius: 64px;
   }
-  .home-v2-benefit-grid { grid-template-columns: 1fr; gap: 16px; }
+  .home-v2-benefit-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
   .home-v2-benefit-card { height: 260px; }
   .home-v2-benefit-card--top-right { border-top-right-radius: 64px; }
   .home-v2-pricing { height: auto; grid-template-columns: 1fr; gap: 16px; }
@@ -2207,7 +2225,7 @@ h1,
 .sample-report-action:focus-visible,
 .sample-report-close:focus-visible,
 .sample-report-arrow:focus-visible {
-  outline: 3px solid #8acdb7;
+  outline: 3px solid var(--ds-color-focus);
   outline-offset: 4px;
 }
 
@@ -2230,11 +2248,11 @@ h1,
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  border: 1px solid rgba(11, 70, 54, .12);
+  border: 1px solid var(--ds-color-line-soft);
   border-radius: 0 64px 0 0;
   color: var(--heading);
   background: var(--workspace);
-  box-shadow: 0 24px 60px rgba(11, 70, 54, .16);
+  box-shadow: var(--ds-shadow-overlay);
 }
 
 .sample-report-modal-header {
@@ -2325,7 +2343,7 @@ h1,
 
 .sample-report-close:hover {
   color: var(--surface);
-  background: #073c2e;
+  background: var(--ds-color-action-hover);
   transform: translateY(-1px);
 }
 
@@ -2373,7 +2391,7 @@ h1,
   height: 1440px;
   display: block;
   border: 0;
-  background: #fff;
+  background: var(--ds-color-surface);
   opacity: 0;
   transform-origin: top left;
   transition: opacity .2s ease;
@@ -2426,7 +2444,7 @@ h1,
 }
 
 .sample-report-explanation-toggle:focus-visible {
-  outline: 3px solid #8acdb7;
+  outline: 3px solid var(--ds-color-focus);
   outline-offset: -4px;
 }
 
@@ -2526,7 +2544,7 @@ h1,
     width: 44px;
     height: 44px;
     border-radius: 999px;
-    box-shadow: 0 5px 18px rgba(11, 70, 54, .14);
+    box-shadow: var(--ds-shadow-card-soft);
     transform: translateY(-50%);
   }
 
@@ -2849,7 +2867,7 @@ h1,
   z-index: 1;
   inset: 0;
   border-radius: inherit;
-  background: rgba(0, 0, 0, .1);
+  background: var(--ds-color-overlay-dark-soft);
 }
 
 .how-v2-thread-stage-icon {
@@ -2925,7 +2943,7 @@ h1,
   height: 683px;
   overflow: hidden;
   border-radius: var(--ds-radius-lg);
-  box-shadow: 0 7px 10px rgba(0, 0, 0, .09), 0 40px 80px rgba(0, 0, 0, .3);
+  box-shadow: var(--ds-shadow-artwork);
 }
 
 .how-v2-process-report img {
@@ -2961,7 +2979,7 @@ h1,
   height: 683px;
   overflow: hidden;
   border-radius: var(--ds-radius-lg);
-  box-shadow: 0 7px 10px rgba(0, 0, 0, .09), 0 40px 80px rgba(0, 0, 0, .3);
+  box-shadow: var(--ds-shadow-artwork);
 }
 
 .how-v2-perspective-report img {
@@ -3026,7 +3044,7 @@ h1,
   top: var(--ds-space-24);
   left: var(--ds-space-24);
   width: 513px;
-  height: 314px;
+  height: 378px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -3036,7 +3054,11 @@ h1,
 .how-v2-report-copy > div {
   display: flex;
   flex-direction: column;
-  gap: var(--ds-space-4);
+  gap: 0;
+}
+
+.how-v2-report-copy .home-v2-kicker {
+  margin-bottom: var(--ds-space-4);
 }
 
 .how-v2-report-copy h2 {
@@ -3052,8 +3074,8 @@ h1,
 
 .how-v2-report-copy p:not(.home-v2-kicker) {
   width: 100%;
-  margin: 0;
-  color: var(--heading);
+  margin: var(--ds-space-20) 0 0;
+  color: var(--text-secondary);
   font-size: 15px;
   line-height: 20px;
 }
@@ -3120,7 +3142,6 @@ h1,
   padding: 160px 0;
 }
 
-.how-v2 .home-v2-faq-list summary::after { display: none; }
 .how-v2 .home-v2-faq-list details:last-child { border-bottom: 0; }
 
 .how-v2-closing {
@@ -3290,13 +3311,12 @@ h1,
 
   .how-v2-evidence-copy {
     min-height: 420px;
-    padding: 64px 40px;
     border-radius: 0 0 0 64px;
   }
 
   .how-v2-report {
     height: auto;
-    min-height: 860px;
+    min-height: 924px;
     padding: 64px 40px 0;
     border-radius: 0 64px 0 0;
   }
@@ -3311,7 +3331,7 @@ h1,
   }
 
   .how-v2-report-preview {
-    top: 440px;
+    top: 504px;
     left: 40px;
     width: 880px;
     height: 560px;
@@ -3358,7 +3378,6 @@ h1,
     padding: 48px 28px 64px;
   }
 
-  .how-v2-evidence-copy,
   .how-v2 .how-v2-process .home-v2-process-steps { padding: 48px 28px; }
 
   .how-v2-evidence-details { grid-template-columns: 1fr; }
@@ -3366,14 +3385,14 @@ h1,
   .how-v2-evidence-details p { font-size: 18px; line-height: 27px; }
 
   .how-v2-report {
-    min-height: 720px;
+    min-height: 784px;
     padding: 48px 24px 0;
   }
 
   .how-v2-report-copy h2 { font-size: 36px; }
 
   .how-v2-report-preview {
-    top: 385px;
+    top: 449px;
     left: 24px;
     width: 690px;
     height: 470px;
@@ -3392,9 +3411,9 @@ h1,
   position: absolute;
   overflow: hidden;
   max-width: none;
-  background: #fff;
+  background: var(--ds-color-surface);
   border-radius: 32px;
-  box-shadow: 0 7px 10px rgba(0, 0, 0, .09), 0 40px 80px rgba(0, 0, 0, .3);
+  box-shadow: var(--ds-shadow-artwork);
 }
 
 .home-v2-process-sheet img {
@@ -3775,7 +3794,7 @@ h1,
   line-height: 20px;
 }
 
-.home-v2-process-step > span { color: #000; }
+.home-v2-process-step > span { color: var(--ds-color-black); }
 .home-v2-process-step p { margin-top: 8px; }
 .home-v2-process-art { object-fit: cover; }
 
@@ -4029,7 +4048,7 @@ h1,
   position: absolute;
   overflow: hidden;
   border-radius: 32px;
-  box-shadow: 0 7px 10px rgba(0, 0, 0, .09), 0 40px 80px rgba(0, 0, 0, .3);
+  box-shadow: var(--ds-shadow-artwork);
 }
 
 .home-v2 .home-v2-hero .home-v2-hero-sheet-rear {
@@ -4235,7 +4254,7 @@ h1,
   height: 683px !important;
   object-fit: cover;
   border-radius: 32px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
+  box-shadow: var(--ds-shadow-dark-xs);
 }
 
 .home-v2-report-preview {
@@ -4278,7 +4297,7 @@ h1,
   line-height: 20px;
 }
 
-.home-v2-process-step > span { color: #000; }
+.home-v2-process-step > span { color: var(--ds-color-black); }
 
 .home-v2-process-report {
   top: 106.67px;
@@ -4288,7 +4307,7 @@ h1,
   object-fit: cover;
   object-position: top;
   border-radius: 32px;
-  box-shadow: 0 7px 10px rgba(0, 0, 0, .09), 0 40px 80px rgba(0, 0, 0, .3);
+  box-shadow: var(--ds-shadow-artwork);
 }
 
 .home-v2-benefits {
@@ -4478,7 +4497,7 @@ h1,
     align-items: center;
     justify-content: center;
     gap: 10px;
-    border: 1px solid rgba(11, 70, 54, .24);
+    border: 1px solid var(--ds-color-line-strong);
     border-radius: 12px;
     color: var(--heading);
     background: var(--surface);
@@ -4523,10 +4542,10 @@ h1,
     right: 0;
     width: min(330px, calc(100vw - 32px));
     padding: 16px;
-    border: 1px solid rgba(11, 70, 54, .12);
+    border: 1px solid var(--ds-color-line-soft);
     border-radius: 20px;
     background: var(--surface);
-    box-shadow: 0 24px 60px rgba(11, 70, 54, .16);
+    box-shadow: var(--ds-shadow-overlay);
 }
 
 .mobile-nav-links { display: grid; }
@@ -5067,7 +5086,7 @@ h1,
   position: absolute;
   overflow: hidden;
   border-radius: var(--ds-radius-lg);
-  box-shadow: 0 7px 10px rgba(0, 0, 0, 0.09), 0 40px 80px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--ds-shadow-artwork);
 }
 
 .pricing-page-hero-sheet img {
@@ -5131,8 +5150,9 @@ h1,
 .pricing-page-label {
   margin: 0;
   color: var(--primary);
-  font-size: 17.6px;
+  font-size: var(--ds-text-label);
   line-height: 1;
+  letter-spacing: .04em;
 }
 
 .pricing-page-price-card h1,
@@ -5162,11 +5182,11 @@ h1,
 
 .pricing-page-actions .cta,
 .pricing-page-actions .home-v2-outline-button {
-  min-height: 54px;
+  min-height: var(--ds-control-height-md);
   margin: 0;
-  padding: var(--ds-space-4) var(--ds-space-8);
+  padding: var(--ds-control-padding-md);
   border-radius: var(--ds-radius-md);
-  font: 400 15px/20px var(--sans);
+  font: 400 var(--ds-control-font-size)/var(--ds-control-line-height) var(--sans);
 }
 
 .pricing-page-actions .home-v2-outline-button {
@@ -5214,6 +5234,76 @@ h1,
   line-height: 20px;
 }
 
+.pricing-page-assessment-overview {
+  height: 600px;
+  margin-top: var(--ds-space-12);
+  display: grid;
+  grid-template-columns: 510px minmax(0, 1fr);
+  gap: var(--ds-space-5);
+}
+
+.pricing-page-assessment-copy {
+  padding: var(--pricing-page-panel-padding);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--ds-space-16);
+  border-radius: 0 0 0 var(--pricing-page-radius);
+  background: var(--surface);
+}
+
+.pricing-page-assessment-heading {
+  width: 100%;
+}
+
+.pricing-page-assessment-copy h2 {
+  margin: 0;
+  color: var(--heading);
+  font-family: var(--serif);
+  font-size: 40px;
+  font-weight: 300;
+  line-height: normal;
+  letter-spacing: -0.5px;
+  font-variation-settings: 'SOFT' 0, 'WONK' 1;
+}
+
+.pricing-page-assessment-copy > p {
+  margin: 0;
+  color: var(--text-secondary);
+}
+
+.pricing-page-assessment-workspace {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 0 var(--pricing-page-radius) 0 0;
+  background: var(--primary-light);
+}
+
+.pricing-page-assessment-watercolour {
+  position: absolute;
+  top: -10.22%;
+  left: -0.05%;
+  width: 146.67%;
+  height: 120.43%;
+}
+
+.pricing-page-assessment-report {
+  position: absolute;
+  top: 170.67px;
+  left: 125.5px;
+  width: 670px;
+  overflow: hidden;
+  border-radius: var(--ds-radius-lg);
+  box-shadow: var(--ds-shadow-artwork);
+}
+
+.pricing-page-assessment-report img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .pricing-page-notice {
   padding: var(--ds-space-12) calc(var(--ds-space-20) * 2) var(--ds-space-8);
   display: flex;
@@ -5251,7 +5341,7 @@ h1,
 
 .pricing-page-faq-list details {
   padding: 28px 0;
-  border-top: 1px solid #9ca3af;
+  border-top: 1px solid var(--ds-color-neutral-400);
 }
 
 .pricing-page-faq-list summary {
@@ -5335,6 +5425,7 @@ h1,
   .pricing-page { --pricing-page-panel-padding: var(--ds-space-16); }
 
   .pricing-page-offer { grid-template-columns: minmax(0, 1fr) 420px; }
+  .pricing-page-assessment-overview { grid-template-columns: 420px minmax(0, 1fr); }
   .pricing-page-price-card h1 { font-size: 58px; line-height: 1.08; }
   .pricing-page-notice { padding-inline: var(--ds-space-16); }
   .pricing-page-affordability-grid { width: calc(100% - 128px); }
@@ -5359,6 +5450,28 @@ h1,
     grid-template-columns: 1fr;
     gap: var(--ds-space-4);
     margin-top: var(--ds-space-5);
+  }
+
+  .pricing-page-assessment-overview {
+    height: auto;
+    margin-top: var(--ds-space-5);
+    grid-template-columns: 1fr;
+    gap: var(--ds-space-4);
+  }
+
+  .pricing-page-assessment-copy {
+    min-height: 480px;
+    padding: 64px 40px;
+  }
+
+  .pricing-page-assessment-workspace {
+    height: 520px;
+  }
+
+  .pricing-page-assessment-report {
+    top: 28.5%;
+    left: 14%;
+    width: 73%;
   }
 
   .pricing-page-price-card,
@@ -5400,6 +5513,26 @@ h1,
 
   .pricing-page-price-card { min-height: 480px; }
   .pricing-page-price-card h1 { font-size: clamp(40px, 12vw, 50px); }
+
+  .pricing-page-assessment-copy {
+    min-height: 430px;
+    padding: 48px 28px 64px;
+  }
+
+  .pricing-page-assessment-copy h2 {
+    font-size: 36px;
+  }
+
+  .pricing-page-assessment-workspace {
+    height: 430px;
+  }
+
+  .pricing-page-assessment-report {
+    top: 30%;
+    left: 12%;
+    width: 82%;
+    border-radius: var(--ds-radius-md);
+  }
 
   .pricing-page-actions {
     width: 100%;
@@ -5466,9 +5599,10 @@ h1,
 }
 
 .how-v2-evidence-copy {
+  --how-v2-evidence-card-padding: var(--ds-space-16);
   height: auto;
   min-height: 0;
-  padding: var(--ds-space-16);
+  padding: var(--how-v2-evidence-card-padding);
   overflow: visible;
 }
 
@@ -5499,9 +5633,7 @@ h1,
     padding-bottom: calc(var(--ds-space-24) + var(--ds-space-6));
   }
 
-  .how-v2-evidence-copy {
-    padding: var(--ds-space-16);
-  }
+  .how-v2-evidence-copy { padding: var(--how-v2-evidence-card-padding); }
 }
 
 @media (max-width: 620px) {
@@ -5532,7 +5664,8 @@ h1,
   }
 
   .how-v2-evidence-copy {
-    padding: calc(var(--ds-space-6) + var(--ds-space-1));
+    --how-v2-evidence-card-padding: calc(var(--ds-space-6) + var(--ds-space-1));
+    padding: var(--how-v2-evidence-card-padding);
   }
 }
 
@@ -5543,6 +5676,22 @@ h1,
 
 .home-v2-benefit-card {
   padding: var(--ds-space-12);
+}
+
+/* Keep the problem cards evenly inset from the watercolor container. */
+.home-v2-problem {
+  height: auto;
+  padding: var(--ds-space-24);
+}
+
+.home-v2-problem-grid {
+  height: auto;
+}
+
+@media (max-width: 900px) {
+  .home-v2-problem {
+    padding: var(--ds-space-4);
+  }
 }
 
 /* Body-copy scale. Headings, labels, controls, prices, navigation and legal
@@ -5566,6 +5715,7 @@ h1,
 .how-v2-disclaimer p:last-child,
 .pricing-page-included ul,
 .pricing-page-included > p,
+.pricing-page-assessment-copy > p,
 .pricing-page-notice p:last-child,
 .pricing-page-faq-list details > p {
   font-size: 16.5px;
@@ -5578,6 +5728,16 @@ h1,
   line-height: 30px;
 }
 
+.home-v2-included .home-v2-pricing-label {
+  font-size: 20px;
+  line-height: 30px;
+}
+
+.home-v2-benefit-card p {
+  font-size: 20px;
+  line-height: 30px;
+}
+
 @media (max-width: 620px) {
   .home-v2 .home-v2-hero .home-v2-hero-bottom > p,
   .home-v2-process-step h3 {
@@ -5586,27 +5746,7 @@ h1,
   }
 }
 
-/* UI polish: shared controls, readable measures and resilient card sizing. */
-.home-v2-kicker,
-.pricing-page-label {
-  letter-spacing: .04em;
-}
-
-.home-v2-outline-button {
-  min-height: 54px;
-  padding: var(--ds-space-4) var(--ds-space-8);
-  border-radius: var(--ds-radius-md);
-  font: 400 15px/20px var(--sans);
-  cursor: pointer;
-  transition: color .2s ease, background-color .2s ease, border-color .2s ease, transform .2s ease;
-}
-
-.home-v2-outline-button:hover {
-  border-color: var(--primary);
-  color: var(--heading);
-  background: color-mix(in srgb, var(--primary-light) 60%, transparent);
-  transform: translateY(-1px);
-}
+/* UI polish: readable measures and resilient card sizing. */
 
 .home-v2-benefit-grid {
   align-items: stretch;

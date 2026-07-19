@@ -1,17 +1,8 @@
 import Image from 'next/image';
 import SampleReportButton from './SampleReportModal.jsx';
 import { SiteCta, SiteFooter, SiteNavigation } from './components/site-chrome.jsx';
-import { FaqSection, HeroSection, IntroSection } from './components/website-sections.jsx';
-
-const EXPLORE_LINKS = [
-  ['Overview', '/'],
-  ['How It Works', '/how-it-works'],
-  ['Pricing', '/pricing'],
-  ['For Clinician', '/#clinicians'],
-  ['Resources', '/#resources'],
-  ['About us', '/'],
-  ['Contact us', '/#contact'],
-];
+import { FaqSection, HeroSection, IntroSection, SectionLabel } from './components/website-sections.jsx';
+import { DEFAULT_FAQ_ITEMS } from './content/site-content.js';
 
 const PREPARATION_STEPS = [
   {
@@ -35,14 +26,6 @@ const EVIDENCE_ITEMS = [
   'Standardised questionnaires',
   'Daily functioning',
   'Existing reports',
-];
-
-const FAQ_ITEMS = [
-  ['Is Threadline an ADHD assessment?', 'No. Threadline prepares assessment evidence for your child’s clinician.'],
-  ['What will my clinician receive?', 'A structured Assessment Evidence Report that keeps every source visible and organised.'],
-  ['How long does preparation take?', 'You can begin in minutes and complete each part at your own pace.'],
-  ['Will Threadline prevent additional appointments?', 'Threadline supports preparation, while your clinician determines the appointments needed for assessment.'],
-  ['Who controls my child’s information?', 'You do, as part of your child’s Thread.'],
 ];
 
 const THREAD_STAGES = [
@@ -73,7 +56,7 @@ function YourThreadSection() {
     <section className="how-v2-thread" id="your-thread" aria-labelledby="your-thread-title">
       <header className="how-v2-thread-intro">
         <div className="home-v2-section-heading">
-          <p className="home-v2-kicker">YOUR THREAD</p>
+          <SectionLabel>YOUR THREAD</SectionLabel>
           <h2 id="your-thread-title">Build it once. Let every step build on it.</h2>
         </div>
       </header>
@@ -188,7 +171,7 @@ function ReportOverview() {
     <section className="how-v2-report" aria-labelledby="report-overview-title">
       <div className="how-v2-report-copy">
         <div>
-          <p className="home-v2-kicker">YOUR CHILD&apos;S THREAD</p>
+          <SectionLabel>YOUR CHILD&apos;S THREAD</SectionLabel>
           <h2 id="report-overview-title">One report.<br />Every source clear.</h2>
           <p>See evidence across settings, what is complete and what may still need follow-up.</p>
         </div>
@@ -222,7 +205,7 @@ function ClosingSection() {
         <h2 id="how-final-title">Prepare with the<br />complete picture.</h2>
         <SiteCta label="Get started" />
       </section>
-      <SiteFooter exploreLinks={EXPLORE_LINKS} />
+      <SiteFooter />
     </div>
   );
 }
@@ -251,7 +234,7 @@ export default function HowItWorksPage() {
           <PreparationDisclaimer />
         </div>
         <div className="how-v2-faq-spacer" aria-hidden="true" />
-        <FaqSection items={FAQ_ITEMS} />
+        <FaqSection items={DEFAULT_FAQ_ITEMS} />
         <ClosingSection />
       </main>
     </div>

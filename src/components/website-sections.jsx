@@ -2,11 +2,28 @@ import Image from 'next/image';
 import SampleReportButton from '../SampleReportModal.jsx';
 import { SiteCta } from './site-chrome.jsx';
 
+export function SectionLabel({ as: Tag = 'p', className = 'home-v2-kicker', children }) {
+  return <Tag className={className}>{children}</Tag>;
+}
+
 export function SectionHeading({ label, children, className = '' }) {
   return (
     <div className={`home-v2-section-heading ${className}`}>
-      <p className="home-v2-kicker">{label}</p>
+      <SectionLabel>{label}</SectionLabel>
       <h2>{children}</h2>
+    </div>
+  );
+}
+
+export function DisclosureList({ items, className = 'home-v2-faq-list', name = 'home-faq', wrapQuestion = true }) {
+  return (
+    <div className={className}>
+      {items.map(([question, answer]) => (
+        <details key={question} name={name}>
+          <summary>{wrapQuestion ? <span>{question}</span> : question}</summary>
+          <p>{answer}</p>
+        </details>
+      ))}
     </div>
   );
 }
@@ -57,7 +74,7 @@ export function GuidelineSection({ label, title, linkLabel, linkHref, paragraphs
     <section className="home-v2-guideline" aria-labelledby={titleId}>
       <div className="home-v2-guideline-inner">
         <div className="home-v2-guideline-heading">
-          <p className="home-v2-kicker">{label}</p>
+          <SectionLabel>{label}</SectionLabel>
           <h2 id={titleId}>{title}</h2>
           <a href={linkHref} target="_blank" rel="noreferrer">{linkLabel}</a>
         </div>
@@ -180,7 +197,7 @@ export function PricingSection({
       </article>
       <article className="home-v2-price-card">
         <div>
-          <p className="home-v2-kicker">{label}</p>
+          <SectionLabel>{label}</SectionLabel>
           <div className="home-v2-price-line"><strong>{price}&nbsp;</strong><span>{priceSuffix}</span></div>
           <SiteCta label={ctaLabel} shortLabel={ctaShortLabel} />
         </div>
@@ -194,14 +211,7 @@ export function FaqSection({ items, title = 'Questions families often ask.', lab
     <section className="home-v2-faq" aria-labelledby={titleId}>
       <div className="home-v2-faq-inner">
         <SectionHeading label={label}><span id={titleId}>{title}</span></SectionHeading>
-        <div className="home-v2-faq-list">
-          {items.map(([question, answer]) => (
-            <details key={question} name="home-faq">
-              <summary><span>{question}</span></summary>
-              <p>{answer}</p>
-            </details>
-          ))}
-        </div>
+        <DisclosureList items={items} />
       </div>
     </section>
   );
@@ -210,7 +220,7 @@ export function FaqSection({ items, title = 'Questions families often ask.', lab
 export function ImportantSection({ children, label = 'Important', id = 'resources' }) {
   return (
     <aside className="home-v2-important" id={id}>
-      <div><p className="home-v2-kicker">{label}</p><p>{children}</p></div>
+      <div><SectionLabel>{label}</SectionLabel><p>{children}</p></div>
     </aside>
   );
 }

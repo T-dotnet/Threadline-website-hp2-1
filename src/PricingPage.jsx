@@ -1,16 +1,10 @@
 import Image from 'next/image';
 import SampleReportButton from './SampleReportModal.jsx';
 import { SiteCta, SiteFooter, SiteNavigation } from './components/site-chrome.jsx';
+import { DisclosureList, SectionLabel } from './components/website-sections.jsx';
+import { exploreLinksWithContact } from './content/site-content.js';
 
-const EXPLORE_LINKS = [
-  ['Overview', '/'],
-  ['How It Works', '/how-it-works'],
-  ['Pricing', '/pricing'],
-  ['For Clinician', '/#clinicians'],
-  ['Resources', '/#resources'],
-  ['About us', '/'],
-  ['Contact us', '#contact'],
-];
+const EXPLORE_LINKS = exploreLinksWithContact('#contact');
 
 const INCLUDED_ITEMS = [
   'Guided parent information collection',
@@ -77,7 +71,7 @@ function PricingOffer() {
     <section className="pricing-page-offer" id="pricing-details" aria-labelledby="pricing-page-title">
       <article className="pricing-page-price-card">
         <div className="pricing-page-price-copy">
-          <p className="pricing-page-label">ASSESSMENT PREPARATION</p>
+          <SectionLabel className="pricing-page-label">ASSESSMENT PREPARATION</SectionLabel>
           <h1 id="pricing-page-title">Complete assessment<br />preparation for <span>$395.</span></h1>
         </div>
         <PricingActions />
@@ -89,6 +83,39 @@ function PricingOffer() {
         </div>
         <p>No subscription. No hidden fees or taxes.<br />Clinician appointment fees are separate.</p>
       </article>
+    </section>
+  );
+}
+
+function AssessmentOverview() {
+  return (
+    <section className="pricing-page-assessment-overview" aria-labelledby="pricing-assessment-overview-title">
+      <article className="pricing-page-assessment-copy">
+        <div className="home-v2-section-heading pricing-page-assessment-heading">
+          <SectionLabel>MORE THAN AN ASSESSMENT</SectionLabel>
+          <h2 id="pricing-assessment-overview-title">Your child’s story should not have to start again.</h2>
+        </div>
+        <p>The information gathered for their Assessment Evidence Report becomes the foundation of their Thread, an organised record that can grow with them throughout their journey.</p>
+      </article>
+      <div className="pricing-page-assessment-workspace" aria-label="Preview of a Threadline Assessment Evidence Report">
+        <Image
+          className="pricing-page-assessment-watercolour"
+          src="/pricing-thread-watercolour-v2.jpg"
+          width={1440}
+          height={875}
+          alt=""
+          sizes="(max-width: 900px) calc(100vw - 32px), 920px"
+        />
+        <div className="pricing-page-assessment-report">
+          <Image
+            src="/pricing-evidence-workspace-v2.png"
+            width={1400}
+            height={1138}
+            alt="Cross-source view from a Threadline Assessment Evidence Report"
+            sizes="(max-width: 620px) 82vw, (max-width: 900px) 73vw, 670px"
+          />
+        </div>
+      </div>
     </section>
   );
 }
@@ -107,17 +134,15 @@ function PricingFaq() {
     <section className="pricing-page-faq" aria-labelledby="pricing-faq-title">
       <div className="pricing-page-faq-inner">
         <header>
-          <p className="pricing-page-label">FAQ</p>
+          <SectionLabel className="pricing-page-label">FAQ</SectionLabel>
           <h2 id="pricing-faq-title">Questions families often ask.</h2>
         </header>
-        <div className="pricing-page-faq-list">
-          {FAQ_ITEMS.map(([question, answer]) => (
-            <details key={question} name="pricing-faq">
-              <summary>{question}</summary>
-              <p>{answer}</p>
-            </details>
-          ))}
-        </div>
+        <DisclosureList
+          className="pricing-page-faq-list"
+          items={FAQ_ITEMS}
+          name="pricing-faq"
+          wrapQuestion={false}
+        />
       </div>
     </section>
   );
@@ -148,6 +173,7 @@ export default function PricingPage() {
         <div className="pricing-page-main">
           <PricingHeroArt />
           <PricingOffer />
+          <AssessmentOverview />
           <PreparationNotice />
           <PricingFaq />
           <div className="pricing-page-closing">
