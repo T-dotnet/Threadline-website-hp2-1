@@ -5976,9 +5976,14 @@ p.how-v2-pullout {
 }
 
 .home-v2-report--split .home-v2-report-art {
-  width: calc(100% + var(--ds-space-20)) !important;
-  margin: var(--ds-space-3) 0 0 var(--ds-space-10) !important;
-  justify-self: start;
+  grid-area: auto;
+  position: absolute;
+  top: calc(var(--ds-space-24) + var(--ds-space-3)) !important;
+  right: auto !important;
+  bottom: auto !important;
+  left: calc(50% + var(--ds-space-20) - var(--ds-space-2)) !important;
+  width: calc(50% - var(--ds-space-12)) !important;
+  margin: 0 !important;
 }
 
 @media (max-width: 900px) {
@@ -6002,6 +6007,9 @@ p.how-v2-pullout {
   }
 
   .home-v2-report--split .home-v2-report-art {
+    grid-area: artwork;
+    position: relative;
+    inset: auto !important;
     width: 100% !important;
     margin: 0 !important;
   }
