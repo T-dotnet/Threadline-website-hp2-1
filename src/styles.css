@@ -3322,6 +3322,7 @@ h1,
   .how-v2-flow { gap: var(--ds-space-4); }
 
   .how-v2 .how-v2-process {
+    --how-v2-process-panel-height: min(78vw, 560px);
     height: auto;
     grid-template-columns: 1fr;
     gap: var(--ds-space-4);
@@ -3329,14 +3330,15 @@ h1,
 
   .how-v2 .how-v2-process .home-v2-process-steps {
     order: 1;
-    min-height: 0;
+    height: var(--how-v2-process-panel-height);
+    min-height: var(--how-v2-process-panel-height);
     padding: 64px 40px;
     border-radius: 0 0 64px;
   }
 
   .how-v2 .how-v2-process .home-v2-process-preview {
     order: 2;
-    height: min(78vw, 560px);
+    height: var(--how-v2-process-panel-height);
     border-radius: 0 64px 0 0;
   }
 
@@ -6251,4 +6253,16 @@ p.how-v2-pullout {
 .page-shell main h2 {
   font-size: var(--ds-text-section-title);
   line-height: var(--ds-leading-tight);
+}
+
+/* Consolidated responsive type relationships. These selectors intentionally
+   follow the page-specific breakpoint rules so paired styles stay identical
+   at every viewport rather than drifting back to older one-off values. */
+.home-v2-problem-list li {
+  font-size: var(--ds-text-2xl);
+}
+
+.home-v2-faq-list summary::after,
+.pricing-page-faq-list summary::after {
+  font-size: var(--ds-text-xl);
 }

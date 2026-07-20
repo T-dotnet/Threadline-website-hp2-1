@@ -55,7 +55,7 @@
 
 .style-guide__type-sample { margin: 0; }
 .style-guide__type-sample--display { font: 300 var(--ds-text-4xl)/var(--ds-leading-tight) var(--ds-font-serif); letter-spacing: var(--ds-tracking-tight); }
-.style-guide__type-sample--section { font: 300 var(--ds-text-3xl)/var(--ds-leading-heading) var(--ds-font-serif); }
+.style-guide__type-sample--section { font: 300 var(--ds-text-section-title)/var(--ds-leading-heading) var(--ds-font-serif); }
 .style-guide__type-sample--card { font: 300 var(--ds-text-2xl)/var(--ds-leading-heading) var(--ds-font-serif); }
 .style-guide__type-sample--body { font: 400 var(--ds-text-lg)/var(--ds-leading-body) var(--ds-font-sans); }
 .style-guide__type-sample--label { font: 400 var(--ds-text-xs)/1.2 var(--ds-font-sans); letter-spacing: var(--ds-tracking-label); text-transform: uppercase; }

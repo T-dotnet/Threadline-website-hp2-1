@@ -79,7 +79,7 @@
 .beliefDetail {
   padding-top: var(--ds-space-2);
   color: var(--ds-color-text-muted);
-  font-size: var(--ds-text-md);
+  font-size: var(--ds-text-body);
   line-height: var(--ds-leading-body);
 }
 
@@ -216,7 +216,7 @@
   }
 
   .beliefDetail {
-    font-size: var(--ds-text-md);
+    font-size: var(--ds-text-body);
   }
 
   .closing {

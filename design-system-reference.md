@@ -34,6 +34,21 @@ Every public-page `h1` uses `var(--ds-text-page-title)`: a shared fluid scale fr
 
 Every visible main-content `h2` uses `var(--ds-text-section-title)`: a shared proportional scale from approximately `36px` on narrow mobile screens to `45px` on desktop, paired with `var(--ds-leading-tight)` (`1.08`). At any given viewport, all section titles resolve to the same size and line height. Dialog headings remain on their dedicated modal scale.
 
+### Consolidated responsive scale
+
+Paired styles share the same token so their relationship remains consistent at every breakpoint.
+
+| Styles | Responsive size |
+| --- | --- |
+| Display heading and public `h1` | `42px` to `65px` |
+| Design-system section/stat and public `h2` | `36px` to `45px` |
+| Problem-list item and card heading | `20px` to `25px` |
+| FAQ symbol and extra-large text | `20px` |
+| Body, label, CTA, standard UI and large supporting text | `17.5px` |
+| Controls, forms and small/modal text | `14px` |
+
+The sample-report viewer retains its dedicated typography scale and is not part of this consolidation.
+
 ### Display headings
 
 - Family: `var(--serif)` (Fraunces)
