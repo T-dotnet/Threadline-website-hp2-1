@@ -54,7 +54,7 @@ function ThreadReportOverview() {
 export default function HowItWorksPage2() {
   return (
     <div className="page-shell home-v2 how-v2 how-v2b">
-      <SiteNavigation links={NAV_LINKS} />
+      <SiteNavigation links={NAV_LINKS} activeHref="/how-it-works-2" />
       <main>
         <HeroSection
           title={<>From unsure where<br />to start to<br /></>}

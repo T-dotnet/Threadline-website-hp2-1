@@ -68,6 +68,9 @@
 
 .ds-text-link {
   width: fit-content;
+  min-height: var(--ds-text-link-hit-area);
+  display: inline-flex;
+  align-items: center;
   color: var(--ds-color-accent);
   font-size: var(--ds-text-label);
   line-height: var(--ds-leading-solid);
@@ -377,6 +380,9 @@
 
 .ds-top-nav__links a,
 .ds-footer__links a {
+  min-height: var(--ds-text-link-hit-area);
+  display: inline-flex;
+  align-items: center;
   color: var(--ds-color-text-muted);
   font-size: var(--ds-text-sm);
   transition: color var(--ds-duration-fast) var(--ds-ease-standard);

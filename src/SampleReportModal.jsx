@@ -10,6 +10,9 @@ import { useAccessibleModal } from './hooks/useAccessibleModal.js';
 const REPORT_DOWNLOAD_NAME = 'Threadline-Sample-Assessment-Evidence-Report.html';
 const REPORT_LOAD_MAX_ATTEMPTS = 50;
 const REPORT_LOAD_RETRY_MS = 100;
+const REPORT_ZOOM_MIN = 1;
+const REPORT_ZOOM_MAX = 3;
+const REPORT_ZOOM_STEP = 0.25;
 
 const REPORT_PAGE_EXPLANATIONS = [
   {
@@ -130,10 +133,14 @@ export default function SampleReportButton({ className = '', children = 'View a 
   const [reportError, setReportError] = useState('');
   const [shareStatus, setShareStatus] = useState('');
   const [isExplanationOpen, setIsExplanationOpen] = useState(false);
+  const [viewMode, setViewMode] = useState('document');
+  const [reportZoom, setReportZoom] = useState(REPORT_ZOOM_MIN);
+  const [readablePageText, setReadablePageText] = useState('');
   const triggerRef = useRef(null);
   const modalRef = useRef(null);
   const closeButtonRef = useRef(null);
   const stageRef = useRef(null);
+  const canvasRef = useRef(null);
   const iframeRef = useRef(null);
   const reportPageCountRef = useRef(0);
 
@@ -146,6 +153,12 @@ export default function SampleReportButton({ className = '', children = 'View a 
       Math.max(0, reportPageCountRef.current - 1),
       current + 1,
     ));
+  }, []);
+  const zoomOut = useCallback(() => {
+    setReportZoom((current) => Math.max(REPORT_ZOOM_MIN, current - REPORT_ZOOM_STEP));
+  }, []);
+  const zoomIn = useCallback(() => {
+    setReportZoom((current) => Math.min(REPORT_ZOOM_MAX, current + REPORT_ZOOM_STEP));
   }, []);
   const handleModalKeyDown = useCallback((event) => {
     if (event.key === 'ArrowLeft') showPreviousPage();
@@ -187,10 +200,11 @@ export default function SampleReportButton({ className = '', children = 'View a 
   const syncReportPage = useCallback(() => {
     const iframe = iframeRef.current;
     const stage = stageRef.current;
+    const canvas = canvasRef.current;
     const reportDocument = iframe?.contentDocument;
     const pages = reportDocument ? Array.from(reportDocument.querySelectorAll('.page')) : [];
 
-    if (!iframe || !stage || pages.length === 0) return false;
+    if (!iframe || !stage || !canvas || pages.length === 0) return false;
 
     reportPageCountRef.current = pages.length;
     setReportPageCount((current) => (current === pages.length ? current : pages.length));
@@ -250,6 +264,7 @@ export default function SampleReportButton({ className = '', children = 'View a 
     if (activePageIndex !== pageIndex) setPageIndex(activePageIndex);
     activePage.style.setProperty('display', activePage.dataset.viewerDisplay, 'important');
     activePage.style.setProperty('top', '0', 'important');
+    setReadablePageText(activePage.innerText.replace(/\n{3,}/g, '\n\n').trim());
 
     const pageWidth = Number(pages[0].dataset.viewerWidth);
     const a4PageHeight = pageWidth * (297 / 210);
@@ -257,24 +272,28 @@ export default function SampleReportButton({ className = '', children = 'View a 
     const contentScale = Math.min(1, a4PageHeight / activePageHeight);
     const contentLeft = (pageWidth - pageWidth * contentScale) / 2;
     const availableWidth = Math.max(0, stage.clientWidth - 24);
-    const availableHeight = Math.max(0, stage.clientHeight - 24);
-    const scale = Math.min(1, availableWidth / pageWidth, availableHeight / a4PageHeight);
-    const left = Math.max(12, (stage.clientWidth - pageWidth * scale) / 2);
-    const top = Math.max(12, (stage.clientHeight - a4PageHeight * scale) / 2);
+    const fitWidthScale = Math.min(1, availableWidth / pageWidth);
+    const scale = fitWidthScale * reportZoom;
+    const renderedWidth = pageWidth * scale;
+    const renderedHeight = a4PageHeight * scale;
+    const top = Math.max(0, (stage.clientHeight - renderedHeight - 24) / 2);
 
     activePage.style.setProperty('left', `${contentLeft}px`, 'important');
     activePage.style.setProperty('transform', `scale(${contentScale})`, 'important');
 
     iframe.style.width = `${pageWidth}px`;
     iframe.style.height = `${a4PageHeight}px`;
-    iframe.style.left = `${left}px`;
-    iframe.style.top = `${top}px`;
+    iframe.style.left = '0';
+    iframe.style.top = '0';
     iframe.style.transform = `scale(${scale})`;
+    canvas.style.width = `${renderedWidth}px`;
+    canvas.style.height = `${renderedHeight}px`;
+    canvas.style.marginTop = `${top}px`;
 
     setReportError('');
     setIsReportReady(true);
     return true;
-  }, [pageIndex]);
+  }, [pageIndex, reportZoom]);
 
   useEffect(() => {
     if (!isOpen) return undefined;
@@ -310,6 +329,9 @@ export default function SampleReportButton({ className = '', children = 'View a 
     setReportError('');
     setShareStatus('');
     setIsExplanationOpen(false);
+    setViewMode(window.matchMedia('(max-width: 720px)').matches ? 'text' : 'document');
+    setReportZoom(REPORT_ZOOM_MIN);
+    setReadablePageText('');
     setIsOpen(true);
   };
 
@@ -373,7 +395,67 @@ export default function SampleReportButton({ className = '', children = 'View a 
               </div>
             </header>
 
-            <div className="sample-report-viewer">
+            <div className="sample-report-toolbar">
+              <div className="sample-report-view-options" role="group" aria-label="Report view">
+                <Button
+                  variant="secondary"
+                  className="sample-report-toolbar-button"
+                  type="button"
+                  aria-pressed={viewMode === 'document'}
+                  onClick={() => setViewMode('document')}
+                >
+                  Document
+                </Button>
+                <Button
+                  variant="secondary"
+                  className="sample-report-toolbar-button"
+                  type="button"
+                  aria-pressed={viewMode === 'text'}
+                  onClick={() => setViewMode('text')}
+                >
+                  Text view
+                </Button>
+              </div>
+              {viewMode === 'document' ? (
+                <div className="sample-report-zoom-controls" role="group" aria-label="Report zoom">
+                  <Button
+                    variant="secondary"
+                    className="sample-report-zoom-button"
+                    type="button"
+                    onClick={zoomOut}
+                    disabled={reportZoom === REPORT_ZOOM_MIN}
+                    aria-label="Zoom out"
+                  >
+                    −
+                  </Button>
+                  <Button
+                    variant="secondary"
+                    className="sample-report-fit-button"
+                    type="button"
+                    onClick={() => setReportZoom(REPORT_ZOOM_MIN)}
+                    aria-pressed={reportZoom === REPORT_ZOOM_MIN}
+                  >
+                    {reportZoom === REPORT_ZOOM_MIN
+                      ? 'Fit width'
+                      : `${Math.round(reportZoom * 100)}%`}
+                  </Button>
+                  <Button
+                    variant="secondary"
+                    className="sample-report-zoom-button"
+                    type="button"
+                    onClick={zoomIn}
+                    disabled={reportZoom === REPORT_ZOOM_MAX}
+                    aria-label="Zoom in"
+                  >
+                    +
+                  </Button>
+                </div>
+              ) : (
+                <p className="sample-report-text-view-note">Reflowed text for easier reading.</p>
+              )}
+            </div>
+
+            <div className={`sample-report-viewer${viewMode === 'text' ? ' is-text-view' : ''}`}>
               <Button
                 variant="secondary"
                 className="sample-report-arrow sample-report-arrow--previous"
@@ -385,21 +467,30 @@ export default function SampleReportButton({ className = '', children = 'View a 
                 <ArrowIcon direction="previous" />
               </Button>
 
-              <div className="sample-report-stage" ref={stageRef}>
+              <div className={`sample-report-stage${viewMode === 'text' ? ' is-text-view' : ''}`} ref={stageRef}>
                 {!isReportReady && (
                   <p className="sample-report-loading" role={reportError ? 'alert' : undefined}>
                     {reportError || 'Loading report…'}
                   </p>
                 )}
-                <iframe
-                  ref={iframeRef}
-                  className={isReportReady ? 'is-ready' : ''}
-                  src="/sample-report.html"
-                  title={reportPageCount > 0
-                    ? `Sample Assessment Evidence Report, page ${pageIndex + 1} of ${reportPageCount}`
-                    : 'Sample Assessment Evidence Report'}
-                  onLoad={syncReportPage}
-                />
+                {viewMode === 'text' && isReportReady ? (
+                  <article className="sample-report-readable" aria-label={`Text view of ${currentExplanation.title}`}>
+                    <h3>{currentExplanation.title}</h3>
+                    <p>{readablePageText}</p>
+                  </article>
+                ) : null}
+                <div className="sample-report-canvas" ref={canvasRef} aria-hidden={viewMode === 'text'}>
+                  <iframe
+                    ref={iframeRef}
+                    className={isReportReady ? 'is-ready' : ''}
+                    src="/sample-report.html"
+                    title={reportPageCount > 0
+                      ? `Sample Assessment Evidence Report, page ${pageIndex + 1} of ${reportPageCount}`
+                      : 'Sample Assessment Evidence Report'}
+                    tabIndex={viewMode === 'text' ? -1 : 0}
+                    onLoad={syncReportPage}
+                  />
+                </div>
               </div>
 
               <Button

@@ -488,6 +488,15 @@ h1,
 .footer-column a,
 .footer-column .footer-link-placeholder { color: var(--text-secondary); }
 
+.footer-column a,
+.footer-bottom a,
+.pricing-v2-footer-bottom a,
+.home-v2-footer-bottom a {
+  min-height: var(--ds-text-link-hit-area);
+  display: inline-flex;
+  align-items: center;
+}
+
 .footer-bottom {
   padding-top: 32px;
   display: flex;
@@ -2223,6 +2232,62 @@ h1,
   line-height: 1.3;
 }
 
+.sample-report-toolbar {
+  min-height: 58px;
+  padding: 9px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 1px solid var(--divider);
+  background: var(--surface);
+}
+
+.sample-report-view-options,
+.sample-report-zoom-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sample-report-toolbar-button,
+.sample-report-fit-button,
+.sample-report-zoom-button {
+  min-height: 40px;
+  padding: 8px 14px;
+  border: 1px solid var(--divider);
+  border-radius: var(--ds-radius-control);
+  color: var(--heading);
+  background: var(--surface);
+  font-size: var(--ds-text-sm);
+  line-height: 1.2;
+}
+
+.sample-report-toolbar-button[aria-pressed="true"],
+.sample-report-fit-button[aria-pressed="true"] {
+  border-color: var(--heading);
+  color: var(--surface);
+  background: var(--heading);
+}
+
+.sample-report-zoom-button {
+  width: 40px;
+  padding: 0;
+  font-size: var(--ds-text-xl);
+}
+
+.sample-report-zoom-button:disabled {
+  opacity: var(--ds-control-disabled-opacity);
+}
+
+.sample-report-fit-button { min-width: 88px; }
+
+.sample-report-text-view-note {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: var(--ds-text-sm);
+}
+
 .sample-report-close,
 .sample-report-arrow {
   flex: 0 0 auto;
@@ -2292,11 +2357,19 @@ h1,
   width: 100%;
   height: 100%;
   min-height: 0;
-  overflow: hidden;
+  overflow: auto;
   background: transparent;
+  scrollbar-gutter: stable;
 }
 
-.sample-report-stage iframe {
+.sample-report-canvas {
+  position: relative;
+  min-width: 1px;
+  min-height: 1px;
+  margin-inline: auto;
+}
+
+.sample-report-canvas iframe {
   position: absolute;
   top: 0;
   left: 0;
@@ -2310,7 +2383,44 @@ h1,
   transition: opacity .2s ease;
 }
 
-.sample-report-stage iframe.is-ready { opacity: 1; }
+.sample-report-canvas iframe.is-ready { opacity: 1; }
+
+.sample-report-stage.is-text-view {
+  padding: 24px;
+  background: var(--surface);
+}
+
+.sample-report-stage.is-text-view .sample-report-canvas {
+  position: absolute;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.sample-report-readable {
+  width: min(100%, 720px);
+  margin: 0 auto;
+  padding: 8px 0 40px;
+}
+
+.sample-report-readable h3,
+.sample-report-readable p {
+  margin: 0;
+}
+
+.sample-report-readable h3 {
+  font-family: var(--serif);
+  font-size: var(--ds-text-3xl);
+  font-weight: 300;
+  line-height: var(--ds-leading-heading);
+}
+
+.sample-report-readable p {
+  margin-top: var(--ds-space-5);
+  color: var(--heading);
+  font-size: var(--ds-text-md);
+  line-height: 1.7;
+  white-space: pre-line;
+}
 
 .sample-report-loading {
   position: absolute;
@@ -2433,6 +2543,23 @@ h1,
 
   .sample-report-header-actions { gap: 6px; }
 
+  .sample-report-toolbar {
+    min-height: auto;
+    padding: 8px 12px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .sample-report-toolbar-button,
+  .sample-report-fit-button,
+  .sample-report-zoom-button {
+    min-height: 44px;
+  }
+
+  .sample-report-toolbar-button { padding-inline: 12px; }
+  .sample-report-fit-button { min-width: 82px; }
+  .sample-report-text-view-note { width: 100%; }
+
   .sample-report-action,
   .sample-report-close {
     width: var(--ds-space-10);
@@ -2448,6 +2575,20 @@ h1,
     position: relative;
     padding: 12px;
     display: block;
+  }
+
+  .sample-report-viewer.is-text-view .sample-report-stage {
+    padding: 20px 52px 72px;
+  }
+
+  .sample-report-viewer.is-text-view .sample-report-arrow {
+    top: auto;
+    bottom: 14px;
+    transform: none;
+  }
+
+  .sample-report-viewer.is-text-view .sample-report-arrow:not(:disabled):hover {
+    transform: none;
   }
 
   .sample-report-arrow {

@@ -66,7 +66,7 @@ function ReportOverview() {
 export default function HowItWorksPage() {
   return (
     <div className="page-shell home-v2 how-v2">
-      <SiteNavigation />
+      <SiteNavigation activeHref="/how-it-works" />
       <main>
         <HeroSection
           title={<>From unsure where<br />to start to<br /></>}

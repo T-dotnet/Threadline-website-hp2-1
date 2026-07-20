@@ -2,6 +2,7 @@
   /* Colour primitives */
   --ds-color-forest-950: #073c2e;
   --ds-color-forest-900: #0b4636;
+  --ds-color-forest-800: #0d7657;
   --ds-color-forest-700: #108560;
   --ds-color-forest-600: #24966f;
   --ds-color-forest-200: #8acdb7;
@@ -12,6 +13,7 @@
   --ds-color-paper: #ffffff;
   --ds-color-ink: #16362d;
   --ds-color-slate: #6b7280;
+  --ds-color-slate-700: #5f6670;
   --ds-color-neutral-400: #9ca3af;
   --ds-color-black: #000000;
   --ds-color-line: rgba(11, 70, 54, 0.14);
@@ -31,10 +33,10 @@
   --ds-color-surface: var(--ds-color-paper);
   --ds-color-surface-soft: var(--ds-color-forest-50);
   --ds-color-text: var(--ds-color-forest-900);
-  --ds-color-text-muted: var(--ds-color-slate);
+  --ds-color-text-muted: var(--ds-color-slate-700);
   --ds-color-action: var(--ds-color-forest-900);
   --ds-color-action-hover: var(--ds-color-forest-950);
-  --ds-color-accent: var(--ds-color-forest-700);
+  --ds-color-accent: var(--ds-color-forest-800);
   --ds-color-focus: var(--ds-color-forest-950);
   --ds-color-border: var(--ds-color-line);
   --ds-color-modal-backdrop: color-mix(in srgb, var(--ds-color-surface) 24%, transparent);
@@ -113,6 +115,7 @@
   --ds-button-padding-lg: var(--ds-space-4) var(--ds-space-8);
   --ds-control-lift: -1px;
   --ds-control-disabled-opacity: 0.45;
+  --ds-text-link-hit-area: 1.75rem;
   --ds-control-height-md: 3.375rem;
   --ds-control-height-sm: var(--ds-button-height-md);
   --ds-control-height-compact: 3.25rem;

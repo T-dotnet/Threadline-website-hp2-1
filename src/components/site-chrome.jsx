@@ -30,14 +30,23 @@ export function SiteCta({ className = '', href = '/#pricing', label = 'Get start
   );
 }
 
-function NavigationLink({ label, href }) {
+function NavigationLink({ label, href, isActive = false }) {
   return label === 'Contact us'
     ? <ContactUsButton className={styles.navContactTrigger}>{label}</ContactUsButton>
-    : <a href={href}>{label}</a>;
+    : (
+      <a
+        className={isActive ? styles.activeNavLink : undefined}
+        href={href}
+        aria-current={isActive ? 'page' : undefined}
+      >
+        {label}
+      </a>
+    );
 }
 
 export function SiteNavigation({
   links = DEFAULT_NAV_LINKS,
+  activeHref,
   ctaLabel = 'Get started',
   ctaShortLabel,
   loginHref = '/login',
@@ -50,7 +59,9 @@ export function SiteNavigation({
           <Image src="/threadline-logo.svg" width={256} height={41} alt="Threadline" priority />
         </a>
         <div className={styles.navLinks}>
-          {links.map(([label, href]) => <NavigationLink key={label} label={label} href={href} />)}
+          {links.map(([label, href]) => (
+            <NavigationLink key={label} label={label} href={href} isActive={href === activeHref} />
+          ))}
         </div>
         <div className={styles.navActions}>
           <SiteCta className={styles.navCta} label={ctaLabel} shortLabel={ctaShortLabel} />
@@ -69,7 +80,9 @@ export function SiteNavigation({
           </summary>
           <div className={styles.mobileNavPanel}>
             <div className={styles.mobileNavLinks}>
-              {links.map(([label, href]) => <NavigationLink key={label} label={label} href={href} />)}
+              {links.map(([label, href]) => (
+                <NavigationLink key={label} label={label} href={href} isActive={href === activeHref} />
+              ))}
             </div>
             <SiteCta className={styles.mobileNavCta} label={ctaLabel} shortLabel={ctaShortLabel} />
           </div>

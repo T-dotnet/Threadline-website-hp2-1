@@ -164,7 +164,7 @@ function AffordabilitySection() {
 export default function PricingPage() {
   return (
     <div className="page-shell pricing-page" id="top">
-      <SiteNavigation />
+      <SiteNavigation activeHref="/pricing" />
       <main>
         <div className="pricing-page-main">
           <PricingHeroArt />

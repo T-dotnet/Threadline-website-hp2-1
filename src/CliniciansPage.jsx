@@ -54,7 +54,7 @@ const CLINICIAN_FAQ_ITEMS = [
 export default function CliniciansPage() {
   return (
     <div className="page-shell home-v2">
-      <SiteNavigation />
+      <SiteNavigation activeHref="/clinicians" />
       <main>
         <HeroSection
           title="A clearer starting point for"
