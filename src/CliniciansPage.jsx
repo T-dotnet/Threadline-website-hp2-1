@@ -92,6 +92,7 @@ export default function CliniciansPage() {
             imageAlt="Follow-up priorities and evidence gaps in a Threadline Assessment Evidence Report"
             layout="split"
             showSampleReport={false}
+            noteFirst
           />
           <HowPreparationDisclaimer id="clinician-preparation-note" />
         </Stack>

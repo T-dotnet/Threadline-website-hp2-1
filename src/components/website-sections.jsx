@@ -123,17 +123,23 @@ export function ReportSection({
   id = 'report-preview',
   layout = 'standard',
   showSampleReport = true,
+  noteFirst = false,
 }) {
+  const itemList = <ul>{items.map((item) => <li key={item}>{item}</li>)}</ul>;
+  const noteContent = (
+    <div>
+      <p className="home-v2-report-note">{note}</p>
+      {showSampleReport ? <SampleReportButton /> : null}
+    </div>
+  );
+
   return (
     <section className={`home-v2-report home-v2-report--${layout}`} id={id} aria-label="Assessment Evidence Report overview">
       <div className="home-v2-report-content">
         <p className="home-v2-report-title">{title}</p>
         <div className="home-v2-report-columns">
-          <ul>{items.map((item) => <li key={item}>{item}</li>)}</ul>
-          <div>
-            <p className="home-v2-report-note">{note}</p>
-            {showSampleReport ? <SampleReportButton /> : null}
-          </div>
+          {noteFirst ? noteContent : itemList}
+          {noteFirst ? itemList : noteContent}
         </div>
       </div>
       <Image className="home-v2-report-art" src={image} width={1414} height={1426} alt={imageAlt} sizes="670px" />
