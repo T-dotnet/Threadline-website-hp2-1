@@ -3,6 +3,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { SiteAction } from './components/site-actions.jsx';
+import { Button } from './design-system/components.jsx';
+import { CloseIcon } from './design-system/icons.jsx';
 import { useAccessibleModal } from './hooks/useAccessibleModal.js';
 
 const REPORT_DOWNLOAD_NAME = 'Threadline-Sample-Assessment-Evidence-Report.html';
@@ -80,14 +82,6 @@ function ArrowIcon({ direction }) {
   return (
     <svg aria-hidden="true" viewBox="0 0 24 24">
       <path d={direction === 'previous' ? 'm15 18-6-6 6-6' : 'm9 6 6 6-6 6'} />
-    </svg>
-  );
-}
-
-function CloseIcon() {
-  return (
-    <svg aria-hidden="true" viewBox="0 0 24 24">
-      <path d="M6 6l12 12M18 6 6 18" />
     </svg>
   );
 }
@@ -337,12 +331,12 @@ export default function SampleReportButton({ className = '', children = 'View a 
         {children}
       </SiteAction>
       {isOpen && createPortal(
-        <div className="sample-report-backdrop" data-modal-backdrop onMouseDown={(event) => {
+        <div className="sample-report-backdrop ds-modal-backdrop" data-modal-backdrop onMouseDown={(event) => {
           if (event.target === event.currentTarget) closeModal();
         }}>
           <section
             ref={modalRef}
-            className="sample-report-modal"
+            className="sample-report-modal ds-modal-surface"
             role="dialog"
             aria-modal="true"
             aria-labelledby="sample-report-title"
@@ -359,11 +353,12 @@ export default function SampleReportButton({ className = '', children = 'View a 
                 </p>
               </div>
               <div className="sample-report-header-actions">
-                <button className="sample-report-action" type="button" onClick={shareReport} aria-label="Share sample report">
+                <Button variant="secondary" className="sample-report-action" type="button" onClick={shareReport} aria-label="Share sample report">
                   <ShareIcon />
                   <span className="sample-report-action-label">Share</span>
-                </button>
-                <a
+                </Button>
+                <Button
+                  variant="secondary"
                   className="sample-report-action"
                   href="/sample-report.html"
                   download={REPORT_DOWNLOAD_NAME}
@@ -371,15 +366,16 @@ export default function SampleReportButton({ className = '', children = 'View a 
                 >
                   <DownloadIcon />
                   <span className="sample-report-action-label">Download</span>
-                </a>
-                <button ref={closeButtonRef} className="sample-report-close" type="button" onClick={closeModal} aria-label="Close sample report">
+                </Button>
+                <Button ref={closeButtonRef} className="sample-report-close" type="button" onClick={closeModal} aria-label="Close sample report">
                   <CloseIcon />
-                </button>
+                </Button>
               </div>
             </header>
 
             <div className="sample-report-viewer">
-              <button
+              <Button
+                variant="secondary"
                 className="sample-report-arrow sample-report-arrow--previous"
                 type="button"
                 onClick={showPreviousPage}
@@ -387,7 +383,7 @@ export default function SampleReportButton({ className = '', children = 'View a 
                 aria-label="Previous report page"
               >
                 <ArrowIcon direction="previous" />
-              </button>
+              </Button>
 
               <div className="sample-report-stage" ref={stageRef}>
                 {!isReportReady && (
@@ -406,7 +402,8 @@ export default function SampleReportButton({ className = '', children = 'View a 
                 />
               </div>
 
-              <button
+              <Button
+                variant="secondary"
                 className="sample-report-arrow sample-report-arrow--next"
                 type="button"
                 onClick={showNextPage}
@@ -414,11 +411,12 @@ export default function SampleReportButton({ className = '', children = 'View a 
                 aria-label="Next report page"
               >
                 <ArrowIcon direction="next" />
-              </button>
+              </Button>
             </div>
 
             <aside className={`sample-report-explanation${isExplanationOpen ? ' is-open' : ''}`}>
-              <button
+              <Button
+                variant="quiet"
                 className="sample-report-explanation-toggle"
                 type="button"
                 aria-expanded={isExplanationOpen}
@@ -430,7 +428,7 @@ export default function SampleReportButton({ className = '', children = 'View a 
                   <span>About this page</span>
                 </span>
                 <ChevronIcon />
-              </button>
+              </Button>
               <div
                 id="sample-report-explanation-content"
                 className="sample-report-explanation-content"

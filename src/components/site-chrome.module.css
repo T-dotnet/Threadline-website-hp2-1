@@ -65,6 +65,24 @@
   line-height: 20px;
 }
 
+.navActions {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-space-3);
+}
+
+.navLogin {
+  min-width: 88px;
+  min-height: 54px;
+  margin-top: 0;
+  padding: var(--ds-space-4) var(--ds-space-6);
+  border-color: var(--heading);
+  border-radius: 16px;
+  font-size: 15px;
+  line-height: 20px;
+  white-space: nowrap;
+}
+
 .mobileNav {
   position: relative;
   z-index: 20;
@@ -157,12 +175,15 @@
 
 .mobileNavLinks a,
 .mobileNavLinks button {
+  width: 100%;
   min-height: 48px;
   padding: 14px var(--ds-space-3);
   display: flex;
   align-items: center;
+  justify-content: flex-start;
   border-bottom: 1px solid var(--divider);
   font-size: 17px;
+  text-align: left;
 }
 
 .mobileNavLinks a:last-child,
@@ -233,18 +254,31 @@
     margin-left: 0;
   }
 
+  .navActions {
+    margin-left: auto;
+  }
+
   .navCta {
     width: 128px;
     min-width: 128px;
     min-height: 48px;
-    margin-left: auto;
     padding: 14px var(--ds-space-6);
+    font-size: 16px;
+  }
+
+  .navLogin {
+    min-height: 48px;
+    padding: 14px var(--ds-space-5);
     font-size: 16px;
   }
 }
 
 @media (min-width: 901px) and (max-width: 1250px) {
   .navCta {
+    min-height: 52px;
+  }
+
+  .navLogin {
     min-height: 52px;
   }
 
@@ -283,8 +317,17 @@
     display: none;
   }
 
-  .mobileNav {
+  .navActions {
     margin-left: auto;
+  }
+
+  .navLogin {
+    min-width: 76px;
+    padding-inline: var(--ds-space-4);
+  }
+
+  .mobileNav {
+    margin-left: 0;
   }
 
   .brandLink,

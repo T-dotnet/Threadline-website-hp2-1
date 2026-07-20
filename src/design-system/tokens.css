@@ -35,6 +35,7 @@
   --ds-color-accent: var(--ds-color-forest-700);
   --ds-color-focus: var(--ds-color-forest-950);
   --ds-color-border: var(--ds-color-line);
+  --ds-color-modal-backdrop: color-mix(in srgb, var(--ds-color-surface) 24%, transparent);
 
   /* Typography */
   --ds-font-sans: var(--font-funnel-sans), Arial, sans-serif;
@@ -48,6 +49,8 @@
   --ds-text-2xl: 1.5rem;
   --ds-text-3xl: clamp(1.75rem, 3vw, 2.5rem);
   --ds-text-4xl: clamp(2.25rem, 5vw, 4.375rem);
+  --ds-text-modal-title: 1.875rem;
+  --ds-text-modal-title-compact: 1.1875rem;
   --ds-leading-tight: 1.08;
   --ds-leading-heading: 1.18;
   --ds-leading-body: 1.55;
@@ -74,6 +77,7 @@
   --ds-radius-md: 1rem;
   --ds-radius-lg: 2rem;
   --ds-radius-organic: 0 4rem 0 0;
+  --ds-radius-feature: 10rem;
   --ds-shadow-sm: 0 1px 2px rgba(7, 60, 46, 0.08);
   --ds-shadow-md: 0 16px 40px rgba(7, 60, 46, 0.08);
   --ds-shadow-artwork: 0 7px 10px rgba(0, 0, 0, 0.09), 0 40px 80px rgba(0, 0, 0, 0.3);
@@ -81,6 +85,10 @@
   --ds-shadow-card-soft: 0 5px 18px rgba(11, 70, 54, 0.14);
   --ds-shadow-dark-xs: 0 2px 4px rgba(0, 0, 0, 0.1);
   --ds-shadow-focus: 0 0 0 2px var(--ds-color-surface), 0 0 0 5px var(--ds-color-focus);
+  --ds-filter-modal-backdrop: blur(var(--ds-space-5)) saturate(.9);
+  --ds-icon-stroke-md: 1.8;
+  --ds-layer-content: 1;
+  --ds-layer-modal: 10000;
   --ds-duration-fast: 140ms;
   --ds-duration-base: 220ms;
   --ds-ease-standard: cubic-bezier(0.2, 0, 0, 1);
@@ -91,12 +99,22 @@
   --ds-control-font-size: 0.9375rem;
   --ds-control-line-height: 1.25rem;
   --ds-text-label: 1.1rem;
+  --ds-modal-width: 42.5rem;
+  --ds-modal-header-height: 5.75rem;
+  --ds-modal-header-height-compact: 4.75rem;
 
   /* Layout */
   --ds-content: 72rem;
   --ds-content-wide: 90.625rem;
+  --ds-measure-summary: 30.75rem;
+  --ds-measure-body: 36rem;
+  --ds-measure-display: 39.6875rem;
+  --ds-measure-heading: 42.1875rem;
   --ds-site-shell: 106.875rem;
   --ds-site-content-copy: 65.119rem;
+  --ds-panel-height-lg: 43.75rem;
+  --ds-panel-height-md: 31.25rem;
+  --ds-panel-height-sm: 25rem;
   --ds-site-scale: 0.9;
   --ds-gutter: clamp(1rem, 4vw, 2.5rem);
   --ds-section-space: clamp(4rem, 8vw, 7.5rem);

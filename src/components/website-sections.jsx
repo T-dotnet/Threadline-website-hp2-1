@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import SampleReportButton from '../SampleReportModal.jsx';
+import { TextLink } from '../design-system/components.jsx';
 import { cx } from '../design-system/primitives.jsx';
 import { SiteCta } from './site-chrome.jsx';
 
@@ -42,6 +43,7 @@ export function HeroSection({
   frontImage = '/index-3419-hero-profile.png',
   frontAlt = 'Clinical Assessment Profile cover',
   showSampleReport = true,
+  primaryAction,
 }) {
   return (
     <section className="hero home-v2-hero" id="top">
@@ -51,7 +53,7 @@ export function HeroSection({
           <div className="home-v2-hero-bottom">
             <p>{description}</p>
             <div className="home-v2-hero-actions">
-              <SiteCta label={ctaLabel} href={ctaHref} />
+              {primaryAction ?? <SiteCta label={ctaLabel} href={ctaHref} />}
               {showSampleReport ? <SampleReportButton /> : null}
             </div>
           </div>
@@ -77,7 +79,7 @@ export function GuidelineSection({ label, title, linkLabel, linkHref, paragraphs
         <div className="home-v2-guideline-heading">
           <SectionLabel>{label}</SectionLabel>
           <h2 id={titleId}>{title}</h2>
-          <a href={linkHref} target="_blank" rel="noreferrer">{linkLabel}</a>
+          <TextLink href={linkHref} target="_blank" rel="noreferrer">{linkLabel}</TextLink>
         </div>
         <div className="home-v2-guideline-copy">
           {paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
@@ -112,18 +114,45 @@ export function IntroSection({ id, label, title, variant }) {
   );
 }
 
-export function ReportSection({ title, items, note, image, imageAlt, id = 'report-preview', showSampleReport = true }) {
+export function ReportSection({
+  title,
+  items,
+  note,
+  itemsIntro,
+  image,
+  imageAlt,
+  id = 'report-preview',
+  layout = 'standard',
+  showSampleReport = true,
+}) {
+  const isSplitLayout = layout === 'split';
+
   return (
-    <section className="home-v2-report" id={id} aria-label="Assessment Evidence Report overview">
+    <section className={`home-v2-report home-v2-report--${layout}`} id={id} aria-label="Assessment Evidence Report overview">
       <div className="home-v2-report-content">
-        <p className="home-v2-report-title">{title}</p>
-        <div className="home-v2-report-columns">
-          <ul>{items.map((item) => <li key={item}>{item}</li>)}</ul>
-          <div>
-            <p className="home-v2-report-note">{note}</p>
-            {showSampleReport ? <SampleReportButton /> : null}
+        {isSplitLayout ? (
+          <div className="home-v2-report-columns">
+            <p className="home-v2-report-title">
+              {title} <span>{note}</span>
+            </p>
+            <div className="home-v2-report-items">
+              {itemsIntro ? <p className="home-v2-report-note">{itemsIntro}</p> : null}
+              <ul>{items.map((item) => <li key={item}>{item}</li>)}</ul>
+              {showSampleReport ? <SampleReportButton /> : null}
+            </div>
           </div>
-        </div>
+        ) : (
+          <>
+            <p className="home-v2-report-title">{title}</p>
+            <div className="home-v2-report-columns">
+              <ul>{items.map((item) => <li key={item}>{item}</li>)}</ul>
+              <div>
+                <p className="home-v2-report-note">{note}</p>
+                {showSampleReport ? <SampleReportButton /> : null}
+              </div>
+            </div>
+          </>
+        )}
       </div>
       <Image className="home-v2-report-art" src={image} width={1414} height={1426} alt={imageAlt} sizes="670px" />
     </section>
@@ -131,7 +160,8 @@ export function ReportSection({ title, items, note, image, imageAlt, id = 'repor
 }
 
 export function ProcessSection({
-  steps,
+  steps = [],
+  sideContent,
   backgroundImage = '/index-3419-workspace-bg.jpg',
   rearImage = '/index-3419-process-page-6.png',
   rearAlt = 'Cross-source view report page',
@@ -142,7 +172,7 @@ export function ProcessSection({
   return (
     <section className="home-v2-process" aria-label={ariaLabel}>
       <article className="home-v2-process-steps">
-        {steps.map((step, index) => (
+        {sideContent || steps.map((step, index) => (
           <div className="home-v2-process-step" key={step.title}>
             <span>{index + 1}</span>
             <div><h3>{step.title}</h3><p>{step.text}</p></div>

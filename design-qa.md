@@ -54,3 +54,55 @@ No actionable P0, P1, or P2 differences remain.
 No P3 follow-up is required for this section.
 
 final result: passed
+
+---
+
+# Design QA — How It Works 2 Report Icons
+
+## Comparison target
+
+- Source visual truth: `/Users/danielenicoletti/Desktop/Screenshot 2026-07-20 at 7.33.04 am.png`
+- Implementation screenshot: `/private/tmp/how-it-works-2-icons-staggered-tight.png`
+- Viewport: 1470 × 876 CSS pixels
+- State: `/how-it-works-2`, report panel visible, default desktop state
+
+## Full-view comparison evidence
+
+The source and browser-rendered implementation were opened together for direct visual comparison. The implementation follows the source's alternating four-column composition: assessment and school on the upper row, clinician and future care on the lower row. The final implementation intentionally uses a slightly tighter horizontal grouping requested after the first render.
+
+## Focused region evidence
+
+The four-icon report group is large and readable in both comparison images, so a separate detail crop was not required. All four supplied image assets retain their original circular crop, scale, and image quality.
+
+## Required fidelity surfaces
+
+- Fonts and typography: passed; the surrounding report heading and copy use the existing design-system primitives without modification.
+- Spacing and layout rhythm: passed; alternating rows match the reference, with desktop pair-center gaps tightened from 332px to 308px using existing spacing tokens.
+- Colors and visual tokens: passed; the panel, overlays, and spacing use the existing semantic color and spacing tokens.
+- Image quality and asset fidelity: passed; the existing assessment, clinician, school, and future-care assets are reused without replacement or distortion.
+- Copy and content: passed; no report copy was changed by the icon-placement update.
+
+## Responsive and interaction checks
+
+- 390 × 844 viewport: all four icons retain the staggered two-row pattern at 72px rendered size.
+- Horizontal overflow: none (`document width = viewport width = 390px`).
+- Sample-report button: opens the report dialog; the dialog closes successfully.
+- Browser console errors: none. One unrelated Next.js LCP advisory remains for `/index-evidence-workspace-v2.png`.
+
+## Findings
+
+No actionable P0, P1, or P2 differences remain for the requested icon placement.
+
+## Comparison history
+
+- Pass 1: staggered placement matched the source pattern, with 332px desktop pair-center gaps.
+- User refinement: requested the icons a little closer together.
+- Pass 2: reduced the standard column-gap token and moved each pair inward with the standard 8px spacing token; pair-center gaps reached 315px with no overflow.
+- User refinement: requested the icons closer again.
+- Pass 3: moved each pair inward with the next standard spacing token; final pair-center gaps are 308px with no overflow.
+
+## Follow-up polish
+
+The icon scale remains intentionally unchanged because the request was limited to placement and the earlier size adjustment was reverted.
+
+final result: passed

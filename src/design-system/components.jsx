@@ -10,6 +10,46 @@ export function Button({ href, variant = 'primary', size = 'md', className, chil
   return <button className={classes} type="button" {...props}>{children}</button>;
 }
 
+export function Input({ className, ...props }) {
+  return <input className={cx('ds-form-control', className)} {...props} />;
+}
+
+export function FormRow({ as: Tag = 'div', className, children, ...props }) {
+  return <Tag className={cx('ds-form-row', className)} {...props}>{children}</Tag>;
+}
+
+export function FormField({ children, className, hint, htmlFor, label, ...props }) {
+  return (
+    <div className={cx('ds-form-field', className)} {...props}>
+      <Text as="label" htmlFor={htmlFor}>{label}</Text>
+      {children}
+      {hint ? <Text size="sm" tone="muted">{hint}</Text> : null}
+    </div>
+  );
+}
+
+export function LabeledDivider({ label = 'or', className, ...props }) {
+  return (
+    <div className={cx('ds-labeled-divider', className)} aria-hidden="true" {...props}>
+      <Divider />
+      <span>{label}</span>
+      <Divider />
+    </div>
+  );
+}
+
+export function FormStatus({ children, className, ...props }) {
+  return (
+    <Text className={cx('ds-form-status', className)} size="sm" tone="accent" aria-live="polite" {...props}>
+      {children}
+    </Text>
+  );
+}
+
+export function TextLink({ href, className, children, ...props }) {
+  return <a className={cx('ds-text-link', className)} href={href} {...props}>{children}</a>;
+}
+
 export function Badge({ children, className, ...props }) {
   return <span className={cx('ds-badge', className)} {...props}>{children}</span>;
 }

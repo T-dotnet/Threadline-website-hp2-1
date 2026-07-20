@@ -2,9 +2,9 @@ export const DEFAULT_EXPLORE_LINKS = [
   ['Overview', '/'],
   ['How It Works', '/how-it-works'],
   ['Pricing', '/pricing'],
-  ['For Clinician', '/#clinicians'],
+  ['For Clinician', '/clinicians'],
   ['Resources', '/#resources'],
-  ['About us', '/'],
+  ['About us', '/about'],
   ['Contact us', '/#contact'],
 ];
 

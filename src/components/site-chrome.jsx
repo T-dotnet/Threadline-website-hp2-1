@@ -8,7 +8,7 @@ import styles from './site-chrome.module.css';
 const DEFAULT_NAV_LINKS = [
   ['How it works', '/how-it-works'],
   ['Pricing', '/pricing'],
-  ['For clinicians', '/#clinicians'],
+  ['For clinicians', '/clinicians'],
   ['Resources', '/#resources'],
   ['Contact us', '/#contact'],
 ];
@@ -35,7 +35,13 @@ function NavigationLink({ label, href }) {
     : <a href={href}>{label}</a>;
 }
 
-export function SiteNavigation({ links = DEFAULT_NAV_LINKS, ctaLabel = 'Get started', ctaShortLabel }) {
+export function SiteNavigation({
+  links = DEFAULT_NAV_LINKS,
+  ctaLabel = 'Get started',
+  ctaShortLabel,
+  loginHref = '/login',
+  loginLabel = 'Log in',
+}) {
   return (
     <header className={styles.siteHeader}>
       <nav className={styles.navShell} aria-label="Main navigation">
@@ -45,7 +51,12 @@ export function SiteNavigation({ links = DEFAULT_NAV_LINKS, ctaLabel = 'Get star
         <div className={styles.navLinks}>
           {links.map(([label, href]) => <NavigationLink key={label} label={label} href={href} />)}
         </div>
-        <SiteCta className={styles.navCta} label={ctaLabel} shortLabel={ctaShortLabel} />
+        <div className={styles.navActions}>
+          <SiteCta className={styles.navCta} label={ctaLabel} shortLabel={ctaShortLabel} />
+          <SiteAction appearance="secondary" className={styles.navLogin} href={loginHref}>
+            {loginLabel}
+          </SiteAction>
+        </div>
         <details className={styles.mobileNav}>
           <summary>
             <span className={styles.mobileNavVisibleLabel} aria-hidden="true">Menu</span>

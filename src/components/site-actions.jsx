@@ -7,13 +7,17 @@ const SITE_ACTIONS = {
   link: { variant: 'quiet', className: '' },
 };
 
-export function SiteAction({ appearance = 'primary', className, ...props }) {
+const SITE_ACTION_CONTEXTS = {
+  modal: 'ds-modal-action',
+};
+
+export function SiteAction({ appearance = 'primary', className, context, ...props }) {
   const action = SITE_ACTIONS[appearance] || SITE_ACTIONS.primary;
 
   return (
     <Button
       variant={action.variant}
-      className={cx(action.className, className)}
+      className={cx(action.className, SITE_ACTION_CONTEXTS[context], className)}
       {...props}
     />
   );
