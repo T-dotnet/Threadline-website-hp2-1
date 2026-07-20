@@ -5975,7 +5975,6 @@ p.how-v2-pullout {
     calc(var(--ds-space-24) * 6 + var(--ds-space-6))
     calc(var(--ds-space-20) * 8 + var(--ds-space-8));
   gap: calc(var(--ds-space-24) + var(--ds-space-2));
-  border-radius: 0 0 0 var(--ds-radius-feature);
 }
 
 .home-v2-report--split .home-v2-report-art {
@@ -6001,7 +6000,6 @@ p.how-v2-pullout {
   .home-v2-report--split {
     grid-template-columns: 1fr;
     gap: var(--ds-space-12);
-    border-radius: 0 0 0 var(--ds-radius-feature);
   }
 }
 
@@ -6014,9 +6012,5 @@ p.how-v2-pullout {
   .home-v2-report-columns {
     margin-top: var(--ds-space-6);
     gap: var(--ds-space-6);
-  }
-
-  .home-v2-report--split {
-    border-radius: 0 0 0 var(--ds-radius-lg);
   }
 }
