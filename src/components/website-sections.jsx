@@ -118,41 +118,23 @@ export function ReportSection({
   title,
   items,
   note,
-  itemsIntro,
   image,
   imageAlt,
   id = 'report-preview',
   layout = 'standard',
   showSampleReport = true,
 }) {
-  const isSplitLayout = layout === 'split';
-
   return (
     <section className={`home-v2-report home-v2-report--${layout}`} id={id} aria-label="Assessment Evidence Report overview">
       <div className="home-v2-report-content">
-        {isSplitLayout ? (
-          <div className="home-v2-report-columns">
-            <p className="home-v2-report-title">
-              {title} <span>{note}</span>
-            </p>
-            <div className="home-v2-report-items">
-              {itemsIntro ? <p className="home-v2-report-note">{itemsIntro}</p> : null}
-              <ul>{items.map((item) => <li key={item}>{item}</li>)}</ul>
-              {showSampleReport ? <SampleReportButton /> : null}
-            </div>
+        <p className="home-v2-report-title">{title}</p>
+        <div className="home-v2-report-columns">
+          <ul>{items.map((item) => <li key={item}>{item}</li>)}</ul>
+          <div>
+            <p className="home-v2-report-note">{note}</p>
+            {showSampleReport ? <SampleReportButton /> : null}
           </div>
-        ) : (
-          <>
-            <p className="home-v2-report-title">{title}</p>
-            <div className="home-v2-report-columns">
-              <ul>{items.map((item) => <li key={item}>{item}</li>)}</ul>
-              <div>
-                <p className="home-v2-report-note">{note}</p>
-                {showSampleReport ? <SampleReportButton /> : null}
-              </div>
-            </div>
-          </>
-        )}
+        </div>
       </div>
       <Image className="home-v2-report-art" src={image} width={1414} height={1426} alt={imageAlt} sizes="670px" />
     </section>

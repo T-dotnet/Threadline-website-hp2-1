@@ -62,8 +62,8 @@ final result: passed
 ## Comparison target
 
 - Source visual truth: `/Users/danielenicoletti/Desktop/Screenshot 2026-07-20 at 7.33.04 am.png`
-- Implementation screenshot: `/private/tmp/how-it-works-2-icons-staggered-tight.png`
-- Viewport: 1470 × 876 CSS pixels
+- Implementation screenshot: `/private/tmp/how-it-works-2-icons-much-closer.png`
+- Viewport: 1117 × 987 CSS pixels
 - State: `/how-it-works-2`, report panel visible, default desktop state
 
 ## Full-view comparison evidence
@@ -77,7 +77,7 @@ The four-icon report group is large and readable in both comparison images, so a
 ## Required fidelity surfaces
 
 - Fonts and typography: passed; the surrounding report heading and copy use the existing design-system primitives without modification.
-- Spacing and layout rhythm: passed; alternating rows match the reference, with desktop pair-center gaps tightened from 332px to 308px using existing spacing tokens.
+- Spacing and layout rhythm: passed; alternating rows match the reference, with final pair-center gaps of 193px and 192px at the annotated desktop viewport using existing spacing tokens.
 - Colors and visual tokens: passed; the panel, overlays, and spacing use the existing semantic color and spacing tokens.
 - Image quality and asset fidelity: passed; the existing assessment, clinician, school, and future-care assets are reused without replacement or distortion.
 - Copy and content: passed; no report copy was changed by the icon-placement update.
@@ -87,7 +87,7 @@ The four-icon report group is large and readable in both comparison images, so a
 - 390 × 844 viewport: all four icons retain the staggered two-row pattern at 72px rendered size.
 - Horizontal overflow: none (`document width = viewport width = 390px`).
 - Sample-report button: opens the report dialog; the dialog closes successfully.
-- Browser console errors: none. One unrelated Next.js LCP advisory remains for `/index-evidence-workspace-v2.png`.
+- Browser console errors: none. One unrelated Next.js LCP advisory remains.
 
 ## Findings
 
@@ -99,7 +99,9 @@ No actionable P0, P1, or P2 differences remain for the requested icon placement.
 - User refinement: requested the icons a little closer together.
 - Pass 2: reduced the standard column-gap token and moved each pair inward with the standard 8px spacing token; pair-center gaps reached 315px with no overflow.
 - User refinement: requested the icons closer again.
-- Pass 3: moved each pair inward with the next standard spacing token; final pair-center gaps are 308px with no overflow.
+- Pass 3: moved each pair inward with the next standard spacing token; pair-center gaps reached 308px at the 1470px viewport with no overflow.
+- Browser annotation refinement: the marked 1117 × 987 view showed the group still spanning too much of the panel.
+- Pass 4: pulled the desktop and tablet pairs inward using the standard 40px spacing token while retaining the safer 12px token on compact mobile; final annotated-viewport gaps are 193px and 192px with no overlap or overflow.
 
 ## Follow-up polish
 

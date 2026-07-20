@@ -88,7 +88,6 @@ export default function CliniciansPage() {
             title="Assessment evidence can arrive fragmented."
             items={REPORT_ITEMS}
             note="Threadline gives families one guided process and clinicians one organised, source-attributed report."
-            itemsIntro="An organised, source-attributed report."
             image="/index-3419-report-page.png"
             imageAlt="Follow-up priorities and evidence gaps in a Threadline Assessment Evidence Report"
             layout="split"
