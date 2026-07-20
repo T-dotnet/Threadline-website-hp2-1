@@ -115,7 +115,7 @@ export default function ContactUsButton({
             </IconButton>
 
             <div className={styles.intro}>
-              <Heading as="h2" size="display" id="contact-modal-title">We&apos;re here to listen<br />to your story.</Heading>
+              <Heading as="h2" size="display" id="contact-modal-title">We&apos;re here to listen to your story.</Heading>
               <Text size="lg" tone="muted">Whether you have questions about the assessment package or just want to learn more about our process, our team is here to support you.</Text>
             </div>
 
