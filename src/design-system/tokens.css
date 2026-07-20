@@ -61,6 +61,7 @@
   --ds-leading-tight: 1.08;
   --ds-leading-heading: 1.18;
   --ds-leading-body: 1.55;
+  --ds-leading-site-body: 1.625rem;
   --ds-leading-solid: 1;
   --ds-leading-label: 1.2;
   --ds-tracking-tight: -0.025em;
@@ -155,9 +156,43 @@
   --ds-panel-height-lg: 43.75rem;
   --ds-panel-height-md: 31.25rem;
   --ds-panel-height-sm: 25rem;
-  --ds-site-scale: 0.9;
+  --ds-site-scale: 1;
   --ds-gutter: clamp(1rem, 4vw, 2.5rem);
   --ds-section-space: clamp(4rem, 8vw, 7.5rem);
+}
+
+/* Scale the full composition to the target laptop and desktop viewport bands. */
+@media (min-width: 1280px) and (max-width: 1439.98px) {
+  :root {
+    --ds-site-scale: 0.8;
+    --ds-text-xs: 0.875rem;
+    --ds-text-sm: 1rem;
+    --ds-text-body: 1.25rem;
+    --ds-text-md: 1.125rem;
+    --ds-text-lg: var(--ds-text-body);
+    --ds-text-xl: 1.375rem;
+    --ds-leading-site-body: 2rem;
+    --ds-button-height-sm: 2.8125rem;
+    --ds-button-height-md: 3.375rem;
+    --ds-button-height-lg: 4.5rem;
+    --ds-control-height-md: 3.8125rem;
+    --ds-control-height-sm: var(--ds-button-height-md);
+    --ds-control-height-compact: 3.65625rem;
+    --ds-control-font-size: 1rem;
+    --ds-control-line-height: 1.5rem;
+    --ds-form-control-height: 4rem;
+    --ds-form-control-padding-block: 1rem;
+    --ds-form-control-padding-inline: 1.6875rem;
+    --ds-form-textarea-height: 11.25rem;
+    --ds-icon-button-size: 3.375rem;
+    --ds-text-nav-compact: 1.25rem;
+  }
+}
+
+@media (min-width: 1440px) and (max-width: 1920px) {
+  :root {
+    --ds-site-scale: 0.9;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

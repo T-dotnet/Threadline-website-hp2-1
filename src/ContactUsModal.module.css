@@ -69,7 +69,7 @@
 
 .bodyCopy {
   font-size: var(--ds-text-body);
-  line-height: 26px;
+  line-height: var(--ds-leading-site-body);
 }
 
 .form label {

@@ -49,6 +49,10 @@ Paired styles share the same token so their relationship remains consistent at e
 
 The sample-report viewer retains its dedicated typography scale and is not part of this consolidation.
 
+### Viewport scale
+
+Public pages render at `80%` scale from `1280px` up to (but not including) `1440px`, and at `90%` scale from `1440px` through `1920px`. Within the laptop band, body copy, labels, navigation, buttons and form controls use compensated type and control tokens so their perceived size remains close to desktop. Narrower tablet and mobile layouts remain at full scale and use their dedicated responsive rules.
+
 ### Display headings
 
 - Family: `var(--serif)` (Fraunces)

@@ -5733,7 +5733,7 @@ h1,
 .pricing-page-faq-list summary,
 .pricing-page-faq-list details > p {
   font-size: var(--ds-text-body);
-  line-height: 26px;
+  line-height: var(--ds-leading-site-body);
 }
 
 .page-shell .cta,
@@ -5748,7 +5748,7 @@ p.how-v2-pullout {
   font-size: var(--ds-text-body);
   font-style: normal;
   font-weight: 400;
-  line-height: 26px;
+  line-height: var(--ds-leading-site-body);
   letter-spacing: normal;
 }
 
@@ -5762,7 +5762,7 @@ p.how-v2-pullout--body {
 .home-v2-report-title,
 p.how-v2-pullout {
   font-size: var(--ds-text-body);
-  line-height: 26px;
+  line-height: var(--ds-leading-site-body);
 }
 
 .home-v2-report-title {
@@ -5777,12 +5777,12 @@ p.how-v2-pullout {
 .home-v2-included .home-v2-pricing-label,
 .pricing-page-included .home-v2-pricing-label {
   font-size: var(--ds-text-body);
-  line-height: 26px;
+  line-height: var(--ds-leading-site-body);
 }
 
 .home-v2-benefit-card p {
   font-size: var(--ds-text-body);
-  line-height: 26px;
+  line-height: var(--ds-leading-site-body);
 }
 
 /* UI polish: readable measures and resilient card sizing. */
