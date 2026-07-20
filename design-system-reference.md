@@ -36,37 +36,27 @@ Do not use primary green for ordinary body copy. Use it for headings, labels, st
 - Color: `var(--heading)` unless a highlighted phrase uses `var(--primary)`
 - Tracking and size are section-specific because the Figma compositions use different display scales.
 
-### Shared step-title style
+### Shared supporting-text style
 
-Use this style for short titles such as:
+Use this style for body copy and short supporting titles such as:
 
 - “Tell us about your child”
 - “Evidence across your child’s life.”
 - “Your report brings together”
 - “One record. Owned by your family. Shared when you choose.”
 
-| Viewport | Size | Line height |
-| --- | --- | --- |
-| Desktop and tablet | `20px` | `30px` |
-| Mobile, up to 620px | `18px` | `27px` |
+| Size | Line height |
+| --- | --- |
+| `17.5px` | `26px` |
 
 Additional properties:
 
 - Family: `var(--sans)`
 - Weight: `400`
-- Color: `var(--primary)`
+- Color: `var(--text-secondary)` for ordinary body copy and `var(--primary)` for supporting titles
 - Margin: `0`
 
-The shared pull-out class is `how-v2-pullout`. Use `how-v2-pullout--body` when the same typography should use body grey instead of green.
-
-### Body copy
-
-- Family: `var(--sans)`
-- Size: `16.5px`
-- Line height: `24px`
-- Color: `var(--text-secondary)`
-
-This scale is shared by explanatory copy, evidence details, FAQ answers, pricing notes, and supporting report text.
+The shared pull-out class is `how-v2-pullout`. Use `how-v2-pullout--body` when the same typography should use body grey instead of green. The same scale is shared by explanatory copy, evidence details, FAQ answers, pricing notes, and supporting report text.
 
 ## Spacing tokens
 

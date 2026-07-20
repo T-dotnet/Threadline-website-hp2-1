@@ -37,7 +37,7 @@ function ThreadReportOverview() {
         <Stack gap={4}>
           <SectionLabel>YOUR CHILD&apos;S THREAD</SectionLabel>
           <Heading as="h2" size="section" id="thread-report-title-2">One report. Every source clear.</Heading>
-              <Text>See evidence across settings, what is complete and what may still need follow-up—all in one clear report. The questionnaires, reports and perspectives gathered for this assessment become part of your child’s Thread: an organised record that can grow with them, so future clinicians, schools and specialists have context without your family having to start again.</Text>
+              <Text className="how-v2b-thread-report-summary">See evidence across settings, what is complete and what may still need follow-up—all in one clear report. The questionnaires, reports and perspectives gathered for this assessment become part of your child’s Thread: an organised record that can grow with them, so future clinicians, schools and specialists have context without your family having to start again.</Text>
         </Stack>
         <SampleReportButton />
       </Stack>

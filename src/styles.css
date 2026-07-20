@@ -1717,11 +1717,11 @@ h1,
 }
 
 .home-v2-included-list {
-  padding-left: var(--ds-space-6);
+  padding-left: 0;
   display: flex;
   flex-direction: column;
   gap: 16px;
-  list-style: disc;
+  list-style: none;
 }
 
 .home-v2-included .home-v2-pricing-label {
@@ -3080,7 +3080,7 @@ h1,
   line-height: 20px;
 }
 
-.how-v2-evidence-details li + li { margin-top: var(--ds-space-5); }
+.how-v2-evidence-details li + li { margin-top: var(--ds-space-4); }
 
 .how-v2-evidence-details p {
   margin: 0;
@@ -5087,18 +5087,41 @@ h1,
 
 .pricing-page-included ul {
   margin: var(--ds-space-10) 0 0;
-  padding-left: var(--ds-space-6);
+  padding-left: 0;
   color: var(--text-secondary);
   font-size: 15px;
   line-height: 20px;
+  list-style: none;
+}
+
+.home-v2-included-list li,
+.pricing-page-included li {
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr);
+  gap: var(--ds-space-3);
+  align-items: start;
+}
+
+.home-v2-included-list li::before,
+.pricing-page-included li::before {
+  content: "\2713";
+  width: 18px;
+  height: 18px;
+  margin-top: 3px;
+  display: grid;
+  place-items: center;
+  border: 1.5px solid var(--primary);
+  border-radius: 50%;
+  color: var(--primary);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
 }
 
 .pricing-page-included li + li { margin-top: var(--ds-space-5); }
 
 .home-v2-report-columns li::marker,
-.home-v2-included-list li::marker,
-.how-v2-evidence-details li::marker,
-.pricing-page-included li::marker {
+.how-v2-evidence-details li::marker {
   font-size: 1.25em;
 }
 
@@ -5679,12 +5702,13 @@ h1,
   }
 }
 
-/* Body-copy scale. Headings, labels, controls, prices, navigation and legal
-   text intentionally retain their existing scale. */
+/* Shared supporting-text scale. Headings, labels, controls, prices,
+   navigation and legal text intentionally retain their existing scale. */
 .home-v2 .home-v2-hero .home-v2-hero-bottom > p,
 .home-v2-guideline-copy p,
 .home-v2-problem-story p,
 .home-v2-report-columns li,
+.home-v2-report-note,
 .home-v2-process-step h3,
 .home-v2-process-step p,
 .home-v2-benefit-card p,
@@ -5698,23 +5722,24 @@ h1,
 .how-v2-evidence-details p,
 .how-v2-report-copy p:not(.home-v2-kicker),
 .how-v2-disclaimer p:last-child,
+.how-v2b-thread-report-summary,
 .pricing-page-included ul,
 .pricing-page-included > p,
 .pricing-page-assessment-copy > p,
 .pricing-page-notice p:last-child,
 .pricing-page-faq-list details > p {
-  font-size: 16.5px;
-  line-height: 24px;
+  font-size: 17.5px;
+  line-height: 26px;
 }
 
 p.how-v2-pullout {
   margin: 0;
   color: var(--primary);
   font-family: var(--sans);
-  font-size: 20px;
+  font-size: 17.5px;
   font-style: normal;
   font-weight: 400;
-  line-height: 30px;
+  line-height: 26px;
   letter-spacing: normal;
 }
 
@@ -5727,8 +5752,8 @@ p.how-v2-pullout--body {
 .how-v2-evidence-copy h2,
 .home-v2-report-title,
 p.how-v2-pullout {
-  font-size: 20px;
-  line-height: 30px;
+  font-size: 17.5px;
+  line-height: 26px;
 }
 
 .home-v2-report-title {
@@ -5741,24 +5766,13 @@ p.how-v2-pullout {
 }
 
 .home-v2-included .home-v2-pricing-label {
-  font-size: 20px;
-  line-height: 30px;
+  font-size: 17.5px;
+  line-height: 26px;
 }
 
 .home-v2-benefit-card p {
-  font-size: 20px;
-  line-height: 30px;
-}
-
-@media (max-width: 620px) {
-  .home-v2 .home-v2-hero .home-v2-hero-bottom > p,
-  .home-v2-process-step h3,
-  .how-v2-evidence-copy h2,
-  .home-v2-report-title,
-  p.how-v2-pullout {
-    font-size: 18px;
-    line-height: 27px;
-  }
+  font-size: 17.5px;
+  line-height: 26px;
 }
 
 /* UI polish: readable measures and resilient card sizing. */
@@ -6136,11 +6150,14 @@ p.how-v2-pullout {
   position: absolute;
   top: calc(var(--ds-space-24) + var(--ds-space-3)) !important;
   right: auto !important;
-  bottom: auto !important;
+  bottom: 0 !important;
   left: calc(50% + var(--ds-space-20) - var(--ds-space-2)) !important;
   width: calc(50% - var(--ds-space-12)) !important;
+  height: calc(100% - var(--ds-space-24) - var(--ds-space-3)) !important;
   margin: 0 !important;
-  clip-path: inset(0 0 calc(100% - var(--ds-space-24) * 5 - var(--ds-space-3)) 0);
+  object-fit: cover;
+  object-position: top;
+  clip-path: none;
 }
 
 @media (max-width: 1100px) {
@@ -6211,7 +6228,10 @@ p.how-v2-pullout {
   }
 
   .home-v2-report--split .home-v2-report-art {
-    margin-bottom: -50% !important;
+    /* Percentage margins resolve against the panel width while the clip is
+       based on the slightly portrait artwork height. Keep a small overlap so
+       the visible image always reaches the panel's clipped bottom edge. */
+    margin-bottom: calc(-50% - var(--ds-space-1)) !important;
     clip-path: inset(0 0 50% 0);
   }
 }
