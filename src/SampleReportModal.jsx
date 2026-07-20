@@ -2,26 +2,12 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
+import { SiteAction } from './components/site-actions.jsx';
+import { useAccessibleModal } from './hooks/useAccessibleModal.js';
 
-const REPORT_PAGE_COUNT = 16;
 const REPORT_DOWNLOAD_NAME = 'Threadline-Sample-Assessment-Evidence-Report.html';
-const FOCUSABLE_SELECTOR = [
-  'a[href]',
-  'button:not([disabled])',
-  'iframe',
-  'input:not([disabled])',
-  'select:not([disabled])',
-  'textarea:not([disabled])',
-  '[tabindex]:not([tabindex="-1"])',
-].join(',');
-
-function getFocusableElements(container) {
-  if (!container) return [];
-
-  return Array.from(container.querySelectorAll(FOCUSABLE_SELECTOR)).filter((element) => (
-    !element.closest('[hidden]') && element.getClientRects().length > 0
-  ));
-}
+const REPORT_LOAD_MAX_ATTEMPTS = 50;
+const REPORT_LOAD_RETRY_MS = 100;
 
 const REPORT_PAGE_EXPLANATIONS = [
   {
@@ -145,7 +131,9 @@ function ChevronIcon() {
 export default function SampleReportButton({ className = '', children = 'View a sample report' }) {
   const [isOpen, setIsOpen] = useState(false);
   const [pageIndex, setPageIndex] = useState(0);
+  const [reportPageCount, setReportPageCount] = useState(0);
   const [isReportReady, setIsReportReady] = useState(false);
+  const [reportError, setReportError] = useState('');
   const [shareStatus, setShareStatus] = useState('');
   const [isExplanationOpen, setIsExplanationOpen] = useState(false);
   const triggerRef = useRef(null);
@@ -153,14 +141,31 @@ export default function SampleReportButton({ className = '', children = 'View a 
   const closeButtonRef = useRef(null);
   const stageRef = useRef(null);
   const iframeRef = useRef(null);
+  const reportPageCountRef = useRef(0);
 
   const closeModal = useCallback(() => setIsOpen(false), []);
   const showPreviousPage = useCallback(() => {
     setPageIndex((current) => Math.max(0, current - 1));
   }, []);
   const showNextPage = useCallback(() => {
-    setPageIndex((current) => Math.min(REPORT_PAGE_COUNT - 1, current + 1));
+    setPageIndex((current) => Math.min(
+      Math.max(0, reportPageCountRef.current - 1),
+      current + 1,
+    ));
   }, []);
+  const handleModalKeyDown = useCallback((event) => {
+    if (event.key === 'ArrowLeft') showPreviousPage();
+    if (event.key === 'ArrowRight') showNextPage();
+  }, [showNextPage, showPreviousPage]);
+
+  useAccessibleModal({
+    dialogRef: modalRef,
+    initialFocusRef: closeButtonRef,
+    isOpen,
+    onClose: closeModal,
+    onKeyDown: handleModalKeyDown,
+    triggerRef,
+  });
 
   const shareReport = useCallback(async () => {
     const reportUrl = new URL('/sample-report.html', window.location.origin).href;
@@ -191,7 +196,10 @@ export default function SampleReportButton({ className = '', children = 'View a 
     const reportDocument = iframe?.contentDocument;
     const pages = reportDocument ? Array.from(reportDocument.querySelectorAll('.page')) : [];
 
-    if (!iframe || !stage || pages.length !== REPORT_PAGE_COUNT) return false;
+    if (!iframe || !stage || pages.length === 0) return false;
+
+    reportPageCountRef.current = pages.length;
+    setReportPageCount((current) => (current === pages.length ? current : pages.length));
 
     let viewerStyles = reportDocument.getElementById('threadline-report-viewer-styles');
     if (!viewerStyles) {
@@ -243,7 +251,9 @@ export default function SampleReportButton({ className = '', children = 'View a 
       page.style.setProperty('transform-origin', 'top left', 'important');
     });
 
-    const activePage = pages[pageIndex];
+    const activePageIndex = Math.min(pageIndex, pages.length - 1);
+    const activePage = pages[activePageIndex];
+    if (activePageIndex !== pageIndex) setPageIndex(activePageIndex);
     activePage.style.setProperty('display', activePage.dataset.viewerDisplay, 'important');
     activePage.style.setProperty('top', '0', 'important');
 
@@ -267,6 +277,7 @@ export default function SampleReportButton({ className = '', children = 'View a 
     iframe.style.top = `${top}px`;
     iframe.style.transform = `scale(${scale})`;
 
+    setReportError('');
     setIsReportReady(true);
     return true;
   }, [pageIndex]);
@@ -274,92 +285,22 @@ export default function SampleReportButton({ className = '', children = 'View a 
   useEffect(() => {
     if (!isOpen) return undefined;
 
-    const modal = modalRef.current;
-    const portalRoot = modal?.closest('.sample-report-backdrop');
-    const backgroundElements = portalRoot
-      ? Array.from(document.body.children).filter((element) => element !== portalRoot)
-      : [];
-    const previousInertStates = backgroundElements.map((element) => [element, element.inert]);
-    const previousOverflow = document.body.style.overflow;
-
-    backgroundElements.forEach((element) => {
-      element.inert = true;
-    });
-    document.body.style.overflow = 'hidden';
-
-    const handleKeyDown = (event) => {
-      if (event.key === 'Escape') {
-        event.preventDefault();
-        closeModal();
-        return;
-      }
-
-      if (event.key === 'Tab') {
-        const focusableElements = getFocusableElements(modal);
-        const firstElement = focusableElements[0];
-        const lastElement = focusableElements.at(-1);
-
-        if (!firstElement || !lastElement) {
-          event.preventDefault();
-          modal?.focus();
-          return;
-        }
-
-        if (!modal?.contains(document.activeElement)) {
-          event.preventDefault();
-          firstElement.focus();
-          return;
-        }
-
-        if (event.shiftKey && document.activeElement === firstElement) {
-          event.preventDefault();
-          lastElement.focus();
-          return;
-        }
-
-        if (!event.shiftKey && document.activeElement === lastElement) {
-          event.preventDefault();
-          firstElement.focus();
-          return;
-        }
-      }
-
-      if (event.key === 'ArrowLeft') showPreviousPage();
-      if (event.key === 'ArrowRight') showNextPage();
-    };
-
-    const handleFocusIn = (event) => {
-      if (modal && !modal.contains(event.target)) {
-        getFocusableElements(modal)[0]?.focus();
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    document.addEventListener('focusin', handleFocusIn);
-    window.requestAnimationFrame(() => closeButtonRef.current?.focus());
-
-    return () => {
-      document.body.style.overflow = previousOverflow;
-      window.removeEventListener('keydown', handleKeyDown);
-      document.removeEventListener('focusin', handleFocusIn);
-      previousInertStates.forEach(([element, wasInert]) => {
-        element.inert = wasInert;
-      });
-      triggerRef.current?.focus();
-    };
-  }, [closeModal, isOpen, showNextPage, showPreviousPage]);
-
-  useEffect(() => {
-    if (!isOpen) return undefined;
-
     setIsReportReady(false);
+    setReportError('');
+    let attempts = 0;
     const interval = window.setInterval(() => {
-      if (syncReportPage()) window.clearInterval(interval);
-    }, 100);
+      attempts += 1;
+      if (syncReportPage()) {
+        window.clearInterval(interval);
+      } else if (attempts >= REPORT_LOAD_MAX_ATTEMPTS) {
+        window.clearInterval(interval);
+        setReportError('The sample report could not be loaded. Please try again.');
+      }
+    }, REPORT_LOAD_RETRY_MS);
     const resizeObserver = new ResizeObserver(syncReportPage);
     if (stageRef.current) resizeObserver.observe(stageRef.current);
 
-    syncReportPage();
+    if (syncReportPage()) window.clearInterval(interval);
 
     return () => {
       window.clearInterval(interval);
@@ -369,28 +310,34 @@ export default function SampleReportButton({ className = '', children = 'View a 
 
   const openModal = () => {
     setPageIndex(0);
+    reportPageCountRef.current = 0;
+    setReportPageCount(0);
     setIsReportReady(false);
+    setReportError('');
     setShareStatus('');
     setIsExplanationOpen(false);
     setIsOpen(true);
   };
 
-  const currentExplanation = REPORT_PAGE_EXPLANATIONS[pageIndex];
+  const currentExplanation = REPORT_PAGE_EXPLANATIONS[pageIndex] || {
+    title: `Report page ${pageIndex + 1}`,
+    text: 'This page is part of the sample Assessment Evidence Report.',
+  };
 
   return (
     <>
-      <button
+      <SiteAction
         ref={triggerRef}
-        type="button"
-        className={`${className} sample-report-trigger`}
+        appearance="secondary"
+        className={`${className} sample-report-trigger`.trim()}
         aria-haspopup="dialog"
         aria-expanded={isOpen}
         onClick={openModal}
       >
         {children}
-      </button>
+      </SiteAction>
       {isOpen && createPortal(
-        <div className="sample-report-backdrop" onMouseDown={(event) => {
+        <div className="sample-report-backdrop" data-modal-backdrop onMouseDown={(event) => {
           if (event.target === event.currentTarget) closeModal();
         }}>
           <section
@@ -405,7 +352,9 @@ export default function SampleReportButton({ className = '', children = 'View a 
               <div>
                 <h2 id="sample-report-title">Sample Assessment Evidence Report</h2>
                 <p aria-live="polite">
-                  Page {pageIndex + 1} of {REPORT_PAGE_COUNT}
+                  {reportPageCount > 0
+                    ? `Page ${pageIndex + 1} of ${reportPageCount}`
+                    : reportError || 'Loading report…'}
                   {shareStatus ? <span> · {shareStatus}</span> : null}
                 </p>
               </div>
@@ -441,12 +390,18 @@ export default function SampleReportButton({ className = '', children = 'View a 
               </button>
 
               <div className="sample-report-stage" ref={stageRef}>
-                {!isReportReady && <p className="sample-report-loading">Loading report…</p>}
+                {!isReportReady && (
+                  <p className="sample-report-loading" role={reportError ? 'alert' : undefined}>
+                    {reportError || 'Loading report…'}
+                  </p>
+                )}
                 <iframe
                   ref={iframeRef}
                   className={isReportReady ? 'is-ready' : ''}
                   src="/sample-report.html"
-                  title={`Sample Assessment Evidence Report, page ${pageIndex + 1} of ${REPORT_PAGE_COUNT}`}
+                  title={reportPageCount > 0
+                    ? `Sample Assessment Evidence Report, page ${pageIndex + 1} of ${reportPageCount}`
+                    : 'Sample Assessment Evidence Report'}
                   onLoad={syncReportPage}
                 />
               </div>
@@ -455,7 +410,7 @@ export default function SampleReportButton({ className = '', children = 'View a 
                 className="sample-report-arrow sample-report-arrow--next"
                 type="button"
                 onClick={showNextPage}
-                disabled={pageIndex === REPORT_PAGE_COUNT - 1}
+                disabled={reportPageCount === 0 || pageIndex >= reportPageCount - 1}
                 aria-label="Next report page"
               >
                 <ArrowIcon direction="next" />

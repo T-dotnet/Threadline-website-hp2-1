@@ -18,6 +18,7 @@ import {
   Text,
   TopNavigation,
 } from '../../src/design-system/index.js';
+import '../../src/design-system/style-guide.css';
 
 export const metadata = {
   title: 'Design system — Threadline',

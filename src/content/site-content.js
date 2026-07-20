@@ -16,6 +16,16 @@ export const DEFAULT_FAQ_ITEMS = [
   ['Who controls my child’s information?', 'You do, as part of your child’s Thread.'],
 ];
 
+export const PRICING_INCLUDED_ITEMS = [
+  'Guided parent information collection',
+  'Teacher invitation and responses',
+  'Child or young-person perspective',
+  'Collection of existing reports and evidence',
+  'Structured Assessment Evidence Report',
+  'Sharing with your child’s clinician',
+  'Support during preparation',
+];
+
 export function exploreLinksWithContact(contactHref) {
   return DEFAULT_EXPLORE_LINKS.map(([label, href]) => (
     label === 'Contact us' ? [label, contactHref] : [label, href]

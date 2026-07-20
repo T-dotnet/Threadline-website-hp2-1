@@ -2,7 +2,13 @@ import Image from 'next/image';
 import SampleReportButton from './SampleReportModal.jsx';
 import { SiteCta, SiteFooter, SiteNavigation } from './components/site-chrome.jsx';
 import { FaqSection, HeroSection, IntroSection, SectionLabel } from './components/website-sections.jsx';
-import { DEFAULT_FAQ_ITEMS } from './content/site-content.js';
+
+const FAQ_ITEMS = [
+  ['Do I need to have a clinician before I start?', 'No. You can begin while you are looking. Check that your chosen clinician is happy to receive the report before sharing it.'],
+  ['How long does preparation take?', 'You can get started in minutes and complete your part at your own pace. Teacher input and collecting existing reports may take longer.'],
+  ['Will my clinician need anything else?', 'They may. Your clinician decides what further information or assessment is needed.'],
+  ['Is Threadline an ADHD assessment?', "No. Threadline manages preparation. Your child's clinician completes the assessment and diagnosis."],
+];
 
 const PREPARATION_STEPS = [
   {
@@ -92,9 +98,9 @@ function YourThreadSection() {
           </div>
         </div>
         <article className="how-v2-thread-copy">
+          <p className="how-v2-pullout">One record. Owned by your family. Shared when you choose.</p>
           <p>Questionnaires, reports and perspectives collected for this assessment become part of your child’s Thread, an organised record designed to grow with them.</p>
           <p>When a new clinician, school or specialist needs context, you are not starting from scratch.</p>
-          <p>One record. Owned by your family. Shared when you choose.</p>
         </article>
       </div>
     </section>
@@ -120,14 +126,14 @@ function AssessmentOverview() {
           alt=""
           sizes="(max-width: 900px) calc(100vw - 32px), 920px"
         />
-        <div className="how-v2-process-report">
-          <Image
-            src="/index-3419-process-page-6.png"
-            width={1400}
-            height={1138}
-            alt="Cross-source view from a sample Assessment Evidence Report"
-          />
-        </div>
+        <Image
+          className="how-v2-process-screen"
+          src="/assessment-questionnaire-screen.png"
+          width={2040}
+          height={1216}
+          alt="Threadline clinical modules questionnaire showing a development and medical history question"
+          sizes="(max-width: 900px) 81vw, 745px"
+        />
       </div>
     </section>
   );
@@ -159,7 +165,7 @@ function EvidenceStory() {
           <ul>
             {EVIDENCE_ITEMS.map((item) => <li key={item}>{item}</li>)}
           </ul>
-          <p>Every source remains visible, giving your child’s clinician an organised view of the evidence collected before the appointment.</p>
+          <p className="how-v2-pullout how-v2-pullout--body">Every source remains visible, giving your child’s clinician an organised view of the evidence collected before the appointment.</p>
         </div>
       </article>
     </section>
@@ -175,7 +181,7 @@ function ReportOverview() {
           <h2 id="report-overview-title">One report.<br />Every source clear.</h2>
           <p>See evidence across settings, what is complete and what may still need follow-up.</p>
         </div>
-        <SampleReportButton className="home-v2-outline-button" />
+        <SampleReportButton />
       </div>
       <div className="how-v2-report-preview">
         <Image
@@ -218,6 +224,10 @@ export default function HowItWorksPage() {
           title={<>From unsure where<br />to start to<br /></>}
           highlight="Assessment Ready."
           description="Threadline brings together evidence from home, school and existing care, then prepares a structured Assessment Evidence Report for your child's clinician."
+          rearImage="/sample-report-page-7.png"
+          rearAlt="Child, family and developmental history from an Assessment Evidence Report"
+          frontImage="/sample-report-page-8.png"
+          frontAlt="Daily functioning from an Assessment Evidence Report"
         />
         <YourThreadSection />
         <IntroSection
@@ -233,7 +243,7 @@ export default function HowItWorksPage() {
           <PreparationDisclaimer />
         </div>
         <div className="how-v2-faq-spacer" aria-hidden="true" />
-        <FaqSection items={DEFAULT_FAQ_ITEMS} />
+        <FaqSection items={FAQ_ITEMS} />
         <ClosingSection />
       </main>
       <SiteFooter />

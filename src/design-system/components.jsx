@@ -1,9 +1,7 @@
 import { Cluster, Container, Divider, Eyebrow, Heading, Stack, Text, cx } from './primitives.jsx';
 
-export function Button({ href, variant = 'primary', size = 'md', unstyled = false, className, children, ...props }) {
-  const classes = unstyled
-    ? cx(className)
-    : cx('ds-button', `ds-button--${variant}`, size !== 'md' && `ds-button--${size}`, className);
+export function Button({ href, variant = 'primary', size = 'md', className, children, ...props }) {
+  const classes = cx('ds-button', `ds-button--${variant}`, size !== 'md' && `ds-button--${size}`, className);
 
   if (href) {
     return <a className={classes} href={href} {...props}>{children}</a>;

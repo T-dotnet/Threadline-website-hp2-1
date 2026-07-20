@@ -2,7 +2,6 @@ import { Frank_Ruhl_Libre, Fraunces, Funnel_Sans } from 'next/font/google';
 import ScrollRevealController from '../src/ScrollRevealController.jsx';
 import '../src/design-system/tokens.css';
 import '../src/design-system/styles.css';
-import '../src/design-system/style-guide.css';
 import '../src/styles.css';
 
 const funnelSans = Funnel_Sans({

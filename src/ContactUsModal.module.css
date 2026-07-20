@@ -1,0 +1,292 @@
+.trigger {
+  padding: 0;
+  border: 0;
+  color: inherit;
+  background: none;
+  font: inherit;
+  text-align: inherit;
+  cursor: pointer;
+}
+
+.backdrop {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  overflow-y: auto;
+  color: var(--heading);
+  background: var(--workspace);
+}
+
+.dialog {
+  position: relative;
+  width: min(calc(100% - (2 * var(--ds-space-6))), calc(var(--content-wide) * var(--site-scale)));
+  height: max(100svh, 800px);
+  margin: 0 auto;
+  padding: 90px 0;
+  display: grid;
+  grid-template-columns: minmax(360px, 1fr) minmax(520px, 700px);
+  align-content: start;
+  align-items: start;
+  gap: 120px;
+  background: var(--workspace);
+}
+
+.dialog.dialogConfirmation {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.closeButton {
+  position: absolute;
+  z-index: 1;
+  top: 32px;
+  right: 32px;
+  width: 48px;
+  height: 48px;
+  padding: 13px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--heading);
+  border-radius: 24px;
+  color: var(--heading);
+  background: var(--workspace);
+  cursor: pointer;
+  transition: color var(--ds-duration-base) var(--ds-ease-standard), background var(--ds-duration-base) var(--ds-ease-standard);
+}
+
+.closeButton img {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+.closeButton:hover {
+  color: var(--surface);
+  background: var(--heading);
+}
+
+.closeButton:hover img {
+  filter: brightness(0) invert(1);
+}
+
+.closeButton:focus-visible,
+.field input:focus-visible,
+.field select:focus-visible,
+.field textarea:focus-visible {
+  outline: none;
+  box-shadow: var(--ds-shadow-focus);
+}
+
+.intro {
+  min-width: 0;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: var(--ds-space-8);
+}
+
+.intro p {
+  width: min(100%, 500px);
+}
+
+.formColumn {
+  width: 100%;
+  padding-top: var(--ds-space-12);
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.confirmationContent {
+  min-width: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  gap: var(--ds-space-10);
+}
+
+.confirmationCopy {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: var(--ds-space-8);
+}
+
+.confirmationCopy p {
+  width: min(100%, 500px);
+}
+
+.confirmationCopy h2:focus {
+  outline: none;
+}
+
+.confirmationAction {
+  width: 100%;
+  padding-top: var(--ds-space-4);
+  display: flex;
+  align-items: flex-start;
+}
+
+.confirmationArt {
+  position: relative;
+  width: 100%;
+  height: 700px;
+  overflow: hidden;
+  border-bottom-left-radius: var(--ds-space-16);
+  background: var(--primary-light);
+}
+
+.confirmationArt img {
+  object-fit: cover;
+}
+
+.form {
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+  gap: var(--ds-space-6);
+}
+
+.field {
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+  gap: var(--ds-space-3);
+  color: var(--heading);
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  border: 1px solid var(--text-secondary);
+  border-radius: 12px;
+  color: var(--heading);
+  background: var(--workspace);
+  font: 400 var(--ds-text-md)/var(--ds-leading-body) var(--sans);
+  transition: border-color var(--ds-duration-fast) var(--ds-ease-standard), box-shadow var(--ds-duration-fast) var(--ds-ease-standard);
+}
+
+.field input {
+  height: 56px;
+  padding: 14px var(--ds-space-6);
+}
+
+.field select {
+  height: 56px;
+  padding: 14px calc(var(--ds-space-12) + var(--ds-space-2)) 14px var(--ds-space-6);
+  appearance: auto;
+}
+
+.field textarea {
+  height: 160px;
+  min-height: 160px;
+  padding: 14px var(--ds-space-6);
+  resize: vertical;
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: var(--heading);
+  opacity: .4;
+}
+
+.field input:hover,
+.field select:hover,
+.field textarea:hover {
+  border-color: var(--heading);
+}
+
+.submitRow {
+  padding-top: var(--ds-space-4);
+  display: flex;
+  align-items: flex-start;
+}
+
+.status {
+  min-height: 20px;
+  margin: calc(var(--ds-space-3) * -1) 0 0;
+}
+
+@media (max-width: 1200px) {
+  .dialog {
+    padding: var(--ds-space-24) 0 var(--ds-space-16);
+    grid-template-columns: minmax(300px, .8fr) minmax(460px, 1.2fr);
+    gap: var(--ds-space-16);
+  }
+
+}
+
+@media (max-width: 900px) {
+  .dialog {
+    height: auto;
+    min-height: 100svh;
+    padding: var(--ds-space-24) 0 var(--ds-space-16);
+    grid-template-columns: 1fr;
+    gap: var(--ds-space-16);
+  }
+
+  .dialog.dialogConfirmation {
+    grid-template-columns: 1fr;
+  }
+
+  .intro {
+    gap: var(--ds-space-6);
+  }
+
+  .intro p {
+    max-width: 640px;
+  }
+
+  .formColumn {
+    padding-top: var(--ds-space-8);
+  }
+
+  .confirmationContent {
+    justify-content: flex-start;
+  }
+
+  .confirmationArt {
+    height: min(70vw, 560px);
+  }
+}
+
+@media (max-width: 620px) {
+  .dialog {
+    width: calc(100% - (2 * var(--ds-space-4)));
+    padding: 88px 0 var(--ds-space-12);
+    gap: var(--ds-space-12);
+  }
+
+  .closeButton {
+    top: var(--ds-space-4);
+    right: var(--ds-space-4);
+    width: 44px;
+    height: 44px;
+    padding: 11px;
+  }
+
+  .field input {
+    padding-inline: var(--ds-space-4);
+  }
+
+  .field select {
+    padding-left: var(--ds-space-4);
+  }
+
+  .field textarea {
+    padding: var(--ds-space-4);
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .closeButton,
+  .field input,
+  .field select,
+  .field textarea {
+    transition: none;
+  }
+}

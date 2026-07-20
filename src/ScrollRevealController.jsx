@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 
 const REVEAL_SELECTOR = [
   '.home-v2-guideline',
@@ -22,6 +23,8 @@ const REVEAL_SELECTOR = [
 ].join(', ');
 
 export default function ScrollRevealController() {
+  const pathname = usePathname();
+
   useEffect(() => {
     const root = document.documentElement;
     const targets = Array.from(document.querySelectorAll(REVEAL_SELECTOR));
@@ -61,7 +64,7 @@ export default function ScrollRevealController() {
       targets.forEach((target) => target.classList.remove('scroll-reveal-target', 'is-visible'));
       root.classList.remove('scroll-reveal-ready');
     };
-  }, []);
+  }, [pathname]);
 
   return null;
 }

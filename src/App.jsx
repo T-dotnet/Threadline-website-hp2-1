@@ -11,7 +11,7 @@ import {
   ProcessSection,
   ReportSection,
 } from './components/website-sections.jsx';
-import { DEFAULT_FAQ_ITEMS } from './content/site-content.js';
+import { DEFAULT_FAQ_ITEMS, PRICING_INCLUDED_ITEMS } from './content/site-content.js';
 
 const GUIDELINE_PARAGRAPHS = [
   'Threadline is designed with reference to the Australian Evidence-Based Clinical Practice Guideline for ADHD, developed by the Australasian ADHD Professionals Association.',
@@ -53,16 +53,6 @@ const BENEFITS = [
   { text: 'Know exactly what information is needed', icon: '/step-information.png', shape: 'top-right' },
   { text: 'Reduce delays caused by missing evidence', icon: '/step-checklist.png', shape: 'bottom-left' },
   { text: "Avoid repeating your child's story", icon: '/step-story.svg', shape: 'top-right' },
-];
-
-const PRICING_ITEMS = [
-  'Guided parent information collection',
-  'Teacher invitation and responses',
-  'Child or young-person perspective',
-  'Collection of existing reports and evidence',
-  'Structured Assessment Evidence Report',
-  'Sharing with your child’s clinician',
-  'Support during preparation',
 ];
 
 export default function App() {
@@ -118,7 +108,7 @@ export default function App() {
           title="One clear price for your child’s Assessment Evidence Report."
         />
         <PricingSection
-          items={PRICING_ITEMS}
+          items={PRICING_INCLUDED_ITEMS}
           price="$395"
           note="No subscription. No hidden fees or taxes."
           subnote="Clinician appointment fees are separate."

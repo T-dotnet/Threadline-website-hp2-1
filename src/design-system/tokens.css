@@ -95,6 +95,9 @@
   /* Layout */
   --ds-content: 72rem;
   --ds-content-wide: 90.625rem;
+  --ds-site-shell: 106.875rem;
+  --ds-site-content-copy: 65.119rem;
+  --ds-site-scale: 0.9;
   --ds-gutter: clamp(1rem, 4vw, 2.5rem);
   --ds-section-space: clamp(4rem, 8vw, 7.5rem);
 }

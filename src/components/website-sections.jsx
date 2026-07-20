@@ -1,23 +1,24 @@
 import Image from 'next/image';
 import SampleReportButton from '../SampleReportModal.jsx';
+import { cx } from '../design-system/primitives.jsx';
 import { SiteCta } from './site-chrome.jsx';
 
-export function SectionLabel({ as: Tag = 'p', className = 'home-v2-kicker', children }) {
-  return <Tag className={className}>{children}</Tag>;
+export function SectionLabel({ as: Tag = 'p', className, children }) {
+  return <Tag className={cx('home-v2-kicker', className)}>{children}</Tag>;
 }
 
-export function SectionHeading({ label, children, className = '' }) {
+export function SectionHeading({ label, children, className = '', titleId }) {
   return (
     <div className={`home-v2-section-heading ${className}`}>
       <SectionLabel>{label}</SectionLabel>
-      <h2>{children}</h2>
+      <h2 id={titleId}>{children}</h2>
     </div>
   );
 }
 
-export function DisclosureList({ items, className = 'home-v2-faq-list', name = 'home-faq', wrapQuestion = true }) {
+export function DisclosureList({ items, className, name = 'home-faq', wrapQuestion = true }) {
   return (
-    <div className={className}>
+    <div className={cx('home-v2-faq-list', className)}>
       {items.map(([question, answer]) => (
         <details key={question} name={name}>
           <summary>{wrapQuestion ? <span>{question}</span> : question}</summary>
@@ -51,7 +52,7 @@ export function HeroSection({
             <p>{description}</p>
             <div className="home-v2-hero-actions">
               <SiteCta label={ctaLabel} href={ctaHref} />
-              {showSampleReport ? <SampleReportButton className="home-v2-outline-button" /> : null}
+              {showSampleReport ? <SampleReportButton /> : null}
             </div>
           </div>
         </div>
@@ -89,15 +90,15 @@ export function GuidelineSection({ label, title, linkLabel, linkHref, paragraphs
 export function ProblemSection({ title, description, items, backgroundImage, titleId = 'problem-title' }) {
   return (
     <section className="home-v2-problem" aria-labelledby={titleId}>
-      <Image src={backgroundImage} alt="" fill loading="eager" sizes="(max-width: 900px) calc(100vw - 32px), 1450px" />
+      <Image src={backgroundImage} alt="" fill sizes="(max-width: 900px) calc(100vw - 32px), 1450px" />
       <div className="home-v2-problem-grid">
         <article className="home-v2-problem-story">
           <h2 id={titleId}>{title}</h2>
           <p>{description}</p>
         </article>
-        <article className="home-v2-problem-list">
-          {items.map((item) => <p key={item}>{item}</p>)}
-        </article>
+        <ul className="home-v2-problem-list">
+          {items.map((item) => <li key={item}>{item}</li>)}
+        </ul>
       </div>
     </section>
   );
@@ -120,11 +121,11 @@ export function ReportSection({ title, items, note, image, imageAlt, id = 'repor
           <ul>{items.map((item) => <li key={item}>{item}</li>)}</ul>
           <div>
             <p className="home-v2-report-note">{note}</p>
-            {showSampleReport ? <SampleReportButton className="home-v2-outline-button" /> : null}
+            {showSampleReport ? <SampleReportButton /> : null}
           </div>
         </div>
       </div>
-      <Image className="home-v2-report-art" src={image} width={1414} height={1426} alt={imageAlt} sizes="670px" loading="eager" />
+      <Image className="home-v2-report-art" src={image} width={1414} height={1426} alt={imageAlt} sizes="670px" />
     </section>
   );
 }
@@ -210,7 +211,7 @@ export function FaqSection({ items, title = 'Questions families often ask.', lab
   return (
     <section className="home-v2-faq" aria-labelledby={titleId}>
       <div className="home-v2-faq-inner">
-        <SectionHeading label={label}><span id={titleId}>{title}</span></SectionHeading>
+        <SectionHeading label={label} titleId={titleId}>{title}</SectionHeading>
         <DisclosureList items={items} />
       </div>
     </section>

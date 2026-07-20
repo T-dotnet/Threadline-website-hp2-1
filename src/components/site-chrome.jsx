@@ -1,7 +1,9 @@
 import Image from 'next/image';
+import ContactUsButton from '../ContactUsModal.jsx';
 import SampleReportButton from '../SampleReportModal.jsx';
-import { Button } from '../design-system/components.jsx';
 import { DEFAULT_EXPLORE_LINKS } from '../content/site-content.js';
+import { SiteAction } from './site-actions.jsx';
+import styles from './site-chrome.module.css';
 
 const DEFAULT_NAV_LINKS = [
   ['How it works', '/how-it-works'],
@@ -11,43 +13,53 @@ const DEFAULT_NAV_LINKS = [
   ['Contact us', '/#contact'],
 ];
 
-const DEFAULT_SOCIAL_LINKS = ['Instagram', 'LinkedIn', 'X', 'YouTube'];
-const DEFAULT_LEGAL_LINKS = ['Privacy Policy', 'Terms of Service'];
+const DEFAULT_SOCIAL_LINKS = [];
+const DEFAULT_LEGAL_LINKS = [];
 
 export function SiteCta({ className = '', href = '/#pricing', label = 'Get started', shortLabel }) {
   return (
-    <Button unstyled className={`cta ${className}`} href={href} aria-label={label}>
+    <SiteAction appearance="primary" className={className} href={href} aria-label={label}>
       {shortLabel ? (
         <>
           <span className="cta-label-long">{label}</span>
           <span className="cta-label-short" aria-hidden="true">{shortLabel}</span>
         </>
       ) : label}
-    </Button>
+    </SiteAction>
   );
+}
+
+function NavigationLink({ label, href }) {
+  return label === 'Contact us'
+    ? <ContactUsButton className={styles.navContactTrigger}>{label}</ContactUsButton>
+    : <a href={href}>{label}</a>;
 }
 
 export function SiteNavigation({ links = DEFAULT_NAV_LINKS, ctaLabel = 'Get started', ctaShortLabel }) {
   return (
-    <header className="site-header">
-      <nav className="nav-shell" aria-label="Main navigation">
-        <a className="brand-link" href="/" aria-label="Threadline home">
+    <header className={styles.siteHeader}>
+      <nav className={styles.navShell} aria-label="Main navigation">
+        <a className={styles.brandLink} href="/" aria-label="Threadline home">
           <Image src="/threadline-logo.svg" width={256} height={41} alt="Threadline" priority />
         </a>
-        <div className="nav-links">
-          {links.map(([label, href]) => <a key={label} href={href}>{label}</a>)}
+        <div className={styles.navLinks}>
+          {links.map(([label, href]) => <NavigationLink key={label} label={label} href={href} />)}
         </div>
-        <SiteCta className="nav-cta" label={ctaLabel} shortLabel={ctaShortLabel} />
-        <details className="mobile-nav">
-          <summary aria-label="Open navigation menu">
-            <span>Menu</span>
-            <span className="mobile-nav-icon" aria-hidden="true" />
+        <SiteCta className={styles.navCta} label={ctaLabel} shortLabel={ctaShortLabel} />
+        <details className={styles.mobileNav}>
+          <summary>
+            <span className={styles.mobileNavVisibleLabel} aria-hidden="true">Menu</span>
+            <span className={styles.mobileNavStateLabel}>
+              <span className={styles.mobileNavOpenLabel}>Open navigation menu</span>
+              <span className={styles.mobileNavCloseLabel}>Close navigation menu</span>
+            </span>
+            <span className={styles.mobileNavIcon} aria-hidden="true" />
           </summary>
-          <div className="mobile-nav-panel">
-            <div className="mobile-nav-links">
-              {links.map(([label, href]) => <a key={label} href={href}>{label}</a>)}
+          <div className={styles.mobileNavPanel}>
+            <div className={styles.mobileNavLinks}>
+              {links.map(([label, href]) => <NavigationLink key={label} label={label} href={href} />)}
             </div>
-            <SiteCta className="mobile-nav-cta" label={ctaLabel} shortLabel={ctaShortLabel} />
+            <SiteCta className={styles.mobileNavCta} label={ctaLabel} shortLabel={ctaShortLabel} />
           </div>
         </details>
       </nav>
@@ -56,19 +68,29 @@ export function SiteNavigation({ links = DEFAULT_NAV_LINKS, ctaLabel = 'Get star
 }
 
 function FooterLink({ link }) {
-  const [label, href] = Array.isArray(link) ? link : [link];
+  const [label, href] = Array.isArray(link)
+    ? link
+    : [link?.label, link?.href];
 
-  return href
-    ? <a href={href}>{label}</a>
-    : <span className="footer-link-placeholder">{label}</span>;
+  if (!label || !href) return null;
+
+  return label === 'Contact us'
+    ? <ContactUsButton className={styles.footerContactTrigger}>{label}</ContactUsButton>
+    : <a href={href}>{label}</a>;
 }
 
 function FooterColumn({ title, links }) {
+  const linkedItems = links.filter((link) => (
+    Array.isArray(link) ? Boolean(link[0] && link[1]) : Boolean(link?.label && link?.href)
+  ));
+
+  if (linkedItems.length === 0) return null;
+
   return (
     <div className="footer-column">
       <h3>{title}</h3>
-      {links.map((link) => {
-        const label = Array.isArray(link) ? link[0] : link;
+      {linkedItems.map((link) => {
+        const label = Array.isArray(link) ? link[0] : link.label;
         return <FooterLink key={label} link={link} />;
       })}
     </div>
@@ -97,7 +119,7 @@ export function SiteFooter({
           </div>
           <div className="home-v2-footer-actions">
             <SiteCta label={ctaLabel} />
-            <SampleReportButton className="home-v2-outline-button" />
+            <SampleReportButton />
           </div>
         </div>
         <div className="home-v2-footer-links">
@@ -107,12 +129,14 @@ export function SiteFooter({
       </div>
       <div className="home-v2-footer-bottom">
         <p>{legalNotice}<br />{safetyNotice}<br />{safetyNoticeEnd}</p>
-        <div>
-          {legalLinks.map((link) => {
-            const label = Array.isArray(link) ? link[0] : link;
-            return <FooterLink key={label} link={link} />;
-          })}
-        </div>
+        {legalLinks.length > 0 ? (
+          <div>
+            {legalLinks.map((link) => {
+              const label = Array.isArray(link) ? link[0] : link.label;
+              return <FooterLink key={label} link={link} />;
+            })}
+          </div>
+        ) : null}
         <p>{copyright}</p>
       </div>
     </footer>
