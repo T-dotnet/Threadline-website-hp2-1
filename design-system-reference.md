@@ -44,14 +44,14 @@ Paired styles share the same token so their relationship remains consistent at e
 | Design-system section/stat and public `h2` | `36px` to `45px` |
 | Problem-list item and card heading | `20px` to `25px` |
 | FAQ symbol and extra-large text | `20px` |
-| Body, label, CTA, standard UI and large supporting text | `17.5px` |
+| Body, label, CTA, standard UI and large supporting text | `17.5px` unscaled; `16.5px` perceived in laptop and desktop bands |
 | Controls, forms and small/modal text | `14px` |
 
 The sample-report viewer retains its dedicated typography scale and is not part of this consolidation.
 
 ### Viewport scale
 
-Public pages render at `80%` scale from `1280px` up to (but not including) `1440px`, and at `90%` scale from `1440px` through `1920px`. Within the laptop band, body copy, labels, navigation, buttons and form controls use compensated type and control tokens so their perceived size remains close to desktop. Narrower tablet and mobile layouts remain at full scale and use their dedicated responsive rules.
+Public pages render at `80%` scale from `1280px` up to (but not including) `1440px`, and at `90%` scale from `1440px` through `1920px`. Body copy, labels, navigation and content CTAs use compensated tokens scoped to `page-shell`, producing a perceived `16.5px` size throughout those laptop and desktop bands. Paired content CTAs stack vertically throughout the compact and laptop range from `901px` up to (but not including) `1440px`, while header navigation actions remain inline. Narrower tablet and mobile layouts, wide screens above `1920px`, and unscaled utility routes retain the base `17.5px` body size.
 
 ### Display headings
 
@@ -72,7 +72,7 @@ Use this style for body copy and short supporting titles such as:
 
 | Size | Line height |
 | --- | --- |
-| `var(--ds-text-body)` (`17.5px`) | `26px` |
+| `var(--ds-text-body)` (`17.5px` unscaled; `16.5px` laptop/desktop) | `1.55` (approximately `27.1px` or `25.6px`) |
 
 Additional properties:
 
@@ -156,7 +156,7 @@ Responsive values intentionally reduce the gap while preserving clear section se
 
 Use the shared `Button` component from `src/design-system/components.jsx`.
 
-Primary and outlined CTA labels use the shared body font size of `17.5px`. Control-specific line heights, padding, and minimum heights remain unchanged.
+Primary and outlined CTA labels use the shared body scale: `17.5px` unscaled and `16.5px` perceived in the laptop and desktop bands. Control-specific line heights, padding, and minimum heights remain unchanged.
 
 For existing outlined website actions:
 

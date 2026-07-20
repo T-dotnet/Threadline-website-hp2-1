@@ -61,7 +61,7 @@
   --ds-leading-tight: 1.08;
   --ds-leading-heading: 1.18;
   --ds-leading-body: 1.55;
-  --ds-leading-site-body: 1.625rem;
+  --ds-leading-site-body: 1.55;
   --ds-leading-solid: 1;
   --ds-leading-label: 1.2;
   --ds-tracking-tight: -0.025em;
@@ -163,15 +163,15 @@
 
 /* Scale the full composition to the target laptop and desktop viewport bands. */
 @media (min-width: 1280px) and (max-width: 1439.98px) {
-  :root {
+  .page-shell {
     --ds-site-scale: 0.8;
+    --site-scale: var(--ds-site-scale);
     --ds-text-xs: 0.875rem;
     --ds-text-sm: 1rem;
-    --ds-text-body: 1.25rem;
+    --ds-text-body: 1.2890625rem;
     --ds-text-md: 1.125rem;
     --ds-text-lg: var(--ds-text-body);
     --ds-text-xl: 1.375rem;
-    --ds-leading-site-body: 2rem;
     --ds-button-height-sm: 2.8125rem;
     --ds-button-height-md: 3.375rem;
     --ds-button-height-lg: 4.5rem;
@@ -190,8 +190,12 @@
 }
 
 @media (min-width: 1440px) and (max-width: 1920px) {
-  :root {
+  .page-shell {
     --ds-site-scale: 0.9;
+    --site-scale: var(--ds-site-scale);
+    --ds-text-body: 1.1458333333rem;
+    --ds-text-lg: var(--ds-text-body);
+    --ds-text-label: var(--ds-text-body);
   }
 }
 

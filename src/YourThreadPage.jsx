@@ -107,10 +107,10 @@ function ThreadHero() {
             </Heading>
           </Stack>
           <Stack gap={6} className={`${styles.heroDescription} hero-supporting-copy`}>
-            <Text size="xl" tone="muted">
+            <Text size="lg" tone="muted">
               Every report. Every questionnaire. Every assessment. Every review. Every milestone.
             </Text>
-            <Text size="xl" tone="muted">
+            <Text size="lg" tone="muted">
               Together they become your child&apos;s Thread, so you are never starting from scratch again.
             </Text>
           </Stack>
