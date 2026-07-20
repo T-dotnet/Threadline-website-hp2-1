@@ -18,7 +18,7 @@ const FAQ_ITEMS = [
 ];
 
 const NAV_LINKS = [
-  ['How it works', '/how-it-works-2'],
+  ['How it works', '/how-it-works'],
   ['Pricing', '/pricing'],
   ['For clinicians', '/#clinicians'],
   ['Resources', '/#resources'],
@@ -52,7 +52,7 @@ function ThreadReportOverview() {
 export default function HowItWorksPage2() {
   return (
     <div className="page-shell home-v2 how-v2 how-v2b">
-      <SiteNavigation links={NAV_LINKS} activeHref="/how-it-works-2" />
+      <SiteNavigation links={NAV_LINKS} activeHref="/how-it-works" />
       <main>
         <HeroSection
           title={<>From unsure where<br />to start to<br /></>}
@@ -64,7 +64,7 @@ export default function HowItWorksPage2() {
           frontAlt="Daily functioning from an Assessment Evidence Report"
         />
         <IntroSection
-          id="how-it-works-2"
+          id="how-it-works"
           variant="how"
           label="HOW IT WORKS"
           title="Three steps to Assessment Ready."

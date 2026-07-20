@@ -17,6 +17,14 @@ const FAQ_ITEMS = [
   ['Is Threadline an ADHD assessment?', "No. Threadline manages preparation. Your child's clinician completes the assessment and diagnosis."],
 ];
 
+const NAV_LINKS = [
+  ['How it works', '/how-it-works-2'],
+  ['Pricing', '/pricing'],
+  ['For clinicians', '/#clinicians'],
+  ['Resources', '/#resources'],
+  ['Contact us', '/#contact'],
+];
+
 function YourThreadSection() {
   return (
     <section className="how-v2-thread" id="your-thread" aria-labelledby="your-thread-title">
@@ -66,7 +74,7 @@ function ReportOverview() {
 export default function HowItWorksPage() {
   return (
     <div className="page-shell home-v2 how-v2">
-      <SiteNavigation activeHref="/how-it-works" />
+      <SiteNavigation links={NAV_LINKS} activeHref="/how-it-works-2" />
       <main>
         <HeroSection
           title={<>From unsure where<br />to start to<br /></>}
