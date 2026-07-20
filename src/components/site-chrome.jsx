@@ -2,6 +2,7 @@ import Image from 'next/image';
 import ContactUsButton from '../ContactUsModal.jsx';
 import SampleReportButton from '../SampleReportModal.jsx';
 import { DEFAULT_EXPLORE_LINKS } from '../content/site-content.js';
+import { VisuallyHidden } from '../design-system/primitives.jsx';
 import { SiteAction } from './site-actions.jsx';
 import styles from './site-chrome.module.css';
 
@@ -60,10 +61,10 @@ export function SiteNavigation({
         <details className={styles.mobileNav}>
           <summary>
             <span className={styles.mobileNavVisibleLabel} aria-hidden="true">Menu</span>
-            <span className={styles.mobileNavStateLabel}>
+            <VisuallyHidden>
               <span className={styles.mobileNavOpenLabel}>Open navigation menu</span>
               <span className={styles.mobileNavCloseLabel}>Close navigation menu</span>
-            </span>
+            </VisuallyHidden>
             <span className={styles.mobileNavIcon} aria-hidden="true" />
           </summary>
           <div className={styles.mobileNavPanel}>

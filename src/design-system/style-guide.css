@@ -5,10 +5,10 @@
 }
 
 .style-guide__hero {
-  padding-block: clamp(5rem, 12vw, 10rem);
+  padding-block: clamp(var(--ds-space-20), 12vw, var(--ds-radius-feature));
   border-bottom-right-radius: clamp(3rem, 10vw, 10rem);
   background:
-    radial-gradient(circle at 80% 15%, rgba(138, 205, 183, 0.36), transparent 30%),
+    radial-gradient(circle at 80% 15%, var(--ds-color-accent-wash), transparent 30%),
     linear-gradient(135deg, var(--ds-color-surface), var(--ds-color-wash-blue));
 }
 
@@ -86,7 +86,7 @@
   min-height: 8rem;
   border-radius: var(--shape-radius);
   background: linear-gradient(135deg, var(--ds-color-forest-100), var(--ds-color-wash-blue));
-  box-shadow: inset 0 0 0 1px rgba(11, 70, 54, 0.06);
+  box-shadow: inset 0 0 0 1px var(--ds-color-line-subtle);
 }
 
 .style-guide__spacing-row {
@@ -100,7 +100,7 @@
   width: var(--space-width);
   max-width: 100%;
   height: 1rem;
-  border-radius: 999px;
+  border-radius: var(--ds-radius-pill);
   background: var(--ds-color-accent);
 }
 

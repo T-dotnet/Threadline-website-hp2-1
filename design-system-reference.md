@@ -1,6 +1,6 @@
 # Threadline Website Design-System Reference
 
-Last updated: 19 July 2026
+Last updated: 20 July 2026
 
 This reference documents the shared visual rules used across the Home, How It Works, and Pricing pages. It describes the current implementation rather than introducing a separate styling layer.
 
@@ -10,6 +10,7 @@ This reference documents the shared visual rules used across the Home, How It Wo
 - Design-system components: `src/design-system/components.jsx`
 - Shared website components: `src/components/site-chrome.jsx` and `src/components/website-sections.jsx`
 - Website composition and responsive rules: `src/styles.css`
+- Automated hardcode guard: `npm run design:audit`
 
 Use tokens and shared components before adding a new value, selector, or one-off component.
 
@@ -168,6 +169,11 @@ Prefer these components before creating page-specific equivalents:
 - `SiteFooter`
 - `SiteCta`
 - `Button`
+- `IconButton`
+- `Input`
+- `Select`
+- `Textarea`
+- `FormField`
 - `HeroSection`
 - `SectionHeading`
 - `SectionLabel`
@@ -186,4 +192,3 @@ Before adding or changing a style:
 5. Keep ordinary body copy grey and reserve primary green for hierarchy or emphasis.
 6. Verify Home, How It Works, and Pricing when changing a shared selector.
 7. Avoid one-off pixel values unless they come directly from the approved design geometry.
-

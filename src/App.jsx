@@ -88,6 +88,7 @@ export default function App() {
           note="Every source remains visible, giving your child’s clinician an organised view of the evidence collected before the appointment."
           image="/index-3419-report-page.png"
           imageAlt="Sample Assessment Evidence Report"
+          layout="split"
         />
         <IntroSection
           id="how-it-works"

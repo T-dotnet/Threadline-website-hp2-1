@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import { TextLink } from './design-system/components.jsx';
 import { Heading, Stack, Surface, Text } from './design-system/primitives.jsx';
 import { SiteCta, SiteFooter, SiteNavigation } from './components/site-chrome.jsx';
 import styles from './AboutPage.module.css';
@@ -32,12 +31,7 @@ const ABOUT_POINTS = [
   },
   {
     title: 'Every part of the story, connected.',
-    content: (
-      <Stack gap={2}>
-        <Text tone="muted">Every report, questionnaire, assessment and review helps tell the story of a child. We call that their Thread.</Text>
-        <TextLink href="/how-it-works#your-thread">Explore your Thread</TextLink>
-      </Stack>
-    ),
+    content: <Text tone="muted">Every report, questionnaire, assessment and review helps tell the story of a child. We call that their Thread.</Text>,
   },
   {
     title: 'Every part of the story, connected.',

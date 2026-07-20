@@ -3,7 +3,14 @@
 import Image from 'next/image';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { Button } from './design-system/components.jsx';
+import {
+  Button,
+  FormField,
+  IconButton,
+  Input,
+  Select,
+  Textarea,
+} from './design-system/components.jsx';
 import { Heading, Text } from './design-system/primitives.jsx';
 import { SiteAction } from './components/site-actions.jsx';
 import { useAccessibleModal } from './hooks/useAccessibleModal.js';
@@ -98,15 +105,14 @@ export default function ContactUsButton({
           </>
         ) : (
           <>
-            <button
+            <IconButton
               ref={closeButtonRef}
               className={styles.closeButton}
-              type="button"
+              label="Close contact form"
               onClick={closeModal}
-              aria-label="Close contact form"
             >
               <Image src="/contact-close.svg" width={20} height={20} alt="" />
-            </button>
+            </IconButton>
 
             <div className={styles.intro}>
               <Heading as="h2" size="display" id="contact-modal-title">We&apos;re here to listen<br />to your story.</Heading>
@@ -115,19 +121,16 @@ export default function ContactUsButton({
 
             <div className={styles.formColumn}>
               <form className={styles.form} onSubmit={handleSubmit}>
-                <label className={styles.field}>
-                  <Text as="span">Full Name</Text>
-                  <input name="name" type="text" autoComplete="name" placeholder="Jane Cooper" required />
-                </label>
+                <FormField htmlFor="contact-name" label="Full Name">
+                  <Input id="contact-name" className={styles.formControl} name="name" type="text" autoComplete="name" placeholder="Jane Cooper" required />
+                </FormField>
 
-                <label className={styles.field}>
-                  <Text as="span">Email Address</Text>
-                  <input name="email" type="email" autoComplete="email" placeholder="jane@example.com" required />
-                </label>
+                <FormField htmlFor="contact-email" label="Email Address">
+                  <Input id="contact-email" className={styles.formControl} name="email" type="email" autoComplete="email" placeholder="jane@example.com" required />
+                </FormField>
 
-                <label className={styles.field}>
-                  <Text as="span">I am contacting you about</Text>
-                  <select name="topic" defaultValue="" required>
+                <FormField htmlFor="contact-topic" label="I am contacting you about">
+                  <Select id="contact-topic" className={`${styles.formControl} ${styles.selectControl}`} name="topic" defaultValue="" required>
                     <option value="" disabled>Select a topic</option>
                     <option value="getting-started">Getting started with Threadline</option>
                     <option value="assessment-preparation">Assessment preparation</option>
@@ -137,13 +140,12 @@ export default function ContactUsButton({
                     <option value="partnerships">Partnerships</option>
                     <option value="media">Media</option>
                     <option value="something-else">Something else</option>
-                  </select>
-                </label>
+                  </Select>
+                </FormField>
 
-                <label className={styles.field}>
-                  <Text as="span">How can we help?</Text>
-                  <textarea name="message" placeholder="Tell us a bit about your child's journey..." required />
-                </label>
+                <FormField htmlFor="contact-message" label="How can we help?">
+                  <Textarea id="contact-message" className={`${styles.formControl} ${styles.messageControl}`} name="message" placeholder="Tell us a bit about your child's journey..." required />
+                </FormField>
 
                 <div className={styles.submitRow}>
                   <Button type="submit">Send Message</Button>

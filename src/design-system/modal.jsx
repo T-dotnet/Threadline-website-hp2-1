@@ -3,7 +3,7 @@
 import { useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { useAccessibleModal } from '../hooks/useAccessibleModal.js';
-import { Button } from './components.jsx';
+import { IconButton } from './components.jsx';
 import { CloseIcon } from './icons.jsx';
 import { Heading, Stack, Text } from './primitives.jsx';
 
@@ -48,16 +48,14 @@ export function Modal({
         aria-describedby={descriptionId}
         tabIndex={-1}
       >
-        <Button
+        <IconButton
           ref={closeButtonRef}
           className="ds-modal__close"
-          variant="secondary"
-          type="button"
+          label={closeLabel}
           onClick={onClose}
-          aria-label={closeLabel}
         >
           <CloseIcon />
-        </Button>
+        </IconButton>
         <Stack className="ds-modal__layout" gap={0}>
           <Stack className="ds-modal__intro" gap={2}>
             <Heading as="h2" size="display" id={titleId}>{title}</Heading>

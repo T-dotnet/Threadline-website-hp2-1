@@ -15,9 +15,11 @@
   --ds-color-neutral-400: #9ca3af;
   --ds-color-black: #000000;
   --ds-color-line: rgba(11, 70, 54, 0.14);
+  --ds-color-line-subtle: rgba(11, 70, 54, 0.06);
   --ds-color-line-soft: rgba(11, 70, 54, 0.12);
   --ds-color-line-strong: rgba(11, 70, 54, 0.24);
   --ds-color-overlay-dark-soft: rgba(0, 0, 0, 0.1);
+  --ds-color-accent-wash: rgba(138, 205, 183, 0.36);
   --ds-color-wash-blue: #dfeef1;
   --ds-color-wash-cream: #f4eee2;
   --ds-color-info: #285d72;
@@ -54,13 +56,18 @@
   --ds-leading-tight: 1.08;
   --ds-leading-heading: 1.18;
   --ds-leading-body: 1.55;
+  --ds-leading-solid: 1;
+  --ds-leading-label: 1.2;
   --ds-tracking-tight: -0.025em;
   --ds-tracking-label: 0.16em;
+  --ds-text-underline-offset: 0.22em;
 
   /* Spacing */
   --ds-space-0: 0;
+  --ds-space-half: 0.125rem;
   --ds-space-1: 0.25rem;
   --ds-space-2: 0.5rem;
+  --ds-space-2-5: 0.625rem;
   --ds-space-3: 0.75rem;
   --ds-space-4: 1rem;
   --ds-space-5: 1.25rem;
@@ -74,8 +81,11 @@
 
   /* Shape, depth and motion */
   --ds-radius-sm: 0.5rem;
+  --ds-radius-control: 0.75rem;
   --ds-radius-md: 1rem;
+  --ds-radius-panel: 1.25rem;
   --ds-radius-lg: 2rem;
+  --ds-radius-pill: 999px;
   --ds-radius-organic: 0 4rem 0 0;
   --ds-radius-feature: 10rem;
   --ds-shadow-sm: 0 1px 2px rgba(7, 60, 46, 0.08);
@@ -88,25 +98,49 @@
   --ds-filter-modal-backdrop: blur(var(--ds-space-5)) saturate(.9);
   --ds-icon-stroke-md: 1.8;
   --ds-layer-content: 1;
+  --ds-layer-sticky: 10;
   --ds-layer-modal: 10000;
   --ds-duration-fast: 140ms;
   --ds-duration-base: 220ms;
   --ds-ease-standard: cubic-bezier(0.2, 0, 0, 1);
 
   /* Shared site controls */
+  --ds-button-height-sm: 2.5rem;
+  --ds-button-height-md: 3rem;
+  --ds-button-height-lg: 4rem;
+  --ds-button-padding-sm: 0.625rem var(--ds-space-4);
+  --ds-button-padding-md: var(--ds-space-3) var(--ds-space-5);
+  --ds-button-padding-lg: var(--ds-space-4) var(--ds-space-8);
+  --ds-control-lift: -1px;
+  --ds-control-disabled-opacity: 0.45;
   --ds-control-height-md: 3.375rem;
+  --ds-control-height-sm: var(--ds-button-height-md);
+  --ds-control-height-compact: 3.25rem;
   --ds-control-padding-md: var(--ds-space-4) var(--ds-space-8);
   --ds-control-font-size: 0.9375rem;
   --ds-control-line-height: 1.25rem;
+  --ds-form-control-height: 3.5rem;
+  --ds-form-control-padding-block: 0.875rem;
+  --ds-form-control-padding-inline: var(--ds-space-6);
+  --ds-form-textarea-height: 10rem;
+  --ds-icon-button-size: var(--ds-space-12);
+  --ds-icon-button-padding: 0.8125rem;
+  --ds-icon-button-size-compact: 2.75rem;
+  --ds-icon-button-padding-compact: 0.6875rem;
+  --ds-icon-size-md: var(--ds-space-5);
+  --ds-badge-padding: 0.4rem 0.7rem;
   --ds-text-label: 1.1rem;
+  --ds-text-nav-compact: 1.0625rem;
   --ds-modal-width: 42.5rem;
   --ds-modal-header-height: 5.75rem;
   --ds-modal-header-height-compact: 4.75rem;
 
   /* Layout */
   --ds-content: 72rem;
+  --ds-content-narrow: 48rem;
   --ds-content-wide: 90.625rem;
   --ds-measure-summary: 30.75rem;
+  --ds-measure-prose: 31.25rem;
   --ds-measure-body: 36rem;
   --ds-measure-display: 39.6875rem;
   --ds-measure-heading: 42.1875rem;

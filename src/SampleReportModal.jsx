@@ -206,7 +206,7 @@ export default function SampleReportButton({ className = '', children = 'View a 
           min-height: 0 !important;
           margin: 0 !important;
           overflow: hidden !important;
-          background: #fff !important;
+          background: var(--paper) !important;
         }
         body { position: relative !important; display: block !important; }
         .report {

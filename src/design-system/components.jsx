@@ -14,6 +14,22 @@ export function Input({ className, ...props }) {
   return <input className={cx('ds-form-control', className)} {...props} />;
 }
 
+export function Select({ className, children, ...props }) {
+  return <select className={cx('ds-form-control', className)} {...props}>{children}</select>;
+}
+
+export function Textarea({ className, ...props }) {
+  return <textarea className={cx('ds-form-control', className)} {...props} />;
+}
+
+export function IconButton({ className, label, children, type = 'button', ...props }) {
+  return (
+    <button className={cx('ds-icon-button', className)} type={type} aria-label={label} {...props}>
+      {children}
+    </button>
+  );
+}
+
 export function FormRow({ as: Tag = 'div', className, children, ...props }) {
   return <Tag className={cx('ds-form-row', className)} {...props}>{children}</Tag>;
 }

@@ -10,7 +10,7 @@
 
 .backdrop {
   position: fixed;
-  z-index: 1000;
+  z-index: var(--ds-layer-modal);
   inset: 0;
   overflow-y: auto;
   color: var(--heading);
@@ -20,14 +20,14 @@
 .dialog {
   position: relative;
   width: min(calc(100% - (2 * var(--ds-space-6))), calc(var(--content-wide) * var(--site-scale)));
-  height: max(100svh, 800px);
+  min-height: max(100svh, calc(var(--ds-panel-height-lg) + var(--ds-space-24) + var(--ds-space-1)));
   margin: 0 auto;
-  padding: 90px 0;
+  padding: calc(var(--ds-space-20) + var(--ds-space-2) + var(--ds-space-half)) 0;
   display: grid;
   grid-template-columns: minmax(360px, 1fr) minmax(520px, 700px);
   align-content: start;
   align-items: start;
-  gap: 120px;
+  gap: calc(var(--ds-space-24) + var(--ds-space-6));
   background: var(--workspace);
 }
 
@@ -37,26 +37,12 @@
 
 .closeButton {
   position: absolute;
-  z-index: 1;
-  top: 32px;
-  right: 32px;
-  width: 48px;
-  height: 48px;
-  padding: 13px;
-  display: grid;
-  place-items: center;
-  border: 1px solid var(--heading);
-  border-radius: 24px;
+  z-index: var(--ds-layer-content);
+  top: var(--ds-space-8);
+  right: var(--ds-space-8);
+  border-color: var(--heading);
   color: var(--heading);
   background: var(--workspace);
-  cursor: pointer;
-  transition: color var(--ds-duration-base) var(--ds-ease-standard), background var(--ds-duration-base) var(--ds-ease-standard);
-}
-
-.closeButton img {
-  width: 20px;
-  height: 20px;
-  display: block;
 }
 
 .closeButton:hover {
@@ -68,14 +54,6 @@
   filter: brightness(0) invert(1);
 }
 
-.closeButton:focus-visible,
-.field input:focus-visible,
-.field select:focus-visible,
-.field textarea:focus-visible {
-  outline: none;
-  box-shadow: var(--ds-shadow-focus);
-}
-
 .intro {
   min-width: 0;
   display: flex;
@@ -85,7 +63,7 @@
 }
 
 .intro p {
-  width: min(100%, 500px);
+  width: min(100%, var(--ds-measure-prose));
 }
 
 .formColumn {
@@ -114,7 +92,7 @@
 }
 
 .confirmationCopy p {
-  width: min(100%, 500px);
+  width: min(100%, var(--ds-measure-prose));
 }
 
 .confirmationCopy h2:focus {
@@ -131,7 +109,7 @@
 .confirmationArt {
   position: relative;
   width: 100%;
-  height: 700px;
+  height: var(--ds-panel-height-lg);
   overflow: hidden;
   border-bottom-left-radius: var(--ds-space-16);
   background: var(--primary-light);
@@ -149,53 +127,32 @@
   gap: var(--ds-space-6);
 }
 
-.field {
-  display: flex;
-  align-items: stretch;
-  flex-direction: column;
-  gap: var(--ds-space-3);
-  color: var(--heading);
-}
-
-.field input,
-.field select,
-.field textarea {
-  width: 100%;
-  border: 1px solid var(--text-secondary);
-  border-radius: 12px;
+.formControl {
+  border-color: var(--text-secondary);
   color: var(--heading);
   background: var(--workspace);
   font: 400 var(--ds-text-md)/var(--ds-leading-body) var(--sans);
-  transition: border-color var(--ds-duration-fast) var(--ds-ease-standard), box-shadow var(--ds-duration-fast) var(--ds-ease-standard);
 }
 
-.field input {
-  height: 56px;
-  padding: 14px var(--ds-space-6);
+.formControl:not(textarea) {
+  height: var(--ds-form-control-height);
 }
 
-.field select {
-  height: 56px;
-  padding: 14px calc(var(--ds-space-12) + var(--ds-space-2)) 14px var(--ds-space-6);
+.selectControl {
+  padding-right: calc(var(--ds-space-12) + var(--ds-space-2));
   appearance: auto;
 }
 
-.field textarea {
-  height: 160px;
-  min-height: 160px;
-  padding: 14px var(--ds-space-6);
-  resize: vertical;
+.messageControl {
+  min-height: var(--ds-form-textarea-height);
 }
 
-.field input::placeholder,
-.field textarea::placeholder {
+.formControl::placeholder {
   color: var(--heading);
   opacity: .4;
 }
 
-.field input:hover,
-.field select:hover,
-.field textarea:hover {
+.formControl:hover {
   border-color: var(--heading);
 }
 
@@ -206,7 +163,7 @@
 }
 
 .status {
-  min-height: 20px;
+  min-height: var(--ds-space-5);
   margin: calc(var(--ds-space-3) * -1) 0 0;
 }
 
@@ -256,27 +213,28 @@
 @media (max-width: 620px) {
   .dialog {
     width: calc(100% - (2 * var(--ds-space-4)));
-    padding: 88px 0 var(--ds-space-12);
+    padding: calc(var(--ds-space-20) + var(--ds-space-2)) 0 var(--ds-space-12);
     gap: var(--ds-space-12);
   }
 
   .closeButton {
     top: var(--ds-space-4);
     right: var(--ds-space-4);
-    width: 44px;
-    height: 44px;
-    padding: 11px;
+    width: var(--ds-icon-button-size-compact);
+    height: var(--ds-icon-button-size-compact);
+    min-height: var(--ds-icon-button-size-compact);
+    padding: var(--ds-icon-button-padding-compact);
   }
 
-  .field input {
+  .formControl {
     padding-inline: var(--ds-space-4);
   }
 
-  .field select {
+  .selectControl {
     padding-left: var(--ds-space-4);
   }
 
-  .field textarea {
+  .messageControl {
     padding: var(--ds-space-4);
   }
 
@@ -284,9 +242,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .closeButton,
-  .field input,
-  .field select,
-  .field textarea {
+  .formControl {
     transition: none;
   }
 }

@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
+    "design:audit": "node src/design-system/check.mjs",
     "build": "next build",
     "start": "next start"
   },

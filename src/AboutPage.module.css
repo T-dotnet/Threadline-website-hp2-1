@@ -130,6 +130,18 @@
   line-height: var(--ds-control-line-height);
 }
 
+@media (max-width: 1250px) {
+  .belief {
+    grid-template-columns: 1fr;
+    gap: var(--ds-space-6);
+  }
+
+  .beliefDetail {
+    width: min(100%, var(--ds-measure-body));
+    padding-top: 0;
+  }
+}
+
 @media (max-width: 900px) {
   .hero,
   .beliefs,
@@ -143,8 +155,10 @@
   }
 
   .heroCopy {
-    min-height: calc(var(--ds-panel-height-md) + var(--ds-space-5));
+    min-height: 0;
     padding: var(--ds-space-10) var(--ds-space-10) var(--ds-space-16);
+    justify-content: flex-start;
+    gap: var(--ds-space-24);
     border-radius: 0 0 var(--ds-space-16) 0;
   }
 
@@ -167,24 +181,15 @@
     gap: var(--ds-space-24);
   }
 
-  .belief {
-    grid-template-columns: 1fr;
-    gap: var(--ds-space-6);
-  }
-
-  .beliefDetail {
-    width: min(100%, var(--ds-measure-body));
-    padding-top: 0;
-  }
-
   .closing {
     min-height: 0;
     padding-block: var(--ds-space-16);
   }
 
   .closingCard {
-    min-height: calc(var(--ds-panel-height-sm) + var(--ds-space-10));
+    min-height: 0;
     padding: var(--ds-space-16);
+    gap: var(--ds-space-16);
     border-radius: 0 var(--ds-space-16) 0 0;
   }
 }
@@ -197,8 +202,8 @@
   }
 
   .heroCopy {
-    min-height: calc(var(--ds-panel-height-sm) + var(--ds-space-12) + var(--ds-space-3));
     padding: calc(var(--ds-space-6) + var(--ds-space-1)) calc(var(--ds-space-6) + var(--ds-space-1)) var(--ds-space-12);
+    gap: var(--ds-space-12);
   }
 
   .heroDescription {
@@ -224,8 +229,8 @@
   }
 
   .closingCard {
-    min-height: var(--ds-panel-height-sm);
     padding: var(--ds-space-12) calc(var(--ds-space-6) + var(--ds-space-1));
     align-items: flex-start;
+    gap: var(--ds-space-12);
   }
 }

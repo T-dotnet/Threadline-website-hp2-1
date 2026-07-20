@@ -13,7 +13,7 @@
 }
 
 .heroGrid {
-  min-height: 700px;
+  min-height: var(--ds-panel-height-lg);
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--ds-space-5);
@@ -26,18 +26,11 @@
   flex-direction: column;
   justify-content: space-between;
   overflow: hidden;
-  border-radius: 0 0 calc(var(--ds-space-20) * 2) 0;
-}
-
-.heroHeading {
-  display: flex;
-  flex-direction: column;
-  gap: var(--ds-space-8);
+  border-radius: 0 0 var(--ds-radius-feature) 0;
 }
 
 .heroTitle {
-  max-width: 40rem;
-  font-size: clamp(3.5rem, 4.2vw, 4.75rem);
+  max-width: var(--ds-measure-display);
 }
 
 .heroTitle span {
@@ -45,55 +38,92 @@
 }
 
 .heroDescription {
-  width: min(100%, 31rem);
-  display: flex;
-  flex-direction: column;
-  gap: var(--ds-space-6);
-}
-
-.heroDescription p {
-  font-size: var(--ds-text-xl);
-  line-height: normal;
+  width: min(100%, var(--ds-measure-summary));
 }
 
 .heroMedia {
   position: relative;
   min-width: 0;
-  min-height: 700px;
+  min-height: var(--ds-panel-height-lg);
   overflow: hidden;
-  border-radius: 0 0 0 calc(var(--ds-space-20) * 2);
+  border-radius: 0 0 0 var(--ds-radius-feature);
 }
 
 .heroArtwork {
   object-fit: cover;
 }
 
-.reportSheet {
+.reportStack {
   position: absolute;
   z-index: 1;
+  inset: 0;
+}
+
+.reportSheet {
+  position: absolute;
   overflow: hidden;
+  border-radius: var(--ds-radius-lg);
   background: var(--ds-color-surface);
   box-shadow: var(--ds-shadow-artwork);
 }
 
-.reportSheet img {
+.heroReportStack .reportSheetRear {
+  z-index: 1;
+  top: 13.7%;
+  left: 21%;
+  width: 93.7%;
+  aspect-ratio: 670 / 683;
+}
+
+.heroReportStack .reportSheetRear img {
+  position: absolute;
+  top: 0;
+  left: -1%;
+  width: 101.05%;
+  height: 100%;
+  max-width: none;
+  object-fit: fill;
+}
+
+.heroReportStack .reportSheetFront {
+  z-index: 2;
+  top: 37.6%;
+  left: 37.1%;
+  width: 96.2%;
+  aspect-ratio: 688 / 701;
+}
+
+.heroReportStack .reportSheetFront img {
+  position: absolute;
+  top: -.05%;
+  left: 0;
+  width: 100%;
+  height: 122.93%;
+  max-width: none;
+  object-fit: fill;
+}
+
+.processReportStack .reportSheet img {
+  display: block;
   width: 100%;
   height: auto;
-  display: block;
+  max-width: none;
 }
 
-.reportSheetRear {
-  width: 72%;
-  top: 15%;
-  left: 8%;
-  transform: rotate(-2deg);
+.processReportStack .reportSheetRear {
+  z-index: 1;
+  top: 15.11%;
+  left: 17.01%;
+  width: 72.83%;
+  aspect-ratio: 670 / 683;
 }
 
-.reportSheetFront {
-  width: 57%;
-  top: 36%;
-  right: -2%;
-  transform: rotate(1deg);
+.processReportStack .reportSheetFront {
+  z-index: 2;
+  top: 59.95%;
+  left: 7.99%;
+  width: 72.72%;
+  aspect-ratio: 669 / 682;
 }
 
 .why {
@@ -109,7 +139,7 @@
 }
 
 .sectionHeading h2 {
-  max-width: 48rem;
+  max-width: var(--ds-measure-heading);
 }
 
 .whyTiles {
@@ -127,16 +157,16 @@
 }
 
 .whyTile:first-child {
-  border-radius: var(--ds-space-12) 0 0 0;
+  border-radius: var(--ds-radius-lg) 0 0 0;
 }
 
 .whyTile:last-child {
-  border-radius: 0 var(--ds-space-12) 0 0;
+  border-radius: 0 var(--ds-radius-lg) 0 0;
 }
 
 .whyTileArtwork {
   position: relative;
-  min-height: 210px;
+  min-height: calc(var(--ds-panel-height-sm) / 2);
   display: grid;
   place-items: center;
   overflow: hidden;
@@ -149,13 +179,13 @@
 .whyTileIcon {
   position: relative;
   z-index: 1;
-  width: 86px;
-  height: 86px;
+  width: var(--ds-space-20);
+  height: var(--ds-space-20);
   filter: brightness(.36) saturate(.75);
 }
 
 .whyTile h3 {
-  min-height: 92px;
+  min-height: var(--ds-space-24);
   padding: var(--ds-space-6);
   display: grid;
   place-items: center;
@@ -168,11 +198,11 @@
 }
 
 .contentsPanel {
-  min-height: 650px;
+  min-height: var(--ds-panel-height-lg);
   display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(18rem, 1fr);
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
   overflow: hidden;
-  border-radius: 0 calc(var(--ds-space-20) * 2) 0 var(--ds-space-12);
+  border-radius: 0 var(--ds-radius-feature) 0 var(--ds-radius-lg);
 }
 
 .contentsCopy {
@@ -183,17 +213,6 @@
   gap: var(--ds-space-12);
 }
 
-.visuallyHiddenHeading {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-}
-
 .contentsList {
   margin: 0;
   padding: 0;
@@ -202,14 +221,14 @@
 
 .contentsList li {
   position: relative;
-  min-height: 104px;
+  min-height: calc(var(--ds-space-24) + var(--ds-space-2));
   padding: var(--ds-space-5) var(--ds-space-6) var(--ds-space-5) var(--ds-space-10);
   display: flex;
   align-items: center;
   border-bottom: 1px solid var(--ds-color-border);
   color: var(--ds-color-text);
   font-family: var(--ds-font-serif);
-  font-size: clamp(1.65rem, 2.2vw, 2.25rem);
+  font-size: var(--ds-text-3xl);
   font-weight: 300;
   line-height: var(--ds-leading-heading);
   letter-spacing: var(--ds-tracking-tight);
@@ -233,7 +252,7 @@
   position: relative;
   min-height: 100%;
   overflow: hidden;
-  border-radius: calc(var(--ds-space-20) * 2) 0 0 calc(var(--ds-space-20) * 2);
+  border-radius: var(--ds-radius-feature) 0 0 var(--ds-radius-feature);
 }
 
 .contentsArtwork img {
@@ -242,11 +261,11 @@
 
 .control {
   position: relative;
-  min-height: 650px;
+  min-height: var(--ds-panel-height-lg);
   display: flex;
   align-items: center;
   overflow: hidden;
-  border-radius: calc(var(--ds-space-20) * 2) 0 calc(var(--ds-space-20) * 2) 0;
+  border-radius: var(--ds-radius-feature) 0 var(--ds-radius-feature) 0;
 }
 
 .controlArtwork {
@@ -273,11 +292,11 @@
 }
 
 .controlInner h2 {
-  width: min(100%, 46rem);
+  width: min(100%, var(--ds-measure-heading));
 }
 
 .controlInner > p:last-child {
-  width: min(100%, 35rem);
+  width: min(100%, var(--ds-measure-body));
   font-size: var(--ds-text-xl);
 }
 
@@ -287,11 +306,11 @@
 
 .closingCard {
   position: relative;
-  min-height: 620px;
+  min-height: calc(var(--ds-panel-height-md) + var(--ds-space-24) + var(--ds-space-6));
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(28rem, .9fr);
+  grid-template-columns: minmax(0, 1fr) minmax(var(--ds-measure-summary), .9fr);
   overflow: hidden;
-  border-radius: 0 calc(var(--ds-space-20) * 2) 0 var(--ds-space-12);
+  border-radius: 0 var(--ds-radius-feature) 0 var(--ds-radius-lg);
 }
 
 .closingCopy {
@@ -306,40 +325,17 @@
 }
 
 .closingCopy h2 {
-  max-width: 39rem;
+  max-width: var(--ds-measure-display);
 }
 
 .closingReports {
   position: relative;
-  min-height: 620px;
+  min-height: calc(var(--ds-panel-height-md) + var(--ds-space-24) + var(--ds-space-6));
   background: var(--ds-color-sage-100);
 }
 
-.closingSheet {
-  position: absolute;
-  overflow: hidden;
-  background: var(--ds-color-surface);
-  box-shadow: var(--ds-shadow-artwork);
-}
-
-.closingSheet img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.closingSheetRear {
-  width: 84%;
-  top: 8%;
-  left: -2%;
-  transform: rotate(-2deg);
-}
-
-.closingSheetFront {
-  width: 66%;
-  right: 0;
-  bottom: -12%;
-  transform: rotate(1deg);
+.closingArtwork {
+  object-fit: cover;
 }
 
 @media (max-width: 900px) {
@@ -385,7 +381,7 @@
   }
 
   .whyTile:nth-child(2) {
-    border-radius: 0 var(--ds-space-12) 0 0;
+    border-radius: 0 var(--ds-radius-lg) 0 0;
   }
 
   .whyTile:last-child {
@@ -452,12 +448,8 @@
     padding: calc(var(--ds-space-6) + var(--ds-space-1)) calc(var(--ds-space-6) + var(--ds-space-1)) var(--ds-space-12);
   }
 
-  .heroHeading {
-    gap: var(--ds-space-6);
-  }
-
   .heroTitle {
-    font-size: clamp(2.75rem, 13vw, 3.8rem);
+    font-size: var(--ds-text-4xl);
   }
 
   .heroDescription p,
@@ -470,13 +462,20 @@
     min-height: 96vw;
   }
 
-  .reportSheetRear {
+  .heroReportStack .reportSheetRear {
+    top: 12%;
+    left: 14%;
     width: 78%;
-    left: 4%;
   }
 
-  .reportSheetFront {
-    width: 62%;
+  .heroReportStack .reportSheetFront {
+    top: 38%;
+    left: 28%;
+    width: 68%;
+  }
+
+  .processReportStack .reportSheet {
+    border-radius: var(--ds-radius-md);
   }
 
   .sectionHeading,
@@ -495,14 +494,14 @@
   }
 
   .whyTileIcon {
-    width: 64px;
-    height: 64px;
+    width: var(--ds-space-16);
+    height: var(--ds-space-16);
   }
 
   .whyTile h3 {
     min-height: 82px;
     padding: var(--ds-space-4) var(--ds-space-2);
-    font-size: 1.25rem;
+    font-size: var(--ds-text-xl);
   }
 
   .contentsCopy {
@@ -513,7 +512,7 @@
   .contentsList li {
     min-height: 92px;
     padding: var(--ds-space-4) 0 var(--ds-space-4) var(--ds-space-8);
-    font-size: 1.5rem;
+    font-size: var(--ds-text-2xl);
   }
 
   .contentsArtwork {

@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { SiteCta, SiteFooter, SiteNavigation } from './components/site-chrome.jsx';
 import { SectionLabel } from './components/website-sections.jsx';
-import { Heading, Surface, Text } from './design-system/primitives.jsx';
+import { Heading, Stack, Surface, Text, VisuallyHidden } from './design-system/primitives.jsx';
 import styles from './YourThreadPage.module.css';
 
 const WHY_ITEMS = [
@@ -34,25 +34,86 @@ const THREAD_CONTENTS = [
   'Future assessments, reviews and care plans you choose to add',
 ];
 
+const REPORT_STACKS = {
+  hero: {
+    rear: {
+      src: '/index-3419-hero-report.png',
+      width: 1414,
+      height: 1402,
+      alt: "The child's own perspective page from an Assessment Evidence Report",
+    },
+    front: {
+      src: '/index-3419-hero-profile.png',
+      width: 1226,
+      height: 1498,
+      alt: 'Clinical Assessment Profile cover',
+    },
+  },
+  process: {
+    rear: {
+      src: '/index-3419-process-page-6.png',
+      width: 1400,
+      height: 1138,
+      alt: 'Cross-source view from an Assessment Evidence Report',
+    },
+    front: {
+      src: '/index-3419-hero-report.png',
+      width: 1414,
+      height: 1402,
+      alt: "The child's own perspective page from an Assessment Evidence Report",
+    },
+  },
+};
+
+function ReportStack({ variant = 'hero', decorative = false, priority = false }) {
+  const artwork = REPORT_STACKS[variant];
+  const variantClass = variant === 'process' ? styles.processReportStack : styles.heroReportStack;
+
+  return (
+    <div className={`${styles.reportStack} ${variantClass}`} aria-hidden={decorative || undefined}>
+      <div className={`${styles.reportSheet} ${styles.reportSheetRear}`}>
+        <Image
+          src={artwork.rear.src}
+          width={artwork.rear.width}
+          height={artwork.rear.height}
+          priority={priority}
+          sizes="(max-width: 620px) 82vw, (max-width: 900px) 94vw, 670px"
+          alt={decorative ? '' : artwork.rear.alt}
+        />
+      </div>
+      <div className={`${styles.reportSheet} ${styles.reportSheetFront}`}>
+        <Image
+          src={artwork.front.src}
+          width={artwork.front.width}
+          height={artwork.front.height}
+          priority={priority}
+          sizes="(max-width: 620px) 82vw, (max-width: 900px) 96vw, 688px"
+          alt={decorative ? '' : artwork.front.alt}
+        />
+      </div>
+    </div>
+  );
+}
+
 function ThreadHero() {
   return (
     <section className={styles.hero} aria-labelledby="your-thread-title">
       <div className={styles.heroGrid}>
         <Surface className={styles.heroCopy}>
-          <div className={styles.heroHeading}>
+          <Stack gap={8}>
             <SectionLabel>YOUR THREAD</SectionLabel>
             <Heading as="h1" size="display" className={styles.heroTitle} id="your-thread-title">
               One record.<br />Built with you.<br /><span>Growing with your child.</span>
             </Heading>
-          </div>
-          <div className={styles.heroDescription}>
-            <Text size="lg" tone="muted">
+          </Stack>
+          <Stack gap={6} className={styles.heroDescription}>
+            <Text size="xl" tone="muted">
               Every report. Every questionnaire. Every assessment. Every review. Every milestone.
             </Text>
-            <Text size="lg" tone="muted">
+            <Text size="xl" tone="muted">
               Together they become your child&apos;s Thread, so you are never starting from scratch again.
             </Text>
-          </div>
+          </Stack>
         </Surface>
 
         <div className={styles.heroMedia}>
@@ -64,24 +125,7 @@ function ThreadHero() {
             sizes="(max-width: 900px) calc(100vw - 32px), 715px"
             alt="Soft blue, green and cream watercolour threads"
           />
-          <div className={`${styles.reportSheet} ${styles.reportSheetRear}`}>
-            <Image
-              src="/index-3419-hero-report.png"
-              width={1414}
-              height={1402}
-              priority
-              alt="The child's own perspective page from an Assessment Evidence Report"
-            />
-          </div>
-          <div className={`${styles.reportSheet} ${styles.reportSheetFront}`}>
-            <Image
-              src="/index-3419-hero-profile.png"
-              width={1226}
-              height={1498}
-              priority
-              alt="Clinical Assessment Profile cover"
-            />
-          </div>
+          <ReportStack priority />
         </div>
       </div>
     </section>
@@ -118,9 +162,9 @@ function ContentsSection() {
       <Surface className={styles.contentsPanel}>
         <div className={styles.contentsCopy}>
           <SectionLabel>WHAT GOES INTO YOUR THREAD</SectionLabel>
-          <Heading as="h2" size="section" className={styles.visuallyHiddenHeading} id="contents-title">
+          <VisuallyHidden as="h2" id="contents-title">
             What goes into your Thread
-          </Heading>
+          </VisuallyHidden>
           <ul className={styles.contentsList}>
             {THREAD_CONTENTS.map((item) => <li key={item}>{item}</li>)}
           </ul>
@@ -161,12 +205,14 @@ function ClosingSection() {
           <SiteCta label="Start assessment preparation" href="/#pricing" />
         </div>
         <div className={styles.closingReports} aria-hidden="true">
-          <div className={`${styles.closingSheet} ${styles.closingSheetRear}`}>
-            <Image src="/index-3419-hero-report.png" width={1414} height={1402} alt="" />
-          </div>
-          <div className={`${styles.closingSheet} ${styles.closingSheetFront}`}>
-            <Image src="/index-3419-hero-profile.png" width={1226} height={1498} alt="" />
-          </div>
+          <Image
+            className={styles.closingArtwork}
+            src="/index-3419-workspace-bg.jpg"
+            fill
+            sizes="(max-width: 900px) calc(100vw - 32px), 650px"
+            alt=""
+          />
+          <ReportStack variant="process" decorative />
         </div>
       </Surface>
     </section>
