@@ -106,7 +106,7 @@ function ThreadHero() {
               One record.<br />Built with you.<br /><span>Growing with your child.</span>
             </Heading>
           </Stack>
-          <Stack gap={6} className={styles.heroDescription}>
+          <Stack gap={6} className={`${styles.heroDescription} hero-supporting-copy`}>
             <Text size="xl" tone="muted">
               Every report. Every questionnaire. Every assessment. Every review. Every milestone.
             </Text>

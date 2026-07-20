@@ -48,11 +48,14 @@
   --ds-text-xs: 0.75rem;
   --ds-text-sm: 0.875rem;
   --ds-text-md: 1rem;
+  --ds-text-body: 1.09375rem;
   --ds-text-lg: 1.125rem;
   --ds-text-xl: 1.25rem;
   --ds-text-2xl: 1.5rem;
   --ds-text-3xl: clamp(1.75rem, 3vw, 2.5rem);
   --ds-text-4xl: clamp(2.25rem, 5vw, 4.375rem);
+  --ds-text-page-title: clamp(2.625rem, calc(2rem + 2.7vw), 4.0625rem);
+  --ds-text-section-title: clamp(2.25rem, calc(2rem + 1.05vw), 2.8125rem);
   --ds-text-modal-title: 1.875rem;
   --ds-text-modal-title-compact: 1.1875rem;
   --ds-leading-tight: 1.08;
@@ -132,7 +135,7 @@
   --ds-icon-button-padding-compact: 0.6875rem;
   --ds-icon-size-md: var(--ds-space-5);
   --ds-badge-padding: 0.4rem 0.7rem;
-  --ds-text-label: 1.1rem;
+  --ds-text-label: var(--ds-text-body);
   --ds-text-nav-compact: 1.0625rem;
   --ds-modal-width: 42.5rem;
   --ds-modal-header-height: 5.75rem;

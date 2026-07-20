@@ -167,7 +167,7 @@ export function HowEvidenceStory({ titleId = 'evidence-title' }) {
         </div>
       </div>
       <article className="how-v2-evidence-copy">
-        <h2 id={titleId}>Evidence across your child&apos;s life.</h2>
+        <p className="how-v2-evidence-title" id={titleId}>Evidence across your child&apos;s life.</p>
         <div className="how-v2-evidence-details">
           <ul>
             {EVIDENCE_ITEMS.map((item) => <li key={item}>{item}</li>)}
@@ -197,7 +197,7 @@ export function HowClosingSection({
   return (
     <div className="how-v2-closing">
       <section className="how-v2-final" aria-labelledby={titleId}>
-        <h2 id={titleId}>Prepare with the<br />complete picture.</h2>
+        <h1 id={titleId}>Prepare with the<br />complete picture.</h1>
         {showSampleReport ? (
           <div className="home-v2-hero-actions">
             {primaryAction ?? <SiteCta label={ctaLabel} />}

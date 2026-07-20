@@ -35,7 +35,6 @@
 
 .heroDescription {
   width: min(100%, var(--ds-measure-summary));
-  padding-right: var(--ds-space-10);
 }
 
 .heroMedia {
@@ -160,10 +159,6 @@
     justify-content: flex-start;
     gap: var(--ds-space-24);
     border-radius: 0 0 var(--ds-space-16) 0;
-  }
-
-  .heroDescription {
-    padding-right: 0;
   }
 
   .heroMedia {

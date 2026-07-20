@@ -28,6 +28,12 @@ Do not use primary green for ordinary body copy. Use it for headings, labels, st
 
 ## Typography
 
+### Page titles
+
+Every public-page `h1` uses `var(--ds-text-page-title)`: a shared fluid scale from `42px` on narrow mobile screens to `65px` on desktop. At any given viewport, all page titles resolve to the same size.
+
+Every visible main-content `h2` uses `var(--ds-text-section-title)`: a shared proportional scale from approximately `36px` on narrow mobile screens to `45px` on desktop, paired with `var(--ds-leading-tight)` (`1.08`). At any given viewport, all section titles resolve to the same size and line height. Dialog headings remain on their dedicated modal scale.
+
 ### Display headings
 
 - Family: `var(--serif)` (Fraunces)
@@ -47,7 +53,7 @@ Use this style for body copy and short supporting titles such as:
 
 | Size | Line height |
 | --- | --- |
-| `17.5px` | `26px` |
+| `var(--ds-text-body)` (`17.5px`) | `26px` |
 
 Additional properties:
 
@@ -103,7 +109,7 @@ Hero copy panels retain their existing fixed or minimum heights. Padding is cont
 | Tablet, up to 900px | `var(--ds-space-10)` | `var(--ds-space-16)` |
 | Mobile, up to 620px | `calc(var(--ds-space-6) + var(--ds-space-1))` | `var(--ds-space-12)` |
 
-Hero descriptions receive `var(--ds-space-2)` of left padding. This inset applies to the description only, not headings or CTA groups.
+Hero descriptions use the shared `hero-supporting-copy` class and receive `var(--ds-space-10)` of right padding. Shared card heroes also receive `var(--ds-space-2)` of left padding. These insets apply to the description only, not headings or CTA groups.
 
 ## Pricing notes
 
@@ -130,6 +136,8 @@ Responsive values intentionally reduce the gap while preserving clear section se
 ## Buttons and CTAs
 
 Use the shared `Button` component from `src/design-system/components.jsx`.
+
+Primary and outlined CTA labels use the shared body font size of `17.5px`. Control-specific line heights, padding, and minimum heights remain unchanged.
 
 For existing outlined website actions:
 

@@ -182,8 +182,8 @@ h1,
 .important-label {
   margin: 0;
   color: var(--primary);
-  font-size: 17.6px;
-  line-height: 17.6px;
+  font-size: var(--ds-text-body);
+  line-height: var(--ds-text-body);
   font-weight: 400;
 }
 
@@ -475,8 +475,8 @@ h1,
   display: flex;
   flex-direction: column;
   gap: 16px;
-  font-size: 17.6px;
-  line-height: 17.6px;
+  font-size: var(--ds-text-body);
+  line-height: var(--ds-text-body);
 }
 
 .footer-column h3 {
@@ -929,7 +929,7 @@ h1,
 .affordability-card p {
   margin: 0;
   color: var(--text-secondary);
-  font-size: 17.6px;
+  font-size: var(--ds-text-body);
   line-height: normal;
 }
 
@@ -942,8 +942,8 @@ h1,
 .pricing-v2-kicker {
   margin: 0;
   color: var(--primary);
-  font-size: 17.6px;
-  line-height: 17.6px;
+  font-size: var(--ds-text-body);
+  line-height: var(--ds-text-body);
 }
 
 .pricing-v2-hero,
@@ -1051,8 +1051,8 @@ h1,
 
 .pricing-v2-guidelines p {
   color: var(--primary);
-  font-size: 17.6px;
-  line-height: 17.6px;
+  font-size: var(--ds-text-body);
+  line-height: var(--ds-text-body);
 }
 
 .pricing-v2-guidelines h2 {
@@ -1235,8 +1235,8 @@ h1,
   margin: 20px 0 0;
   padding-right: 40px;
   color: var(--text-secondary);
-  font-size: 17.6px;
-  line-height: 17.6px;
+  font-size: var(--ds-text-body);
+  line-height: var(--ds-text-body);
 }
 
 .pricing-v2-final {
@@ -1406,8 +1406,8 @@ h1,
   align-self: flex-start;
   margin-top: 16px;
   color: var(--primary);
-  font-size: 17.6px;
-  line-height: 17.6px;
+  font-size: var(--ds-text-body);
+  line-height: var(--ds-text-body);
   text-decoration: underline;
   text-decoration-color: transparent;
   text-underline-offset: .22em;
@@ -1724,9 +1724,10 @@ h1,
   list-style: none;
 }
 
-.home-v2-included .home-v2-pricing-label {
+.home-v2-included .home-v2-pricing-label,
+.pricing-page-included .home-v2-pricing-label {
   margin-top: 0;
-  color: var(--heading);
+  color: var(--primary);
 }
 
 .home-v2-price-card {
@@ -3057,7 +3058,7 @@ h1,
   background: var(--surface);
 }
 
-.how-v2-evidence-copy h2 {
+.how-v2-evidence-title {
   margin: 0;
   color: var(--primary);
   font-size: 20px;
@@ -3183,8 +3184,8 @@ h1,
 
 .how-v2-disclaimer p:first-child {
   color: var(--primary);
-  font-size: 17.6px;
-  line-height: 17.6px;
+  font-size: var(--ds-text-body);
+  line-height: var(--ds-text-body);
 }
 
 .how-v2-disclaimer p:last-child {
@@ -3222,14 +3223,13 @@ h1,
   background: var(--primary-light);
 }
 
-.how-v2-final h2 {
+.how-v2-final h1 {
   margin: 0;
   color: var(--heading);
   font-family: var(--serif);
-  font-size: 70px;
   font-weight: 300;
   font-variation-settings: 'SOFT' 0, 'WONK' 1;
-  line-height: 77.62px;
+  line-height: var(--ds-leading-tight);
   letter-spacing: -2.218px;
 }
 
@@ -3416,7 +3416,7 @@ h1,
     border-radius: 0 64px 0 0;
   }
 
-  .how-v2-final h2 { font-size: clamp(44px, 8vw, 62px); line-height: 1.05; }
+  .how-v2-final h1 { line-height: var(--ds-leading-tight); }
 }
 
 @media (max-width: 620px) {
@@ -3634,8 +3634,8 @@ h1,
 
 .home-v2-guideline-heading a {
   margin-top: 16px;
-  font-size: 17.6px;
-  line-height: 17.6px;
+  font-size: var(--ds-text-body);
+  line-height: var(--ds-text-body);
 }
 
 .home-v2-guideline-copy {
@@ -4201,7 +4201,7 @@ h1,
 
 .home-v2-problem-list li {
   color: var(--primary);
-  font-size: 20px;
+  font-size: 25px;
   line-height: normal;
   letter-spacing: 0;
 }
@@ -4446,6 +4446,8 @@ h1,
   .home-v2-problem-story,
   .home-v2-problem-list { padding: 64px 28px; }
 
+  .home-v2-problem-list li { font-size: 22px; }
+
   .home-v2-output-intro,
   .home-v2-how-intro,
   .home-v2-arrive-intro,
@@ -4651,6 +4653,7 @@ h1,
 
   .home-v2-problem-story { gap: 56px; }
   .home-v2-problem-list { gap: 28px; }
+  .home-v2-problem-list li { font-size: 20px; }
   .home-v2-process-steps { gap: 28px; }
 
   .home-v2-report { padding: 48px 24px 0; }
@@ -5078,13 +5081,6 @@ h1,
   background: var(--primary-light);
 }
 
-.pricing-page-included h2 {
-  margin: 0;
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 20px;
-}
-
 .pricing-page-included ul {
   margin: var(--ds-space-10) 0 0;
   padding-left: 0;
@@ -5221,7 +5217,7 @@ h1,
 
 .pricing-page-notice p:first-child {
   color: var(--primary);
-  font-size: 17.6px;
+  font-size: var(--ds-text-body);
   line-height: 1;
 }
 
@@ -5476,6 +5472,10 @@ h1,
   padding-left: var(--ds-space-2);
 }
 
+.hero-supporting-copy {
+  padding-right: var(--ds-space-10);
+}
+
 .home-v2-guideline,
 .home-v2-intro {
   height: auto;
@@ -5714,6 +5714,7 @@ h1,
 .home-v2-benefit-card p,
 .home-v2-included p,
 .home-v2-included-list,
+.home-v2-faq-list summary,
 .home-v2-faq-list details > p,
 .home-v2-important > div > p:last-child,
 .home-v2-footer-message p,
@@ -5727,16 +5728,22 @@ h1,
 .pricing-page-included > p,
 .pricing-page-assessment-copy > p,
 .pricing-page-notice p:last-child,
+.pricing-page-faq-list summary,
 .pricing-page-faq-list details > p {
-  font-size: 17.5px;
+  font-size: var(--ds-text-body);
   line-height: 26px;
+}
+
+.page-shell .cta,
+.page-shell .site-secondary-action {
+  font-size: var(--ds-text-body);
 }
 
 p.how-v2-pullout {
   margin: 0;
   color: var(--primary);
   font-family: var(--sans);
-  font-size: 17.5px;
+  font-size: var(--ds-text-body);
   font-style: normal;
   font-weight: 400;
   line-height: 26px;
@@ -5749,10 +5756,10 @@ p.how-v2-pullout--body {
 
 .home-v2 .home-v2-hero .home-v2-hero-bottom > p,
 .home-v2-process-step h3,
-.how-v2-evidence-copy h2,
+.how-v2-evidence-title,
 .home-v2-report-title,
 p.how-v2-pullout {
-  font-size: 17.5px;
+  font-size: var(--ds-text-body);
   line-height: 26px;
 }
 
@@ -5765,13 +5772,14 @@ p.how-v2-pullout {
   color: var(--text-secondary);
 }
 
-.home-v2-included .home-v2-pricing-label {
-  font-size: 17.5px;
+.home-v2-included .home-v2-pricing-label,
+.pricing-page-included .home-v2-pricing-label {
+  font-size: var(--ds-text-body);
   line-height: 26px;
 }
 
 .home-v2-benefit-card p {
-  font-size: 17.5px;
+  font-size: var(--ds-text-body);
   line-height: 26px;
 }
 
@@ -5886,8 +5894,6 @@ p.how-v2-pullout {
   align-items: center;
   justify-content: space-between;
   gap: var(--ds-space-6);
-  font-size: 20px;
-  line-height: normal;
 }
 
 .pricing-page-faq-list summary::after {
@@ -6137,7 +6143,7 @@ p.how-v2-pullout {
   align-self: start;
   justify-self: end;
   object-fit: contain;
-  border-radius: var(--ds-radius-lg);
+  border-radius: var(--ds-radius-lg) var(--ds-radius-lg) 0 0;
 }
 
 .home-v2-report--split {
@@ -6234,4 +6240,15 @@ p.how-v2-pullout {
     margin-bottom: calc(-50% - var(--ds-space-1)) !important;
     clip-path: inset(0 0 50% 0);
   }
+}
+
+/* Every public page uses the same fluid primary-heading scale. */
+.page-shell h1 {
+  font-size: var(--ds-text-page-title);
+}
+
+/* Main section headings share one proportional scale, capped at 45px. */
+.page-shell main h2 {
+  font-size: var(--ds-text-section-title);
+  line-height: var(--ds-leading-tight);
 }

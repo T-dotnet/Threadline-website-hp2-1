@@ -51,7 +51,7 @@ export function HeroSection({
         <div className="hero-copy">
           <h1>{title} <span className="hero-highlight">{highlight}</span></h1>
           <div className="home-v2-hero-bottom">
-            <p>{description}</p>
+            <p className="hero-supporting-copy">{description}</p>
             <div className="home-v2-hero-actions">
               {primaryAction ?? <SiteCta label={ctaLabel} href={ctaHref} />}
               {showSampleReport ? <SampleReportButton /> : null}

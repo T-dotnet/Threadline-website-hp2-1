@@ -62,6 +62,17 @@
   gap: var(--ds-space-8);
 }
 
+.title {
+  font-size: var(--ds-text-section-title);
+  line-height: var(--ds-leading-tight);
+}
+
+.bodyCopy,
+.form label {
+  font-size: var(--ds-text-body);
+  line-height: 26px;
+}
+
 .intro p {
   width: min(100%, var(--ds-measure-prose));
 }
@@ -131,7 +142,7 @@
   border-color: var(--text-secondary);
   color: var(--heading);
   background: var(--workspace);
-  font: 400 var(--ds-text-md)/var(--ds-leading-body) var(--sans);
+  font: 400 var(--ds-text-body)/26px var(--sans);
 }
 
 .formControl:not(textarea) {
@@ -160,6 +171,10 @@
   padding-top: var(--ds-space-4);
   display: flex;
   align-items: flex-start;
+}
+
+.actionButton {
+  font-size: var(--ds-text-body);
 }
 
 .status {

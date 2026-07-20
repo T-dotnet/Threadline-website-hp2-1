@@ -67,7 +67,7 @@ function PricingOffer() {
       </article>
       <article className="pricing-page-included">
         <div>
-          <h2>Included</h2>
+          <p className="home-v2-pricing-label">Included</p>
           <ul>{PRICING_INCLUDED_ITEMS.map((item) => <li key={item}>{item}</li>)}</ul>
         </div>
         <p>No subscription. No hidden fees or taxes.<br />Clinician appointment fees are separate.</p>

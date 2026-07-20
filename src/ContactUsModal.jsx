@@ -87,11 +87,11 @@ export default function ContactUsButton({
           <>
             <div className={styles.confirmationContent}>
               <div className={styles.confirmationCopy}>
-                <Heading ref={confirmationHeadingRef} as="h2" size="display" id="contact-modal-title" tabIndex={-1}>Thanks,<br />we&apos;ve received your<br />message.</Heading>
-              <Text size="lg" tone="muted">We will reply as soon as we can.</Text>
+                <Heading ref={confirmationHeadingRef} as="h2" size="display" className={styles.title} id="contact-modal-title" tabIndex={-1}>Thanks,<br />we&apos;ve received your<br />message.</Heading>
+              <Text size="lg" tone="muted" className={styles.bodyCopy}>We will reply as soon as we can.</Text>
               </div>
               <div className={styles.confirmationAction}>
-                <Button onClick={closeModal}>Close</Button>
+                <Button className={styles.actionButton} onClick={closeModal}>Close</Button>
               </div>
             </div>
             <div className={styles.confirmationArt} aria-hidden="true">
@@ -115,8 +115,8 @@ export default function ContactUsButton({
             </IconButton>
 
             <div className={styles.intro}>
-              <Heading as="h2" size="display" id="contact-modal-title">We&apos;re here to listen to your story.</Heading>
-              <Text size="lg" tone="muted">Whether you have questions about the assessment package or just want to learn more about our process, our team is here to support you.</Text>
+              <Heading as="h2" size="display" className={styles.title} id="contact-modal-title">We&apos;re here to listen to your story.</Heading>
+              <Text size="lg" tone="muted" className={styles.bodyCopy}>Whether you have questions about the assessment package or just want to learn more about our process, our team is here to support you.</Text>
             </div>
 
             <div className={styles.formColumn}>
@@ -148,7 +148,7 @@ export default function ContactUsButton({
                 </FormField>
 
                 <div className={styles.submitRow}>
-                  <Button type="submit">Send Message</Button>
+                  <Button className={styles.actionButton} type="submit">Send Message</Button>
                 </div>
                 {submissionStatus ? (
                   <Text size="sm" tone="muted" className={styles.status} aria-live="polite">{submissionStatus}</Text>

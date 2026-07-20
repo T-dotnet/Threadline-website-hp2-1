@@ -52,7 +52,7 @@ Opening the viewer focuses the Close button, but the key handler only covers Esc
 
 ### Medium — Repeated normal-size text misses 4.5:1 contrast
 
-The accent token `#108560` has 4.29:1 contrast against the canvas and is used for 17.6px links and labels. Muted text `#6b7280` has 4.49:1 against the canvas and is used for 16.5px body/disclaimer copy. Both are below the 4.5:1 minimum for normal text.
+The accent token `#108560` has 4.29:1 contrast against the canvas and is used for 17.5px links and labels. Muted text `#6b7280` has 4.49:1 against the canvas and is used for 16.5px body/disclaimer copy. Both are below the 4.5:1 minimum for normal text.
 
 - WCAG: 1.4.3 Contrast (Minimum)
 - Code: `src/design-system/tokens.css:5`, `src/design-system/tokens.css:14`, `src/design-system/tokens.css:25`, `src/design-system/tokens.css:29`, `src/design-system/tokens.css:32`
