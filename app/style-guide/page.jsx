@@ -18,6 +18,7 @@ import {
   Text,
   TopNavigation,
 } from '../../src/design-system/index.js';
+import { DS_COLORS, DS_RADII, DS_SPACING } from '../../src/design-system/token-values.js';
 import '../../src/design-system/style-guide.css';
 
 export const metadata = {
@@ -26,31 +27,31 @@ export const metadata = {
 };
 
 const colours = [
-  ['Forest 900', '--ds-color-forest-900', '#0b4636'],
-  ['Forest 700', '--ds-color-forest-700', '#108560'],
-  ['Forest 200', '--ds-color-forest-200', '#8acdb7'],
-  ['Forest 50', '--ds-color-forest-50', '#e6f4ed'],
-  ['Canvas', '--ds-color-canvas', '#f5f7f6'],
-  ['Surface', '--ds-color-surface', '#ffffff'],
-  ['Wash blue', '--ds-color-wash-blue', '#dfeef1'],
-  ['Wash cream', '--ds-color-wash-cream', '#f4eee2'],
+  ['Forest 900', '--ds-color-forest-900', DS_COLORS.forest900],
+  ['Forest 700', '--ds-color-forest-700', DS_COLORS.forest700],
+  ['Forest 200', '--ds-color-forest-200', DS_COLORS.forest200],
+  ['Forest 50', '--ds-color-forest-50', DS_COLORS.forest50],
+  ['Canvas', '--ds-color-canvas', DS_COLORS.canvas],
+  ['Surface', '--ds-color-surface', DS_COLORS.surface],
+  ['Wash blue', '--ds-color-wash-blue', DS_COLORS.washBlue],
+  ['Wash cream', '--ds-color-wash-cream', DS_COLORS.washCream],
 ];
 
 const spacing = [
-  ['2', '--ds-space-2', '8px'],
-  ['4', '--ds-space-4', '16px'],
-  ['6', '--ds-space-6', '24px'],
-  ['8', '--ds-space-8', '32px'],
-  ['12', '--ds-space-12', '48px'],
-  ['16', '--ds-space-16', '64px'],
-  ['24', '--ds-space-24', '96px'],
+  ['2', '--ds-space-2', DS_SPACING[2]],
+  ['4', '--ds-space-4', DS_SPACING[4]],
+  ['6', '--ds-space-6', DS_SPACING[6]],
+  ['8', '--ds-space-8', DS_SPACING[8]],
+  ['12', '--ds-space-12', DS_SPACING[12]],
+  ['16', '--ds-space-16', DS_SPACING[16]],
+  ['24', '--ds-space-24', DS_SPACING[24]],
 ];
 
 const cornerStyles = [
-  ['Small', '--ds-radius-sm', '8px'],
-  ['Medium', '--ds-radius-md', '16px'],
-  ['Large', '--ds-radius-lg', '32px'],
-  ['Organic', '--ds-radius-organic', '0 64px 0 0'],
+  ['Small', '--ds-radius-sm', DS_RADII.small],
+  ['Medium', '--ds-radius-md', DS_RADII.medium],
+  ['Large', '--ds-radius-lg', DS_RADII.large],
+  ['Organic', '--ds-radius-organic', DS_RADII.organic],
 ];
 
 const guideLinks = [

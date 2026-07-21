@@ -300,7 +300,7 @@
   }
 }
 
-@media (max-width: 620px) {
+@media (max-width: 680px) {
   .siteHeader {
     height: 76px;
     min-height: 76px;
@@ -320,7 +320,10 @@
   }
 
   .navLogin {
+    height: var(--ds-control-height-sm);
     min-width: 76px;
+    min-height: var(--ds-control-height-sm);
+    padding-block: 0;
     padding-inline: var(--ds-space-4);
   }
 

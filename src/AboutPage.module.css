@@ -3,56 +3,22 @@
   background: var(--ds-color-canvas);
 }
 
-.hero {
-  width: min(calc(100% - var(--ds-space-20)), var(--ds-content-wide));
-  margin-inline: auto;
-}
-
-.heroGrid {
-  min-height: var(--ds-panel-height-lg);
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--ds-space-5);
-}
-
 .heroCopy {
-  min-width: 0;
-  padding: var(--ds-space-12) var(--ds-space-12) var(--ds-space-24);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  overflow: hidden;
-  border-radius: 0 0 var(--ds-radius-feature) 0;
-}
-
-.heroTitle {
-  max-width: var(--ds-measure-display);
-}
-
-.heroTitle span {
-  color: var(--ds-color-accent);
-}
-
-.heroDescription {
-  width: min(100%, var(--ds-measure-summary));
+  border-bottom-right-radius: var(--ds-radius-feature);
 }
 
 .heroMedia {
-  position: relative;
-  min-width: 0;
-  min-height: var(--ds-panel-height-lg);
-  overflow: hidden;
-  border-radius: 0 0 0 var(--ds-radius-feature);
+  border-bottom-left-radius: var(--ds-radius-feature);
 }
 
 .heroMedia img {
-  object-fit: cover;
+  object-position: center;
 }
 
 .beliefs {
   width: min(calc(100% - var(--ds-space-20)), var(--ds-content-wide));
   margin-inline: auto;
-  padding-block: calc((var(--ds-space-20) * 2) + var(--ds-space-5));
+  padding-block: calc((var(--ds-space-20) * 2) + var(--ds-space-10));
   overflow: hidden;
   border-radius: 0 var(--ds-radius-feature) 0 0;
 }
@@ -142,28 +108,17 @@
 }
 
 @media (max-width: 900px) {
-  .hero,
   .beliefs,
   .closing {
     width: min(calc(100% - var(--ds-space-8)), var(--ds-content-wide));
   }
 
-  .heroGrid {
-    min-height: 0;
-    grid-template-columns: 1fr;
-  }
-
   .heroCopy {
-    min-height: 0;
-    padding: var(--ds-space-10) var(--ds-space-10) var(--ds-space-16);
-    justify-content: flex-start;
-    gap: var(--ds-space-24);
-    border-radius: 0 0 var(--ds-space-16) 0;
+    border-bottom-right-radius: var(--ds-space-16);
   }
 
   .heroMedia {
-    min-height: min(76vw, calc(var(--ds-panel-height-md) + var(--ds-space-24) + var(--ds-space-6)));
-    border-radius: 0 0 0 var(--ds-space-16);
+    border-bottom-left-radius: var(--ds-space-16);
   }
 
   .beliefs {
@@ -190,24 +145,9 @@
 }
 
 @media (max-width: 620px) {
-  .hero,
   .beliefs,
   .closing {
-    width: calc(100% - var(--ds-space-4));
-  }
-
-  .heroCopy {
-    padding: calc(var(--ds-space-6) + var(--ds-space-1)) calc(var(--ds-space-6) + var(--ds-space-1)) var(--ds-space-12);
-    gap: var(--ds-space-12);
-  }
-
-  .heroDescription {
-    font-size: var(--ds-text-lg);
-    line-height: var(--ds-leading-body);
-  }
-
-  .heroMedia {
-    min-height: 86vw;
+    width: calc(100% - var(--ds-space-8));
   }
 
   .beliefList {

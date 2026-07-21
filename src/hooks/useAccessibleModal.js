@@ -105,7 +105,7 @@ export function useAccessibleModal({
       previousInertStates.forEach(([element, wasInert]) => {
         element.inert = wasInert;
       });
-      triggerRef.current?.focus();
+      triggerRef?.current?.focus();
     };
   }, [dialogRef, initialFocusRef, isOpen, onClose, onKeyDown, triggerRef]);
 }

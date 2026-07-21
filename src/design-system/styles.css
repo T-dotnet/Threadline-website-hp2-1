@@ -344,6 +344,33 @@
   line-height: var(--ds-leading-solid);
 }
 
+.ds-check-list {
+  padding-left: 0;
+  list-style: none;
+}
+
+.ds-check-list li {
+  display: grid;
+  grid-template-columns: var(--ds-space-5) minmax(0, 1fr);
+  align-items: start;
+  gap: var(--ds-space-3);
+}
+
+.ds-check-list li::before {
+  content: "\2713";
+  width: var(--ds-check-size);
+  height: var(--ds-check-size);
+  margin-top: var(--ds-space-1);
+  display: grid;
+  place-items: center;
+  border: var(--ds-check-border-width) solid var(--ds-color-accent);
+  border-radius: 50%;
+  color: var(--ds-color-accent);
+  font-size: var(--ds-check-font-size);
+  font-weight: 700;
+  line-height: var(--ds-leading-solid);
+}
+
 .ds-card {
   height: 100%;
   padding: clamp(var(--ds-space-6), 4vw, var(--ds-space-8));

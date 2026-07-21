@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import SampleReportButton from '../SampleReportModal.jsx';
-import { TextLink } from '../design-system/components.jsx';
+import { CheckList, TextLink } from '../design-system/components.jsx';
 import { cx } from '../design-system/primitives.jsx';
 import { SiteCta } from './site-chrome.jsx';
 
@@ -8,10 +8,10 @@ export function SectionLabel({ as: Tag = 'p', className, children }) {
   return <Tag className={cx('home-v2-kicker', className)}>{children}</Tag>;
 }
 
-export function SectionHeading({ label, children, className = '', titleId }) {
+export function SectionHeading({ label, children, className = '', labelClassName, titleId }) {
   return (
     <div className={`home-v2-section-heading ${className}`}>
-      <SectionLabel>{label}</SectionLabel>
+      <SectionLabel className={labelClassName}>{label}</SectionLabel>
       <h2 id={titleId}>{children}</h2>
     </div>
   );
@@ -211,7 +211,7 @@ export function PricingSection({
     <section className="home-v2-pricing" id={id}>
       <article className="home-v2-included">
         <p className="home-v2-pricing-label">Included</p>
-        <ul className="home-v2-included-list">{items.map((item) => <li key={item}>{item}</li>)}</ul>
+        <CheckList className="home-v2-included-list" items={items} />
         <p>{note}<br />{subnote}</p>
       </article>
       <article className="home-v2-price-card">
@@ -225,12 +225,36 @@ export function PricingSection({
   );
 }
 
-export function FaqSection({ items, title = 'Questions families often ask.', label = 'FAQ', titleId = 'home-faq-title' }) {
+export function FaqSection({
+  items,
+  title = 'Questions families often ask.',
+  label = 'FAQ',
+  titleId = 'home-faq-title',
+  sectionClassName = 'home-v2-faq',
+  innerClassName = 'home-v2-faq-inner',
+  headingClassName,
+  labelClassName,
+  listClassName,
+  name = 'home-faq',
+  wrapQuestion = true,
+}) {
   return (
-    <section className="home-v2-faq" aria-labelledby={titleId}>
-      <div className="home-v2-faq-inner">
-        <SectionHeading label={label} titleId={titleId}>{title}</SectionHeading>
-        <DisclosureList items={items} />
+    <section className={sectionClassName} aria-labelledby={titleId}>
+      <div className={innerClassName}>
+        <SectionHeading
+          className={headingClassName}
+          label={label}
+          labelClassName={labelClassName}
+          titleId={titleId}
+        >
+          {title}
+        </SectionHeading>
+        <DisclosureList
+          className={listClassName}
+          items={items}
+          name={name}
+          wrapQuestion={wrapQuestion}
+        />
       </div>
     </section>
   );

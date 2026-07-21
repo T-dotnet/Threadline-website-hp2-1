@@ -74,6 +74,14 @@ export function Badge({ children, className, ...props }) {
   return <span className={cx('ds-badge', className)} {...props}>{children}</span>;
 }
 
+export function CheckList({ items, className, ...props }) {
+  return (
+    <ul className={cx('ds-check-list', className)} {...props}>
+      {items.map((item) => <li key={item}>{item}</li>)}
+    </ul>
+  );
+}
+
 export function Card({ eyebrow, title, children, footer, className, ...props }) {
   return (
     <article className={cx('ds-card', className)} {...props}>

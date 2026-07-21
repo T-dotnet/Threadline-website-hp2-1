@@ -108,7 +108,9 @@
   --ds-layer-modal: 10000;
   --ds-duration-fast: 140ms;
   --ds-duration-base: 220ms;
+  --ds-duration-reveal: 650ms;
   --ds-ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ds-ease-reveal: cubic-bezier(0.22, 1, 0.36, 1);
 
   /* Shared site controls */
   --ds-button-height-sm: 2.5rem;
@@ -136,6 +138,9 @@
   --ds-icon-button-padding-compact: 0.6875rem;
   --ds-icon-size-md: var(--ds-space-5);
   --ds-badge-padding: 0.4rem 0.7rem;
+  --ds-check-size: 1.125rem;
+  --ds-check-font-size: 0.8125rem;
+  --ds-check-border-width: 1.5px;
   --ds-text-label: var(--ds-text-body);
   --ds-text-nav-compact: 1.0625rem;
   --ds-modal-width: 42.5rem;
@@ -205,5 +210,6 @@
   :root {
     --ds-duration-fast: 0ms;
     --ds-duration-base: 0ms;
+    --ds-duration-reveal: 0ms;
   }
 }

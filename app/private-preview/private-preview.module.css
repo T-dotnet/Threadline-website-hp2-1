@@ -45,9 +45,9 @@
 
 .heading {
   max-width: 34rem;
-  font-size: 65px;
-  line-height: 1.109;
-  letter-spacing: -2.06px;
+  font-size: var(--ds-text-page-title);
+  line-height: var(--ds-leading-tight);
+  letter-spacing: var(--ds-tracking-tight);
 }
 
 .description {
@@ -130,12 +130,6 @@
 
   .panel {
     padding: calc(var(--ds-space-6) + var(--ds-space-1)) calc(var(--ds-space-6) + var(--ds-space-1)) var(--ds-space-12);
-  }
-
-  .heading {
-    font-size: clamp(42px, 12vw, 52px);
-    line-height: 1.05;
-    letter-spacing: -1.3px;
   }
 
   .intro {

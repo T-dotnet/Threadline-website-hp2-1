@@ -34,7 +34,7 @@ const ABOUT_POINTS = [
     content: <Text tone="muted">Every report, questionnaire, assessment and review helps tell the story of a child. We call that their Thread.</Text>,
   },
   {
-    title: 'Every part of the story, connected.',
+    title: 'What guides us.',
     content: (
       <ul>
         <li>Families first</li>
@@ -48,17 +48,17 @@ const ABOUT_POINTS = [
 
 function AboutHero() {
   return (
-    <section className={styles.hero} aria-labelledby="about-title">
-      <div className={styles.heroGrid}>
-        <Surface className={styles.heroCopy}>
-          <Heading as="h1" size="display" className={styles.heroTitle} id="about-title">
-            Every child <span>understood</span>.
-          </Heading>
-          <Text size="lg" tone="muted" className={`${styles.heroDescription} hero-supporting-copy`}>
+    <section className="hero" aria-labelledby="about-title">
+      <div className="hero-grid">
+        <div className={`hero-copy ${styles.heroCopy}`}>
+          <h1 id="about-title">
+            Every child <span className="hero-highlight">understood.</span>
+          </h1>
+          <p className="hero-supporting-copy">
             Today we&apos;re focused on ADHD assessment preparation for Australian families. Over time, our vision is to build tools that support understanding and care throughout a child&apos;s neurodevelopmental journey.
-          </Text>
-        </Surface>
-        <div className={styles.heroMedia}>
+          </p>
+        </div>
+        <div className={`hero-media ${styles.heroMedia}`}>
           <Image
             src="/about-hero.jpg"
             fill
@@ -92,7 +92,7 @@ function ClosingSection() {
     <section className={styles.closing} aria-labelledby="about-closing-title">
       <Surface tone="soft" className={styles.closingCard}>
         <Heading as="h2" size="section" id="about-closing-title">
-          We are not trying to change how ADHD is diagnosed. We are helping families and clinicians make the process work better
+          We are not trying to change how ADHD is diagnosed. We are helping families and clinicians make the process work better.
         </Heading>
         <SiteCta className={styles.closingCta} label="Get started" />
       </Surface>

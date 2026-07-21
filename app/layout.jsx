@@ -1,5 +1,6 @@
 import { Frank_Ruhl_Libre, Fraunces, Funnel_Sans } from 'next/font/google';
 import ScrollRevealController from '../src/ScrollRevealController.jsx';
+import { DS_COLORS } from '../src/design-system/token-values.js';
 import '../src/design-system/tokens.css';
 import '../src/design-system/styles.css';
 import '../src/styles.css';
@@ -33,7 +34,7 @@ export const metadata = {
 };
 
 export const viewport = {
-  themeColor: '#f5f7f6',
+  themeColor: DS_COLORS.canvas,
   width: 'device-width',
   initialScale: 1,
 };

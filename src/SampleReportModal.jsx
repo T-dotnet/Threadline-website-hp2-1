@@ -4,7 +4,14 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { SiteAction } from './components/site-actions.jsx';
 import { Button } from './design-system/components.jsx';
-import { CloseIcon } from './design-system/icons.jsx';
+import {
+  ArrowIcon,
+  ChevronIcon,
+  CloseIcon,
+  DownloadIcon,
+  InfoIcon,
+  ShareIcon,
+} from './design-system/icons.jsx';
 import { useAccessibleModal } from './hooks/useAccessibleModal.js';
 
 const REPORT_DOWNLOAD_NAME = 'Threadline-Sample-Assessment-Evidence-Report.html';
@@ -80,50 +87,6 @@ const REPORT_PAGE_EXPLANATIONS = [
     text: 'Records clinician details, completion and optional feedback on the evidence package. Any return of information remains subject to consent and governance.',
   },
 ];
-
-function ArrowIcon({ direction }) {
-  return (
-    <svg aria-hidden="true" viewBox="0 0 24 24">
-      <path d={direction === 'previous' ? 'm15 18-6-6 6-6' : 'm9 6 6 6-6 6'} />
-    </svg>
-  );
-}
-
-function ShareIcon() {
-  return (
-    <svg aria-hidden="true" viewBox="0 0 24 24">
-      <circle cx="18" cy="5" r="2.5" />
-      <circle cx="6" cy="12" r="2.5" />
-      <circle cx="18" cy="19" r="2.5" />
-      <path d="m8.2 10.8 7.6-4.5M8.2 13.2l7.6 4.5" />
-    </svg>
-  );
-}
-
-function DownloadIcon() {
-  return (
-    <svg aria-hidden="true" viewBox="0 0 24 24">
-      <path d="M12 3v12m0 0 4-4m-4 4-4-4M5 20h14" />
-    </svg>
-  );
-}
-
-function InfoIcon() {
-  return (
-    <svg aria-hidden="true" viewBox="0 0 24 24">
-      <circle cx="12" cy="12" r="9" />
-      <path d="M12 11v5M12 8h.01" />
-    </svg>
-  );
-}
-
-function ChevronIcon() {
-  return (
-    <svg aria-hidden="true" viewBox="0 0 24 24">
-      <path d="m7 14 5-5 5 5" />
-    </svg>
-  );
-}
 
 export default function SampleReportButton({ className = '', children = 'View a sample report' }) {
   const [isOpen, setIsOpen] = useState(false);

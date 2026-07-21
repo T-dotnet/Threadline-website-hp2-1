@@ -2,7 +2,8 @@ import Image from 'next/image';
 import ContactUsButton from './ContactUsModal.jsx';
 import SampleReportButton from './SampleReportModal.jsx';
 import { SiteCta, SiteFooter, SiteNavigation } from './components/site-chrome.jsx';
-import { DisclosureList, SectionLabel } from './components/website-sections.jsx';
+import { FaqSection, SectionLabel } from './components/website-sections.jsx';
+import { CheckList } from './design-system/components.jsx';
 import { exploreLinksWithContact, PRICING_INCLUDED_ITEMS } from './content/site-content.js';
 
 const EXPLORE_LINKS = exploreLinksWithContact('#contact');
@@ -68,7 +69,7 @@ function PricingOffer() {
       <article className="pricing-page-included">
         <div>
           <p className="home-v2-pricing-label">Included</p>
-          <ul>{PRICING_INCLUDED_ITEMS.map((item) => <li key={item}>{item}</li>)}</ul>
+          <CheckList items={PRICING_INCLUDED_ITEMS} />
         </div>
         <p>No subscription. No hidden fees or taxes.<br />Clinician appointment fees are separate.</p>
       </article>
@@ -120,20 +121,18 @@ function PreparationNotice() {
 
 function PricingFaq() {
   return (
-    <section className="pricing-page-faq" aria-labelledby="pricing-faq-title">
-      <div className="pricing-page-faq-inner">
-        <header>
-          <SectionLabel className="pricing-page-label">FAQ</SectionLabel>
-          <h2 id="pricing-faq-title">Questions about pricing</h2>
-        </header>
-        <DisclosureList
-          className="pricing-page-faq-list"
-          items={FAQ_ITEMS}
-          name="pricing-faq"
-          wrapQuestion={false}
-        />
-      </div>
-    </section>
+    <FaqSection
+      items={FAQ_ITEMS}
+      title="Questions about pricing"
+      titleId="pricing-faq-title"
+      sectionClassName="pricing-page-faq"
+      innerClassName="pricing-page-faq-inner"
+      headingClassName="pricing-page-faq-heading"
+      labelClassName="pricing-page-label"
+      listClassName="pricing-page-faq-list"
+      name="pricing-faq"
+      wrapQuestion={false}
+    />
   );
 }
 

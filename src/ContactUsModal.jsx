@@ -2,7 +2,6 @@
 
 import Image from 'next/image';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { createPortal } from 'react-dom';
 import {
   Button,
   FormField,
@@ -13,8 +12,8 @@ import {
   Textarea,
 } from './design-system/components.jsx';
 import { Cluster, Heading, Stack, Text } from './design-system/primitives.jsx';
+import { ModalFrame } from './design-system/modal.jsx';
 import { SiteAction } from './components/site-actions.jsx';
-import { useAccessibleModal } from './hooks/useAccessibleModal.js';
 import styles from './ContactUsModal.module.css';
 
 export default function ContactUsButton({
@@ -32,14 +31,6 @@ export default function ContactUsButton({
   const confirmationHeadingRef = useRef(null);
 
   const closeModal = useCallback(() => setIsOpen(false), []);
-
-  useAccessibleModal({
-    dialogRef,
-    initialFocusRef: closeButtonRef,
-    isOpen,
-    onClose: closeModal,
-    triggerRef,
-  });
 
   const openModal = () => {
     const parentMenu = triggerRef.current?.closest('details');
@@ -74,16 +65,18 @@ export default function ContactUsButton({
     }
   };
 
-  const modal = isOpen ? (
-    <div className={styles.backdrop} data-modal-backdrop>
-      <section
-        ref={dialogRef}
-        className={`${styles.dialog}${isSubmitted ? ` ${styles.dialogConfirmation}` : ''}`}
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="contact-modal-title"
-        tabIndex={-1}
-      >
+  const modal = (
+    <ModalFrame
+      backdropClassName={styles.backdrop}
+      className={`${styles.dialog}${isSubmitted ? ` ${styles.dialogConfirmation}` : ''}`}
+      closeOnBackdrop={false}
+      dialogRef={dialogRef}
+      initialFocusRef={closeButtonRef}
+      isOpen={isOpen}
+      onClose={closeModal}
+      titleId="contact-modal-title"
+      triggerRef={triggerRef}
+    >
         {isSubmitted ? (
           <>
             <div className={styles.confirmationContent}>
@@ -158,9 +151,8 @@ export default function ContactUsButton({
             </div>
           </>
         )}
-      </section>
-    </div>
-  ) : null;
+    </ModalFrame>
+  );
 
   return (
     <>
@@ -174,7 +166,7 @@ export default function ContactUsButton({
       >
         {children}
       </SiteAction>
-      {isOpen && typeof document !== 'undefined' ? createPortal(modal, document.body) : null}
+      {modal}
     </>
   );
 }
