@@ -57,6 +57,57 @@ final result: passed
 
 ---
 
+# Design QA — Resources Page
+
+## Comparison target
+
+- Source page: `https://threadline-nav-5-4a.vercel.app/resources`
+- Source visual truth: `/Users/danielenicoletti/Documents/Threadline hp2-1/reference-captures/source-desktop-top.png` and `/Users/danielenicoletti/Documents/Threadline hp2-1/reference-captures/source-mobile-top.png`
+- Implementation screenshots: `/Users/danielenicoletti/Documents/Threadline hp2-1/reference-captures/implementation-desktop-top.png` and `/Users/danielenicoletti/Documents/Threadline hp2-1/reference-captures/implementation-mobile-top-final.png`
+- Desktop viewport: 1440 × 1000 CSS pixels
+- Mobile viewport: 390 × 844 CSS pixels
+- State: default `/resources` route, with separate captured search, category-filter, navigation, guide-grid, and locker states
+
+## Full-view comparison evidence
+
+- Desktop top: `/Users/danielenicoletti/Documents/Threadline hp2-1/reference-captures/comparison-desktop-top.png`
+- Mobile top: `/Users/danielenicoletti/Documents/Threadline hp2-1/reference-captures/comparison-mobile-top.png`
+- Desktop guides: `/Users/danielenicoletti/Documents/Threadline hp2-1/reference-captures/comparison-desktop-guides.png`
+- Mobile guide cards: `/Users/danielenicoletti/Documents/Threadline hp2-1/reference-captures/comparison-mobile-cards.png`
+- Mobile locker, final icon pass: `/Users/danielenicoletti/Documents/Threadline hp2-1/reference-captures/comparison-mobile-locker-final.png`
+
+The source and browser-rendered implementation were compared at matching desktop and mobile viewport sizes. The implementation preserves the source's content hierarchy, featured-guide composition, two-column desktop guide grid, single-column mobile stack, topic shortcuts, and watercolor activity locker while using the public site's existing navigation, footer, and design tokens.
+
+## Required fidelity surfaces
+
+- Fonts and typography: passed. The page intentionally uses the repository's established Fraunces and Funnel Sans tokens, per the request to retain the existing Threadline style, while preserving the reference hierarchy, scale, and wrapping behavior.
+- Spacing and layout rhythm: passed. Hero width, guide spacing, card proportions, responsive grid transitions, topic rows, and locker stacking closely match the source. Mobile document width equals viewport width, with no horizontal overflow.
+- Colors and visual tokens: passed. Layout styling resolves through the existing semantic color, spacing, radius, and shadow tokens. Captured source icon tones were baked into local SVG assets where external SVG `currentColor` inheritance was unavailable.
+- Image quality and asset fidelity: passed. The original watercolor and guide artwork is stored locally, rendered without distortion, and not hot-linked. Source SVG artwork is reused rather than approximated.
+- Copy and content: passed. Hero, featured guide, eight guide cards, categories, topic labels, and quick-activity copy match the reference.
+
+## Responsive and interaction checks
+
+- Desktop search for `sleep`: passed; three matching guides are shown.
+- Desktop `Tools & Templates` filter: passed; three matching guides are shown.
+- Desktop `School Support` topic shortcut: passed; the category is applied and the view advances to the guide section.
+- Mobile search: passed; the same result logic works at 390 × 844.
+- Mobile navigation layout: passed; open-state capture is stored at `/Users/danielenicoletti/Documents/Threadline hp2-1/reference-captures/implementation-mobile-navigation-open.png`.
+- Horizontal overflow: none at 390 × 844.
+- Browser console warnings and errors: none from the page.
+- Production build: passed; `/resources` is statically prerendered.
+- Design-system audit: passed.
+
+## Findings and comparison history
+
+- Pass 1: no actionable P0, P1, or P2 fidelity issues were found in the desktop or mobile comparisons.
+- P3 polish: source SVGs that relied on inline `currentColor` initially rendered black when loaded as external images. The captured source tones were embedded into local SVG copies and the resource mappings were updated. The final mobile locker comparison confirms the corrected muted-green icons.
+- Expected differences: the implementation uses the public marketing-site navigation/footer and established typography tokens rather than the authenticated demo shell. The Next.js development indicator and Codex annotation overlay visible in development tooling were excluded from fidelity assessment.
+
+final result: passed
+
+---
+
 # Design QA — How It Works 2 Report Icons
 
 ## Comparison target
