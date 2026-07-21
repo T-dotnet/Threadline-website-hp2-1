@@ -9,11 +9,11 @@ export default function ResourceArticlePage({ article }) {
       <SiteNavigation activeHref="/resources" />
       <main className={styles.main}>
         <section className={styles.hero} aria-labelledby="article-title">
-          <div className={styles.backRow}>
-            <TextLink href="/resources">Back to resources</TextLink>
-          </div>
           <Surface as="header" className={styles.heroCopy}>
             <div className={styles.heroInner}>
+              <div className={styles.backRow}>
+                <TextLink href="/resources">Back to resources</TextLink>
+              </div>
               <div className={styles.articleMeta}>
                 <Eyebrow className={styles.eyebrow}>{article.category}</Eyebrow>
                 <Text as="span" tone="muted">{article.readTime}</Text>
