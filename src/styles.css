@@ -1905,7 +1905,7 @@ h1,
   gap: 80px;
 }
 
-.home-v2-footer a:hover { color: var(--primary); }
+.home-v2-footer a:not(.cta):hover { color: var(--primary); }
 
 .home-v2-footer-bottom {
   margin-top: 64px;
@@ -5859,8 +5859,8 @@ p.how-v2-pullout {
 
 .pricing-page-notice {
   width: min(100%, 800px);
-  margin: 0 auto;
-  padding: var(--ds-space-20) 0 var(--ds-space-10);
+  margin: var(--ds-space-20) auto 0;
+  padding: 0 0 var(--ds-space-10);
 }
 
 .pricing-page-faq {
@@ -5940,7 +5940,8 @@ p.how-v2-pullout {
   }
 
   .pricing-page-notice {
-    padding: var(--ds-space-16) 0 var(--ds-space-10);
+    margin-top: var(--ds-space-16);
+    padding: 0 0 var(--ds-space-10);
   }
 
   .pricing-page-faq {
@@ -5968,7 +5969,8 @@ p.how-v2-pullout {
   }
 
   .pricing-page-notice {
-    padding: var(--ds-space-12) 0 var(--ds-space-8);
+    margin-top: var(--ds-space-12);
+    padding: 0 0 var(--ds-space-8);
   }
 
   .pricing-page-faq {

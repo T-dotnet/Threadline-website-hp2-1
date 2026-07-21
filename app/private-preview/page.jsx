@@ -2,6 +2,7 @@ import Image from 'next/image';
 import ContactUsButton from '../../src/ContactUsModal.jsx';
 import { SiteAction } from '../../src/components/site-actions.jsx';
 import { SectionLabel } from '../../src/components/website-sections.jsx';
+import { Input } from '../../src/design-system/components.jsx';
 import { Container, Heading, Text, VisuallyHidden } from '../../src/design-system/primitives.jsx';
 import styles from './private-preview.module.css';
 
@@ -54,8 +55,7 @@ export default function PrivatePreviewPage() {
             <VisuallyHidden as="label" htmlFor="private-preview-access-code">
               Access code
             </VisuallyHidden>
-            <input
-              className={styles.input}
+            <Input
               id="private-preview-access-code"
               type="password"
               autoComplete="one-time-code"

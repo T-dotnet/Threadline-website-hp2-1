@@ -124,8 +124,8 @@
   --ds-control-height-sm: var(--ds-button-height-md);
   --ds-control-height-compact: 3.25rem;
   --ds-control-padding-md: var(--ds-space-4) var(--ds-space-8);
-  --ds-control-font-size: var(--ds-text-sm);
-  --ds-control-line-height: 1.25rem;
+  --ds-control-font-size: var(--ds-text-body);
+  --ds-control-line-height: var(--ds-leading-body);
   --ds-form-control-height: 3.5rem;
   --ds-form-control-padding-block: 0.875rem;
   --ds-form-control-padding-inline: var(--ds-space-6);
@@ -178,8 +178,8 @@
     --ds-control-height-md: 3.8125rem;
     --ds-control-height-sm: var(--ds-button-height-md);
     --ds-control-height-compact: 3.65625rem;
-    --ds-control-font-size: 1rem;
-    --ds-control-line-height: 1.5rem;
+    --ds-control-font-size: var(--ds-text-body);
+    --ds-control-line-height: var(--ds-leading-body);
     --ds-form-control-height: 4rem;
     --ds-form-control-padding-block: 1rem;
     --ds-form-control-padding-inline: 1.6875rem;
@@ -196,6 +196,8 @@
     --ds-text-body: 1.1458333333rem;
     --ds-text-lg: var(--ds-text-body);
     --ds-text-label: var(--ds-text-body);
+    --ds-control-font-size: var(--ds-text-body);
+    --ds-control-line-height: var(--ds-leading-body);
   }
 }
 

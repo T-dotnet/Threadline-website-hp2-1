@@ -10,7 +10,7 @@ const DEFAULT_NAV_LINKS = [
   ['How it works', '/how-it-works'],
   ['Pricing', '/pricing'],
   ['For clinicians', '/clinicians'],
-  ['Resources', '/#resources'],
+  ['Resources', '/resources'],
   ['Contact us', '/#contact'],
 ];
 

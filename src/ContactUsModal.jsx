@@ -6,12 +6,13 @@ import { createPortal } from 'react-dom';
 import {
   Button,
   FormField,
+  FormStatus,
   IconButton,
   Input,
   Select,
   Textarea,
 } from './design-system/components.jsx';
-import { Heading, Text } from './design-system/primitives.jsx';
+import { Cluster, Heading, Stack, Text } from './design-system/primitives.jsx';
 import { SiteAction } from './components/site-actions.jsx';
 import { useAccessibleModal } from './hooks/useAccessibleModal.js';
 import styles from './ContactUsModal.module.css';
@@ -87,11 +88,11 @@ export default function ContactUsButton({
           <>
             <div className={styles.confirmationContent}>
               <div className={styles.confirmationCopy}>
-                <Heading ref={confirmationHeadingRef} as="h2" size="display" className={styles.title} id="contact-modal-title" tabIndex={-1}>Thanks,<br />we&apos;ve received your<br />message.</Heading>
+                <Heading ref={confirmationHeadingRef} as="h1" size="display" className={styles.title} id="contact-modal-title" tabIndex={-1}>Thanks,<br />we&apos;ve received your<br />message.</Heading>
               <Text size="lg" tone="muted" className={styles.bodyCopy}>We will reply as soon as we can.</Text>
               </div>
               <div className={styles.confirmationAction}>
-                <Button className={styles.actionButton} onClick={closeModal}>Close</Button>
+                <Button onClick={closeModal}>Close</Button>
               </div>
             </div>
             <div className={styles.confirmationArt} aria-hidden="true">
@@ -115,23 +116,23 @@ export default function ContactUsButton({
             </IconButton>
 
             <div className={styles.intro}>
-              <Heading as="h2" size="display" className={styles.title} id="contact-modal-title">We&apos;re here to listen to your story.</Heading>
+              <Heading as="h1" size="display" className={styles.title} id="contact-modal-title">We&apos;re here to listen to your story.</Heading>
               <Text size="lg" tone="muted" className={styles.bodyCopy}>Whether you have questions about the assessment package or just want to learn more about our process, our team is here to support you.</Text>
             </div>
 
             <div className={styles.formColumn}>
-              <form className={styles.form} onSubmit={handleSubmit}>
+              <Stack as="form" gap={6} onSubmit={handleSubmit}>
                 <FormField htmlFor="contact-name" label="Full Name">
-                  <Input id="contact-name" className={styles.formControl} name="name" type="text" autoComplete="name" placeholder="Jane Cooper" required />
+                  <Input id="contact-name" name="name" type="text" autoComplete="name" placeholder="Jane Cooper" required />
                 </FormField>
 
                 <FormField htmlFor="contact-email" label="Email Address">
-                  <Input id="contact-email" className={styles.formControl} name="email" type="email" autoComplete="email" placeholder="jane@example.com" required />
+                  <Input id="contact-email" name="email" type="email" autoComplete="email" placeholder="jane@example.com" required />
                 </FormField>
 
-                <FormField htmlFor="contact-topic" label="I am contacting you about">
-                  <Select id="contact-topic" className={`${styles.formControl} ${styles.selectControl}`} name="topic" defaultValue="" required>
-                    <option value="" disabled>Select a topic</option>
+                <FormField htmlFor="contact-topic" label="I am contacting you about (optional)">
+                  <Select id="contact-topic" name="topic" defaultValue="">
+                    <option value="">Select a topic</option>
                     <option value="getting-started">Getting started with Threadline</option>
                     <option value="assessment-preparation">Assessment preparation</option>
                     <option value="account-or-purchase">My account or an existing purchase</option>
@@ -144,16 +145,16 @@ export default function ContactUsButton({
                 </FormField>
 
                 <FormField htmlFor="contact-message" label="How can we help?">
-                  <Textarea id="contact-message" className={`${styles.formControl} ${styles.messageControl}`} name="message" placeholder="Tell us a bit about your child's journey..." required />
+                  <Textarea id="contact-message" name="message" placeholder="Tell us a bit about your child's journey..." required />
                 </FormField>
 
-                <div className={styles.submitRow}>
-                  <Button className={styles.actionButton} type="submit">Send Message</Button>
-                </div>
+                <Cluster>
+                  <SiteAction appearance="primary" type="submit">Send message</SiteAction>
+                </Cluster>
                 {submissionStatus ? (
-                  <Text size="sm" tone="muted" className={styles.status} aria-live="polite">{submissionStatus}</Text>
+                  <FormStatus>{submissionStatus}</FormStatus>
                 ) : null}
-              </form>
+              </Stack>
             </div>
           </>
         )}

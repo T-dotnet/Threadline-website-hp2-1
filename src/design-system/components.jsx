@@ -15,7 +15,11 @@ export function Input({ className, ...props }) {
 }
 
 export function Select({ className, children, ...props }) {
-  return <select className={cx('ds-form-control', className)} {...props}>{children}</select>;
+  return (
+    <span className="ds-select">
+      <select className={cx('ds-form-control', className)} {...props}>{children}</select>
+    </span>
+  );
 }
 
 export function Textarea({ className, ...props }) {

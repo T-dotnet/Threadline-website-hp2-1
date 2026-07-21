@@ -62,38 +62,9 @@
   gap: var(--ds-space-3);
 }
 
-.input {
-  width: 100%;
-  min-height: var(--ds-control-height-md);
-  padding: var(--ds-control-padding-md);
-  border: 1px solid var(--ds-color-line-strong);
-  border-radius: var(--ds-radius-md);
-  color: var(--heading);
-  background: var(--surface);
-  font-family: var(--sans);
-  font-size: var(--ds-control-font-size);
-  line-height: var(--ds-control-line-height);
-  transition: border-color var(--ds-duration-base) var(--ds-ease-standard), box-shadow var(--ds-duration-base) var(--ds-ease-standard);
-}
-
-.input::placeholder {
-  color: var(--text-secondary);
-  opacity: 1;
-}
-
-.input:hover {
-  border-color: var(--primary);
-}
-
-.input:focus-visible {
-  border-color: var(--ds-color-focus);
-  outline: none;
-  box-shadow: var(--ds-shadow-focus);
-}
-
 .submit {
   min-width: 11rem;
-  min-height: var(--ds-control-height-md);
+  min-height: var(--ds-form-control-height);
   padding: var(--ds-control-padding-md);
   font-size: var(--ds-control-font-size);
   line-height: var(--ds-control-line-height);

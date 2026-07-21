@@ -62,19 +62,9 @@
   gap: var(--ds-space-8);
 }
 
-.title {
-  font-size: var(--ds-text-section-title);
-  line-height: var(--ds-leading-tight);
-}
-
 .bodyCopy {
   font-size: var(--ds-text-body);
   line-height: var(--ds-leading-site-body);
-}
-
-.form label {
-  font-size: var(--ds-control-font-size);
-  line-height: var(--ds-control-line-height);
 }
 
 .intro p {
@@ -84,9 +74,6 @@
 .formColumn {
   width: 100%;
   padding-top: var(--ds-space-12);
-  display: flex;
-  align-items: flex-start;
-  flex-direction: column;
 }
 
 .confirmationContent {
@@ -110,7 +97,7 @@
   width: min(100%, var(--ds-measure-prose));
 }
 
-.confirmationCopy h2:focus {
+.confirmationCopy h1:focus {
   outline: none;
 }
 
@@ -132,58 +119,6 @@
 
 .confirmationArt img {
   object-fit: cover;
-}
-
-.form {
-  width: 100%;
-  display: flex;
-  align-items: stretch;
-  flex-direction: column;
-  gap: var(--ds-space-6);
-}
-
-.formControl {
-  border-color: var(--text-secondary);
-  color: var(--heading);
-  background: var(--workspace);
-  font: 400 var(--ds-control-font-size)/var(--ds-control-line-height) var(--sans);
-}
-
-.formControl:not(textarea) {
-  height: var(--ds-form-control-height);
-}
-
-.selectControl {
-  padding-right: calc(var(--ds-space-12) + var(--ds-space-2));
-  appearance: auto;
-}
-
-.messageControl {
-  min-height: var(--ds-form-textarea-height);
-}
-
-.formControl::placeholder {
-  color: var(--heading);
-  opacity: .4;
-}
-
-.formControl:hover {
-  border-color: var(--heading);
-}
-
-.submitRow {
-  padding-top: var(--ds-space-4);
-  display: flex;
-  align-items: flex-start;
-}
-
-.actionButton {
-  font-size: var(--ds-text-body);
-}
-
-.status {
-  min-height: var(--ds-space-5);
-  margin: calc(var(--ds-space-3) * -1) 0 0;
 }
 
 @media (max-width: 1200px) {
@@ -245,23 +180,10 @@
     padding: var(--ds-icon-button-padding-compact);
   }
 
-  .formControl {
-    padding-inline: var(--ds-space-4);
-  }
-
-  .selectControl {
-    padding-left: var(--ds-space-4);
-  }
-
-  .messageControl {
-    padding: var(--ds-space-4);
-  }
-
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .closeButton,
-  .formControl {
+  .closeButton {
     transition: none;
   }
 }
