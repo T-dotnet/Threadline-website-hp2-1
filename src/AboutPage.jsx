@@ -54,7 +54,7 @@ function AboutHero() {
           <h1 id="about-title">
             Every child <span className="hero-highlight">understood.</span>
           </h1>
-          <p className="hero-supporting-copy">
+          <p className={`hero-supporting-copy ${styles.heroSupportingCopy}`}>
             Today we&apos;re focused on ADHD assessment preparation for Australian families. Over time, our vision is to build tools that support understanding and care throughout a child&apos;s neurodevelopmental journey.
           </p>
         </div>
