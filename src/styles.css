@@ -29,6 +29,12 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+h3,
+h3.ds-heading {
+  font-family: var(--sans);
+  font-variation-settings: normal;
+}
+
 a { color: inherit; text-decoration: none; }
 
 .page-shell {
@@ -53,19 +59,26 @@ a { color: inherit; text-decoration: none; }
   font-size: var(--ds-control-font-size);
   line-height: var(--ds-control-line-height);
   white-space: nowrap;
-  transition: background-color var(--ds-duration-base) var(--ds-ease-standard), transform var(--ds-duration-base) var(--ds-ease-standard);
+  transition: background-color var(--ds-duration-base) var(--ds-ease-standard), box-shadow var(--ds-duration-base) var(--ds-ease-standard), transform var(--ds-duration-base) var(--ds-ease-standard);
 }
 
 .cta:hover {
   color: var(--surface);
-  background: var(--ds-color-action-hover);
-  transform: translateY(-1px);
+  background: var(--primary);
+  box-shadow: var(--ds-shadow-control-hover);
+}
+
+.cta:active:not(:disabled) {
+  box-shadow: var(--ds-shadow-control-pressed);
 }
 
 .cta-label-short { display: none; }
 
 .cta:focus-visible,
-a:focus-visible {
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+[role="button"]:focus-visible {
   outline: 3px solid var(--ds-color-focus);
   outline-offset: 4px;
 }
@@ -1581,8 +1594,12 @@ h1,
 .site-secondary-action:hover {
   border-color: var(--primary);
   color: var(--heading);
-  background: color-mix(in srgb, var(--primary-light) 60%, transparent);
-  transform: translateY(-1px);
+  background: color-mix(in srgb, var(--primary-light) 82%, transparent);
+  box-shadow: var(--ds-shadow-control-hover);
+}
+
+.site-secondary-action:active:not(:disabled) {
+  box-shadow: var(--ds-shadow-control-pressed);
 }
 
 .home-v2-report-preview {
@@ -2418,7 +2435,7 @@ h1,
 }
 
 .sample-report-readable h3 {
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: var(--ds-text-3xl);
   font-weight: 300;
   line-height: var(--ds-leading-heading);
@@ -2517,7 +2534,7 @@ h1,
 }
 
 .sample-report-explanation-content h3 {
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: 21px;
   line-height: 1.2;
   font-weight: 300;
@@ -5757,7 +5774,17 @@ p.how-v2-pullout {
 }
 
 .home-v2-faq-list details:hover {
-  background: color-mix(in srgb, var(--primary-light) 34%, transparent);
+  background: color-mix(in srgb, var(--primary-light) 58%, transparent);
+}
+
+.home-v2-faq-list details[open] {
+  background: color-mix(in srgb, var(--primary-light) 38%, transparent);
+}
+
+.home-v2-faq-list details:hover summary::after {
+  border-color: var(--primary);
+  color: var(--surface);
+  background: var(--primary);
 }
 
 .home-v2-faq-list summary::after {
@@ -5843,7 +5870,17 @@ p.how-v2-pullout {
 }
 
 .pricing-page-faq-list details:hover {
-  background: color-mix(in srgb, var(--primary-light) 34%, transparent);
+  background: color-mix(in srgb, var(--primary-light) 58%, transparent);
+}
+
+.pricing-page-faq-list details[open] {
+  background: color-mix(in srgb, var(--primary-light) 38%, transparent);
+}
+
+.pricing-page-faq-list details:hover summary::after {
+  border-color: var(--primary);
+  color: var(--surface);
+  background: var(--primary);
 }
 
 .pricing-page-faq-list summary {

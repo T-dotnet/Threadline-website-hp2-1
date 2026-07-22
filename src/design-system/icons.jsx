@@ -14,6 +14,14 @@ export function ArrowIcon({ direction, ...props }) {
   );
 }
 
+export function BackArrowIcon(props) {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 20 20" {...props}>
+      <path d="M16 10H4m5-5-5 5 5 5" />
+    </svg>
+  );
+}
+
 export function ShareIcon(props) {
   return (
     <svg aria-hidden="true" viewBox="0 0 24 24" {...props}>

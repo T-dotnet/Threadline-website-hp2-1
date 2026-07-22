@@ -99,6 +99,8 @@
   --ds-shadow-artwork: 0 7px 10px rgba(0, 0, 0, 0.09), 0 40px 80px rgba(0, 0, 0, 0.3);
   --ds-shadow-overlay: 0 24px 60px rgba(11, 70, 54, 0.16);
   --ds-shadow-card-soft: 0 5px 18px rgba(11, 70, 54, 0.14);
+  --ds-shadow-control-hover: 0 10px 24px rgba(7, 60, 46, 0.18), 0 2px 5px rgba(7, 60, 46, 0.12);
+  --ds-shadow-control-pressed: 0 3px 9px rgba(7, 60, 46, 0.14);
   --ds-shadow-dark-xs: 0 2px 4px rgba(0, 0, 0, 0.1);
   --ds-shadow-focus: 0 0 0 2px var(--ds-color-surface), 0 0 0 5px var(--ds-color-focus);
   --ds-filter-modal-backdrop: blur(var(--ds-space-5)) saturate(.9);
@@ -119,7 +121,7 @@
   --ds-button-padding-sm: 0.625rem var(--ds-space-4);
   --ds-button-padding-md: var(--ds-space-3) var(--ds-space-5);
   --ds-button-padding-lg: var(--ds-space-4) var(--ds-space-8);
-  --ds-control-lift: -1px;
+  --ds-control-lift: 0px;
   --ds-control-disabled-opacity: 0.45;
   --ds-text-link-hit-area: 1.75rem;
   --ds-control-height-md: 3.375rem;

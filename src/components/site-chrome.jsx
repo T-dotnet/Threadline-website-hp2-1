@@ -15,7 +15,11 @@ const DEFAULT_NAV_LINKS = [
 ];
 
 const DEFAULT_SOCIAL_LINKS = [];
-const DEFAULT_LEGAL_LINKS = [];
+const DEFAULT_SUPPORT_LINKS = [
+  ['Contact us', '/#contact'],
+  ['Trust & Legal', '/trust'],
+  ['Urgent Help', '/urgent-help'],
+];
 
 export function SiteCta({ className = '', href = '/#pricing', label = 'Get started', shortLabel }) {
   return (
@@ -104,16 +108,16 @@ function FooterLink({ link }) {
     : <a href={href}>{label}</a>;
 }
 
-function FooterColumn({ title, links }) {
+function FooterColumn({ title, titleHref, links = [] }) {
   const linkedItems = links.filter((link) => (
     Array.isArray(link) ? Boolean(link[0] && link[1]) : Boolean(link?.label && link?.href)
   ));
 
-  if (linkedItems.length === 0) return null;
+  if (!titleHref && linkedItems.length === 0) return null;
 
   return (
     <div className="footer-column">
-      <h3>{title}</h3>
+      {titleHref ? <a href={titleHref}><h3>{title}</h3></a> : title ? <h3>{title}</h3> : null}
       {linkedItems.map((link) => {
         const label = Array.isArray(link) ? link[0] : link.label;
         return <FooterLink key={label} link={link} />;
@@ -125,7 +129,8 @@ function FooterColumn({ title, links }) {
 export function SiteFooter({
   exploreLinks = DEFAULT_EXPLORE_LINKS,
   socialLinks = DEFAULT_SOCIAL_LINKS,
-  legalLinks = DEFAULT_LEGAL_LINKS,
+  supportLinks = DEFAULT_SUPPORT_LINKS,
+  legalLinks = [],
   title = 'Start the assessment with a clearer picture.',
   description = 'Begin preparing your child’s evidence and see what is needed next.',
   ctaLabel = 'Get started',
@@ -148,7 +153,8 @@ export function SiteFooter({
           </div>
         </div>
         <div className="home-v2-footer-links">
-          <FooterColumn title="Explore" links={exploreLinks} />
+          <FooterColumn links={exploreLinks} />
+          <FooterColumn links={supportLinks} />
           <FooterColumn title="Social" links={socialLinks} />
         </div>
       </div>

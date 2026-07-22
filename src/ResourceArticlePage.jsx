@@ -1,50 +1,103 @@
-import { TextLink } from './design-system/components.jsx';
-import { Eyebrow, Heading, Surface, Text } from './design-system/primitives.jsx';
-import { SiteFooter, SiteNavigation } from './components/site-chrome.jsx';
-import styles from './ResourceArticlePage.module.css';
+import { Heading, Text } from './design-system/primitives.jsx';
+import { BackArrowIcon } from './design-system/icons.jsx';
+import { SiteFooter } from './components/site-chrome.jsx';
+import styles from './PolicyDocumentPage.module.css';
+
+function sectionId(heading, index) {
+  const slug = heading
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
+
+  return slug || `section-${index + 1}`;
+}
 
 export default function ResourceArticlePage({ article }) {
+  const backHref = article.backHref || '/resources';
+  const backLabel = article.backLabel || 'Back to resources';
+  const note = article.note || {
+    title: 'A note for families',
+    body: 'This guide offers general preparation and support ideas. It does not replace advice from a qualified health or education professional who knows your child.',
+  };
+  const sections = article.sections.map((section, index) => ({
+    ...section,
+    id: sectionId(section.heading, index),
+  }));
+
   return (
-    <div className={`page-shell ${styles.page}`}>
-      <SiteNavigation activeHref="/resources" />
+    <div className={styles.page}>
       <main className={styles.main}>
-        <section className={styles.hero} aria-labelledby="article-title">
-          <Surface as="header" className={styles.heroCopy}>
-            <div className={styles.heroInner}>
-              <div className={styles.backRow}>
-                <TextLink href="/resources">Back to resources</TextLink>
-              </div>
-              <div className={styles.articleMeta}>
-                <Eyebrow className={styles.eyebrow}>{article.category}</Eyebrow>
-                <Text as="span" tone="muted">{article.readTime}</Text>
-              </div>
-              <Heading as="h1" size="display" id="article-title">{article.title}</Heading>
-              <Text size="lg" tone="muted" className={styles.introduction}>{article.description}</Text>
-            </div>
-          </Surface>
-        </section>
+        <header className={styles.hero} aria-labelledby="article-title">
+          <a className={styles.backLink} href={backHref}>
+            <BackArrowIcon />
+            <span>{backLabel}</span>
+          </a>
+
+          <Heading as="h1" size="display" id="article-title" className={styles.title}>
+            {article.title}
+          </Heading>
+
+          <div className={styles.meta} aria-label="Guide information">
+            <span>{article.category}</span>
+            <span className={styles.metaDivider} aria-hidden="true" />
+            <span>{article.readTime}</span>
+          </div>
+        </header>
+
+        <div className={styles.divider} />
 
         <div className={styles.articleLayout}>
-          <article className={styles.articleBody}>
-            {article.sections.map((section, index) => (
-              <section className={styles.articleSection} id={`section-${index + 1}`} key={section.heading}>
+          <aside className={styles.sidebar}>
+            <div className={styles.sidebarInner}>
+              <h2>In this guide</h2>
+              <nav aria-label={`${article.title} contents`}>
+                <ol>
+                  <li><a href="#overview">Overview</a></li>
+                  {sections.map((section) => (
+                    <li key={section.id}><a href={`#${section.id}`}>{section.heading}</a></li>
+                  ))}
+                  {note ? <li><a href="#family-note">{note.title}</a></li> : null}
+                  <li><a href="#more-resources">More resources</a></li>
+                </ol>
+              </nav>
+            </div>
+          </aside>
+
+          <article className={styles.article}>
+            <section className={`${styles.introduction} ${styles.guideIntroduction}`} id="overview">
+              <Text as="p" className={styles.lead}>{article.description}</Text>
+            </section>
+
+            {sections.map((section) => (
+              <section className={styles.articleSection} id={section.id} key={section.id}>
                 <Heading as="h2" size="card">{section.heading}</Heading>
-                <div className={styles.paragraphs}>
-                  {section.paragraphs.map((paragraph) => (
-                    <Text tone="muted" key={paragraph}>{paragraph}</Text>
+                <div className={styles.sectionContent}>
+                  {section.paragraphs?.map((paragraph) => (
+                    <Text key={paragraph}>{paragraph}</Text>
+                  ))}
+                  {section.links?.map(([label, href]) => (
+                    <a className={styles.inlineLink} href={href} key={label}>{label}</a>
                   ))}
                 </div>
               </section>
             ))}
 
-            <Surface tone="soft" className={styles.note}>
-              <Heading as="h2" size="card">A note for families</Heading>
-              <Text tone="muted">
-                This guide offers general preparation and support ideas. It does not replace advice from a qualified health or education professional who knows your child.
-              </Text>
-            </Surface>
+            {note ? (
+              <section className={styles.articleSection} id="family-note">
+                <Heading as="h2" size="card">{note.title}</Heading>
+                <div className={styles.sectionContent}>
+                  <Text>{note.body}</Text>
+                </div>
+              </section>
+            ) : null}
 
-            <TextLink className={styles.footerLink} href="/resources">Back to all resources</TextLink>
+            <section className={styles.articleSection} id="more-resources">
+              <Heading as="h2" size="card">More resources</Heading>
+              <ul className={styles.relatedLinks}>
+                <li><a href={backHref}>View all resources</a></li>
+                <li><a href="/trust">Privacy, security and trust</a></li>
+              </ul>
+            </section>
           </article>
         </div>
       </main>

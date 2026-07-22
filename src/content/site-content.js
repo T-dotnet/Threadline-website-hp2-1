@@ -5,7 +5,6 @@ export const DEFAULT_EXPLORE_LINKS = [
   ['For Clinician', '/clinicians'],
   ['Resources', '/resources'],
   ['About us', '/about'],
-  ['Contact us', '/#contact'],
 ];
 
 export const DEFAULT_FAQ_ITEMS = [

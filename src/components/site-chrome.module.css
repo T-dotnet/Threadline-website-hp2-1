@@ -35,9 +35,11 @@
 .navLinks a,
 .navLinks button {
   padding: var(--ds-space-2) var(--ds-space-3);
+  border-radius: var(--ds-radius-control);
   font-size: var(--ds-text-label);
   line-height: var(--ds-leading-solid);
   white-space: nowrap;
+  transition: color var(--ds-duration-fast) var(--ds-ease-standard);
 }
 
 .navLinks a:hover,
@@ -47,6 +49,7 @@
 
 .navLinks .activeNavLink,
 .mobileNavLinks .activeNavLink {
+  color: var(--primary);
   font-weight: 700;
 }
 
@@ -59,7 +62,7 @@
 
 .navContactTrigger:hover {
   background: transparent;
-  transform: none;
+  box-shadow: none;
 }
 
 .navCta {
@@ -112,6 +115,19 @@
   line-height: var(--ds-control-line-height);
   list-style: none;
   cursor: pointer;
+  transition: color var(--ds-duration-fast) var(--ds-ease-standard), background-color var(--ds-duration-fast) var(--ds-ease-standard), border-color var(--ds-duration-fast) var(--ds-ease-standard), box-shadow var(--ds-duration-fast) var(--ds-ease-standard), transform var(--ds-duration-fast) var(--ds-ease-standard);
+}
+
+.mobileNav summary:hover,
+.mobileNav[open] summary {
+  border-color: var(--primary);
+  color: var(--surface);
+  background: var(--primary);
+  box-shadow: var(--ds-shadow-control-hover);
+}
+
+.mobileNav summary:active {
+  box-shadow: var(--ds-shadow-control-pressed);
 }
 
 .mobileNav summary::-webkit-details-marker {
@@ -189,6 +205,12 @@
   border-bottom: 1px solid var(--divider);
   font-size: var(--ds-text-nav-compact);
   text-align: left;
+  transition: color var(--ds-duration-fast) var(--ds-ease-standard);
+}
+
+.mobileNavLinks a:hover,
+.mobileNavLinks button:hover {
+  color: var(--primary);
 }
 
 .mobileNavLinks a:last-child,
@@ -210,9 +232,11 @@
 }
 
 .footerContactTrigger:hover {
-  color: var(--primary);
+  color: var(--text-secondary);
   background: transparent;
+  box-shadow: none;
   transform: none;
+  text-decoration: none;
 }
 
 .mobileNavCta {

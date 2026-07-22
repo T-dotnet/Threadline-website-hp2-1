@@ -136,8 +136,13 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  border: 1px solid transparent;
   border-radius: 0 var(--ds-radius-lg) 0 0;
   background: var(--surface);
+}
+
+.articleCard:focus-within {
+  border-color: color-mix(in srgb, var(--primary) 38%, transparent);
 }
 
 .articleMedia {
@@ -148,11 +153,6 @@
 
 .articleMedia img {
   object-fit: cover;
-  transition: transform var(--ds-duration-base) var(--ds-ease-standard);
-}
-
-.articleCard:hover .articleMedia img {
-  transform: scale(1.015);
 }
 
 .articleContent {
