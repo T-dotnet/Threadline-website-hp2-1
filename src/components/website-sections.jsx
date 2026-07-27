@@ -89,9 +89,9 @@ export function GuidelineSection({ label, title, linkLabel, linkHref, paragraphs
   );
 }
 
-export function ProblemSection({ title, description, items, backgroundImage, titleId = 'problem-title' }) {
+export function ProblemSection({ title, description, items, backgroundImage, titleId = 'problem-title', className }) {
   return (
-    <section className="home-v2-problem" aria-labelledby={titleId}>
+    <section className={cx('home-v2-problem', className)} aria-labelledby={titleId}>
       <Image src={backgroundImage} alt="" fill sizes="(max-width: 900px) calc(100vw - 32px), 1450px" />
       <div className="home-v2-problem-grid">
         <article className="home-v2-problem-story">

@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { forwardRef } from 'react';
 import ContactUsButton from '../ContactUsModal.jsx';
 import SampleReportButton from '../SampleReportModal.jsx';
 import { DEFAULT_EXPLORE_LINKS } from '../content/site-content.js';
@@ -21,9 +22,9 @@ const DEFAULT_SUPPORT_LINKS = [
   ['Urgent Help', '/urgent-help'],
 ];
 
-export function SiteCta({ className = '', href = '/#pricing', label = 'Get started', shortLabel }) {
+export const SiteCta = forwardRef(function SiteCta({ className = '', href = '/#pricing', label = 'Get started', shortLabel, ...props }, ref) {
   return (
-    <SiteAction appearance="primary" className={className} href={href} aria-label={label}>
+    <SiteAction ref={ref} appearance="primary" className={className} href={href} aria-label={label} {...props}>
       {shortLabel ? (
         <>
           <span className="cta-label-long">{label}</span>
@@ -32,7 +33,7 @@ export function SiteCta({ className = '', href = '/#pricing', label = 'Get start
       ) : label}
     </SiteAction>
   );
-}
+});
 
 function NavigationLink({ label, href, isActive = false }) {
   return label === 'Contact us'
@@ -55,6 +56,8 @@ export function SiteNavigation({
   ctaShortLabel,
   loginHref = '/login',
   loginLabel = 'Log in',
+  showActions = true,
+  showMobileNav = true,
 }) {
   return (
     <header className={styles.siteHeader}>
@@ -67,13 +70,15 @@ export function SiteNavigation({
             <NavigationLink key={label} label={label} href={href} isActive={href === activeHref} />
           ))}
         </div>
-        <div className={styles.navActions}>
-          <SiteCta className={styles.navCta} label={ctaLabel} shortLabel={ctaShortLabel} />
-          <SiteAction appearance="secondary" className={styles.navLogin} href={loginHref}>
-            {loginLabel}
-          </SiteAction>
-        </div>
-        <details className={styles.mobileNav}>
+        {showActions ? (
+          <div className={styles.navActions}>
+            <SiteCta className={styles.navCta} label={ctaLabel} shortLabel={ctaShortLabel} />
+            <SiteAction appearance="secondary" className={styles.navLogin} href={loginHref}>
+              {loginLabel}
+            </SiteAction>
+          </div>
+        ) : null}
+        {showMobileNav ? <details className={styles.mobileNav}>
           <summary>
             <span className={styles.mobileNavVisibleLabel} aria-hidden="true">Menu</span>
             <VisuallyHidden>
@@ -90,7 +95,7 @@ export function SiteNavigation({
             </div>
             <SiteCta className={styles.mobileNavCta} label={ctaLabel} shortLabel={ctaShortLabel} />
           </div>
-        </details>
+        </details> : null}
       </nav>
     </header>
   );
@@ -134,6 +139,7 @@ export function SiteFooter({
   title = 'Start the assessment with a clearer picture.',
   description = 'Begin preparing your child’s evidence and see what is needed next.',
   ctaLabel = 'Get started',
+  showActions = true,
   legalNotice = 'Threadline provides assessment preparation services and does not provide medical advice or ADHD diagnosis.',
   safetyNotice = 'If you have concerns about your child’s health or safety, contact your child’s clinician or seek appropriate medical',
   safetyNoticeEnd = 'care.',
@@ -147,10 +153,12 @@ export function SiteFooter({
             <Image src="/index-footer-wordmark-v2.svg" width={249} height={38} alt="Threadline" />
             <div><p>{title}</p><p>{description}</p></div>
           </div>
-          <div className="home-v2-footer-actions">
-            <SiteCta label={ctaLabel} />
-            <SampleReportButton />
-          </div>
+          {showActions ? (
+            <div className="home-v2-footer-actions">
+              <SiteCta label={ctaLabel} />
+              <SampleReportButton />
+            </div>
+          ) : null}
         </div>
         <div className="home-v2-footer-links">
           <FooterColumn links={exploreLinks} />

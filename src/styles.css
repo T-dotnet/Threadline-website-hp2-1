@@ -3250,6 +3250,14 @@ h1,
   letter-spacing: -2.218px;
 }
 
+.how-v2-final-description {
+  max-width: var(--ds-measure-prose);
+  margin: var(--ds-space-4) 0 0;
+  color: var(--text-secondary);
+  font-size: var(--ds-text-body);
+  line-height: var(--ds-leading-body);
+}
+
 .how-v2-final .cta {
   min-height: 52px;
   padding: 16px 32px;

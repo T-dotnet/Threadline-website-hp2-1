@@ -211,12 +211,15 @@
   z-index: var(--ds-layer-content);
   top: var(--ds-space-6);
   right: calc(var(--ds-space-6) + var(--ds-space-1));
+}
+
+.ds-modal__close--inverted {
   border-color: var(--ds-color-text);
   color: var(--ds-color-surface);
   background: var(--ds-color-text);
 }
 
-.ds-modal__close:hover {
+.ds-modal__close--inverted:hover {
   border-color: var(--ds-color-text);
   background: var(--ds-color-action-hover);
 }
@@ -251,10 +254,16 @@
   line-height: var(--ds-leading-body);
 }
 
+.ds-modal__intro .ds-text.ds-modal__description--body {
+  font-size: var(--ds-text-body);
+}
+
 .ds-modal__body {
   padding: var(--ds-space-8);
   background: var(--ds-color-canvas);
 }
+
+.ds-modal__body--surface { background: var(--ds-color-surface); }
 
 .ds-form-field {
   display: flex;

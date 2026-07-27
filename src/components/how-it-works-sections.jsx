@@ -190,6 +190,8 @@ export function HowPreparationDisclaimer({ id = 'resources' }) {
 
 export function HowClosingSection({
   titleId = 'how-final-title',
+  title = <>Prepare with the<br />complete picture.</>,
+  description,
   ctaLabel = 'Get started',
   showSampleReport = false,
   primaryAction,
@@ -197,7 +199,10 @@ export function HowClosingSection({
   return (
     <div className="how-v2-closing">
       <section className="how-v2-final" aria-labelledby={titleId}>
-        <h1 id={titleId}>Prepare with the<br />complete picture.</h1>
+        <div>
+          <h1 id={titleId}>{title}</h1>
+          {description ? <p className="how-v2-final-description">{description}</p> : null}
+        </div>
         {showSampleReport ? (
           <div className="home-v2-hero-actions">
             {primaryAction ?? <SiteCta label={ctaLabel} />}

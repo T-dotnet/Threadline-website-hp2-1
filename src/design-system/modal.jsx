@@ -62,8 +62,11 @@ export function ModalFrame({
 export function Modal({
   children,
   closeLabel = 'Close dialog',
+  closeVariant = 'inverted',
   description,
   descriptionId,
+  descriptionSize = 'sm',
+  bodyTone = 'canvas',
   isOpen,
   onClose,
   title,
@@ -85,7 +88,7 @@ export function Modal({
     >
       <IconButton
         ref={closeButtonRef}
-        className="ds-modal__close"
+        className={`ds-modal__close ds-modal__close--${closeVariant}`}
         label={closeLabel}
         onClick={onClose}
       >
@@ -94,9 +97,9 @@ export function Modal({
       <Stack className="ds-modal__layout" gap={0}>
         <Stack className="ds-modal__intro" gap={2}>
           <Heading as="h2" size="display" id={titleId}>{title}</Heading>
-          <Text id={descriptionId} size="lg" tone="muted">{description}</Text>
+          <Text id={descriptionId} className={`ds-modal__description--${descriptionSize}`} size={descriptionSize === 'body' ? 'md' : 'sm'} tone="muted">{description}</Text>
         </Stack>
-        <Stack className="ds-modal__body" gap={6}>{children}</Stack>
+        <Stack className={`ds-modal__body ds-modal__body--${bodyTone}`} gap={6}>{children}</Stack>
       </Stack>
     </ModalFrame>
   );

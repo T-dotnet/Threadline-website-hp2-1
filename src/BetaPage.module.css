@@ -1,0 +1,11 @@
+.highlights {
+  width: min(calc(100% - 32px), var(--home-v2-content));
+  margin: 0 auto;
+  padding-bottom: 120px;
+}
+
+.problemSection { margin-top: calc(var(--ds-space-24) + var(--ds-space-16)); }
+
+@media (max-width: 900px) {
+  .highlights { padding: 0 24px 88px; }
+}
