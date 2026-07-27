@@ -1,6 +1,6 @@
 import { Heading, Text } from './design-system/primitives.jsx';
 import { BackArrowIcon } from './design-system/icons.jsx';
-import { SiteFooter } from './components/site-chrome.jsx';
+import { SiteFooter, SiteNavigation } from './components/site-chrome.jsx';
 import styles from './PolicyDocumentPage.module.css';
 
 function sectionId(heading, index) {
@@ -25,7 +25,8 @@ export default function ResourceArticlePage({ article }) {
   }));
 
   return (
-    <div className={styles.page}>
+    <div className={`page-shell ${styles.page}`}>
+      <SiteNavigation activeHref="/resources" />
       <main className={styles.main}>
         <header className={styles.hero} aria-labelledby="article-title">
           <a className={styles.backLink} href={backHref}>
