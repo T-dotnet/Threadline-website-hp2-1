@@ -1,5 +1,5 @@
 import { Heading, Text } from './design-system/primitives.jsx';
-import { BackArrowIcon } from './design-system/icons.jsx';
+import { BackArrowIcon, ChevronIcon } from './design-system/icons.jsx';
 import { SiteFooter } from './components/site-chrome.jsx';
 import styles from './PolicyDocumentPage.module.css';
 
@@ -8,6 +8,49 @@ const DEFAULT_RELATED_LINKS = [
   ['Terms of Service', '/terms'],
   ['Cookie Policy', '/cookies'],
 ];
+
+function PolicyTable({ block, sectionHeading }) {
+  return (
+    <div className={styles.tableScroller} tabIndex={0} role="region" aria-label={`${sectionHeading} table`}>
+      <table>
+        <thead>
+          <tr>
+            {block.columns.map((column) => <th scope="col" key={column}>{column}</th>)}
+          </tr>
+        </thead>
+        <tbody>
+          {block.rows.map((row, rowIndex) => (
+            <tr key={`${rowIndex}-${row.join('|')}`}>
+              {row.map((cell, cellIndex) => (
+                <td key={`${cellIndex}-${cell}`}>{cell}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+function PolicyContentBlock({ block, blockIndex, sectionHeading }) {
+  if (block.type === 'paragraph') {
+    return <Text key={`paragraph-${blockIndex}`}>{block.text}</Text>;
+  }
+
+  if (block.type === 'list') {
+    return (
+      <ul key={`list-${blockIndex}`}>
+        {block.items.map((item) => <li key={item}>{item}</li>)}
+      </ul>
+    );
+  }
+
+  if (block.type === 'table') {
+    return <PolicyTable block={block} sectionHeading={sectionHeading} key={`table-${blockIndex}`} />;
+  }
+
+  return null;
+}
 
 function sectionId(heading, index) {
   const slug = heading
@@ -78,8 +121,11 @@ export default function PolicyDocumentPage({ document }) {
           </aside>
 
           <article className={styles.article}>
-            <section className={styles.details} id="document-details">
-              <Heading as="h2" size="card">Document details</Heading>
+            <details className={styles.details} id="document-details">
+              <summary className={styles.detailsSummary}>
+                <Heading as="h2" size="card">Document details</Heading>
+                <ChevronIcon className={styles.detailsChevron} />
+              </summary>
               <dl>
                 {documentDetails.map(([label, value]) => (
                   <div key={label}>
@@ -89,10 +135,10 @@ export default function PolicyDocumentPage({ document }) {
                 ))}
                 <div>
                   <dt>Contact</dt>
-                  <dd><a href="mailto:support@threadline.com.au">support@threadline.com.au</a></dd>
+                  <dd><a href={`mailto:${document.contact}`}>{document.contact}</a></dd>
                 </div>
               </dl>
-            </section>
+            </details>
 
             {introduction.length ? (
               <div className={styles.introduction}>
@@ -106,34 +152,14 @@ export default function PolicyDocumentPage({ document }) {
               <section className={styles.articleSection} id={section.id} key={section.id}>
                 <Heading as="h2" size="card">{section.heading}</Heading>
                 <div className={styles.sectionContent}>
-                  {section.paragraphs?.map((paragraph) => (
-                    <Text key={paragraph}>{paragraph}</Text>
+                  {section.content?.map((block, blockIndex) => (
+                    <PolicyContentBlock
+                      block={block}
+                      blockIndex={blockIndex}
+                      sectionHeading={section.heading}
+                      key={`${block.type}-${blockIndex}`}
+                    />
                   ))}
-                  {section.items?.length ? (
-                    <ul>
-                      {section.items.map((item) => <li key={item}>{item}</li>)}
-                    </ul>
-                  ) : null}
-                  {section.table ? (
-                    <div className={styles.tableScroller} tabIndex={0} role="region" aria-label={`${section.heading} table`}>
-                      <table>
-                        <thead>
-                          <tr>
-                            {section.table.columns.map((column) => <th scope="col" key={column}>{column}</th>)}
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {section.table.rows.map((row) => (
-                            <tr key={row.join('|')}>
-                              {row.map((cell, cellIndex) => (
-                                <td key={`${cellIndex}-${cell}`}>{cell}</td>
-                              ))}
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    </div>
-                  ) : null}
                   {section.links?.map(([label, href]) => (
                     <a className={styles.inlineLink} href={href} key={label}>{label}</a>
                   ))}

@@ -1,4 +1,4 @@
-import TrustOverviewPage from '../../src/TrustOverviewPage.jsx';
+import TrustContentHubPage from '../../src/TrustContentHubPage.jsx';
 
 export const metadata = {
   title: 'Trust & Security — Threadline',
@@ -6,5 +6,5 @@ export const metadata = {
 };
 
 export default function TrustRoute() {
-  return <TrustOverviewPage />;
+  return <TrustContentHubPage />;
 }
