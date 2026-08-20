@@ -57,6 +57,100 @@ final result: passed
 
 ---
 
+# Design QA — Threadline Welcome EDM (editorial welcome)
+
+## Comparison target
+
+- Source visual truth: `/Users/danielenicoletti/.codex/generated_images/019fad88-60f7-7323-bb55-2c53f9252d75/exec-ac5e458b-af12-40eb-a017-3cba7433a65b.png`
+- Implementation: `/Users/danielenicoletti/Documents/Threadline hp2-1/email-templates/examples/welcome-to-threadline.html`
+- Intended viewport: 600px email canvas, with the template's 600px-to-mobile responsive breakpoint.
+- State: default welcome email.
+
+## Evidence and blocker
+
+The selected ImageGen direction was inspected. The implementation could not be browser-rendered or captured because the available in-app browser rejects `file://` navigation under its URL policy. No implementation screenshot, normalized comparison, focused comparison, interaction test, or console-error check is therefore available.
+
+## Required fidelity surfaces
+
+- Fonts and typography: blocked from visual comparison; the implementation uses Georgia as an email-safe editorial serif fallback and Arial/Helvetica as the sans fallback.
+- Spacing and layout rhythm: blocked from visual comparison.
+- Colors and visual tokens: blocked from visual comparison; the implementation uses Threadline forest, sage, paper and muted-slate values from the website tokens.
+- Image quality and asset fidelity: blocked from visual comparison; it uses the supplied Threadline logo, footer wordmark, resource image and watercolour image rather than substitute artwork.
+- Copy and content: blocked from visual comparison; content was updated to follow the selected editorial-welcome direction.
+
+## Findings
+
+- [P1] Browser-rendered fidelity has not been verified.
+  Location: full email and mobile stack.
+  Evidence: the local `file://` implementation URL was blocked by the in-app browser before capture.
+  Impact: image cropping, heading wraps, mobile stacking and local-asset display have not been visually proven.
+  Fix: serve the email preview over an allowed local HTTP origin or open it in an email rendering service, then capture 600px and narrow-mobile views and repeat this QA section.
+
+## Implementation checklist
+
+1. Open the template through an allowed preview URL or an ESP test send.
+2. Check 600px and 390px widths, including image crops and the three-step stacking behavior.
+3. Replace repository-relative images with production HTTPS URLs before sending.
+
+## Comparison history
+
+- Pass 1: blocked before implementation capture; no visual comparison or fix loop was possible.
+
+final result: blocked
+
+---
+
+# Design QA — Threadline EDM Variants 1, 2 and 3
+
+## Comparison targets
+
+- Variant 1 source: `/Users/danielenicoletti/.codex/generated_images/019fad88-60f7-7323-bb55-2c53f9252d75/call_0hNbM8zfHdTOvbix7TVmzmB3.png`
+- Variant 1 implementation: `email-templates/examples/welcome-quiet-editorial.html`
+- Variant 2 source: `/Users/danielenicoletti/.codex/generated_images/019fad88-60f7-7323-bb55-2c53f9252d75/call_x4eJKo1hPqmz2SDhQDdxLDWy.png`
+- Variant 2 implementation: `email-templates/examples/welcome-guided-pathway.html`
+- Variant 3 source: `/Users/danielenicoletti/.codex/generated_images/019fad88-60f7-7323-bb55-2c53f9252d75/call_Rl8My6cQF12rOd5mEiDWjD67.png`
+- Variant 3 implementation: `email-templates/examples/welcome-personal-note.html`
+- Desktop viewport: 820 × 900 CSS pixels
+- Mobile viewport: 390 × 844 CSS pixels
+
+## Full-view comparison evidence
+
+- Variant 1 combined comparison: `email-templates/qa-compare-1.png`
+- Variant 2 combined comparison: `email-templates/qa-compare-2.png`
+- Variant 3 combined comparison: `email-templates/qa-compare-3.png`
+- Desktop implementation captures: `email-templates/qa-quiet-desktop.png`, `email-templates/qa-guided-desktop.png`, and `email-templates/qa-note-desktop.png`
+- Mobile implementation captures: `email-templates/qa-quiet-mobile.png`, `email-templates/qa-guided-mobile.png`, and `email-templates/qa-note-mobile.png`
+
+Each source and browser-rendered implementation was placed in the same comparison input. The implementations preserve the selected hierarchy, composition, watercolour imagery, resource emphasis, restrained Threadline palette, and editorial typography while converting the visuals into email-safe table layouts.
+
+## Required fidelity surfaces
+
+- Fonts and typography: passed. Email-safe Georgia and Arial fallbacks reproduce the selected serif/sans hierarchy without depending on webfont support.
+- Spacing and layout rhythm: passed. Each 600px composition keeps the source's major proportions and collapses into a readable single-column mobile flow.
+- Colors and visual tokens: passed. The forest, sage, mint, warm white, and pale grey palette is aligned with the existing Threadline site assets.
+- Image quality and asset fidelity: passed. Local generated raster assets and existing Threadline watercolour imagery are used without hot-linking or placeholder artwork.
+- Copy and content: passed. Each variant includes one primary heading, supporting paragraphs, a highlighted resource section, a primary CTA, and optional legal/footer content.
+
+## EDM, responsive and accessibility checks
+
+- Balanced `table`, `tr`, and `td` markup: passed for all three variants.
+- Local image references: passed; all referenced local assets resolve.
+- Presentation table roles, meaningful image alt text, heading hierarchy, and labelled logo links: passed.
+- Unsubscribe and postal-address placeholders: passed.
+- Browser console errors: none across all three variants.
+- Mobile horizontal overflow: none at 390 × 844 after adding border-box sizing to stacked cells.
+- Optional content model: passed; hero/resource/footer blocks remain independently removable without breaking the surrounding table structure.
+
+## Findings and comparison history
+
+- Pass 1 found mobile overflow caused by padded stacked table cells calculating beyond the viewport.
+- Pass 2 applied `box-sizing:border-box` to responsive stacked cells in variants 1 and 2.
+- Final check measured document width equal to viewport width for all three variants and found no P0, P1, or P2 visual issues.
+
+final result: passed
+
+---
+
 # Design QA — Resources Page
 
 ## Comparison target
@@ -159,3 +253,11 @@ No actionable P0, P1, or P2 differences remain for the requested icon placement.
 The icon scale remains intentionally unchanged because the request was limited to placement and the earlier size adjustment was reverted.
 
 final result: passed
+
+---
+
+## Current QA status — Threadline Welcome EDM
+
+The selected editorial-welcome direction is implemented in `email-templates/examples/welcome-to-threadline.html`. Structural checks pass, but browser-rendered comparison remains unavailable because the in-app browser blocks the local `file://` URL. See the earlier **Design QA — Threadline Welcome EDM (editorial welcome)** section for the source path, blocker, and required next checks.
+
+final result: blocked
