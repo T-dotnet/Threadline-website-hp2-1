@@ -1,6 +1,6 @@
 import { Heading, Text } from './design-system/primitives.jsx';
 import { BackArrowIcon } from './design-system/icons.jsx';
-import { SiteFooter, SiteNavigation } from './components/site-chrome.jsx';
+import { SiteFooter } from './components/site-chrome.jsx';
 import styles from './PolicyDocumentPage.module.css';
 
 function sectionId(heading, index) {
@@ -25,8 +25,7 @@ export default function ResourceArticlePage({ article }) {
   }));
 
   return (
-    <div className={`page-shell ${styles.page}`}>
-      <SiteNavigation activeHref="/resources" />
+    <div className={styles.page}>
       <main className={styles.main}>
         <header className={styles.hero} aria-labelledby="article-title">
           <a className={styles.backLink} href={backHref}>
@@ -50,7 +49,7 @@ export default function ResourceArticlePage({ article }) {
         <div className={styles.articleLayout}>
           <aside className={styles.sidebar}>
             <div className={styles.sidebarInner}>
-              <h2>In this guide</h2>
+              <h3>In this guide</h3>
               <nav aria-label={`${article.title} contents`}>
                 <ol>
                   <li><a href="#overview">Overview</a></li>
@@ -93,7 +92,7 @@ export default function ResourceArticlePage({ article }) {
             ) : null}
 
             <section className={styles.articleSection} id="more-resources">
-              <Heading as="h2" size="card">More resources</Heading>
+              <Heading as="h3" size="card">More resources</Heading>
               <ul className={styles.relatedLinks}>
                 <li><a href={backHref}>View all resources</a></li>
                 <li><a href="/trust">Privacy, security and trust</a></li>
