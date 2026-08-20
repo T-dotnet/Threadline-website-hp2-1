@@ -87,7 +87,8 @@
   top: var(--ds-space-8);
 }
 
-.sidebar h2 {
+.sidebar h2,
+.sidebar h3 {
   margin: 0 0 var(--ds-space-5);
   font: 300 var(--ds-text-xl)/var(--ds-leading-heading) var(--ds-font-sans);
   letter-spacing: 0;
@@ -166,7 +167,8 @@
 }
 
 .details h2,
-.articleSection h2 {
+.articleSection h2,
+.articleSection h3 {
   font-family: var(--ds-font-sans);
   font-size: var(--ds-text-2xl);
   font-weight: 300;
@@ -246,7 +248,8 @@
   margin-top: var(--ds-space-16);
 }
 
-.articleSection h2 {
+.articleSection h2,
+.articleSection h3 {
   margin-bottom: var(--ds-space-5);
 }
 
